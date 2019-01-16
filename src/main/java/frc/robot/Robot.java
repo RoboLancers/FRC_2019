@@ -7,8 +7,8 @@
 
 package frc.robot;
 
-import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +25,9 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
     }
+
+    @Override
+    public void robotPeriodic(){ Scheduler.getInstance().run(); }
 
     @Override
     public void autonomousInit() {
