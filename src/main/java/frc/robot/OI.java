@@ -1,6 +1,7 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
+
+import com.robolancers.lib.wrappers.hid.XboxController;
 
 public class OI {
     public static XboxController xboxController = new XboxController(0);
