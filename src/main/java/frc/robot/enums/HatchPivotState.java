@@ -1,4 +1,5 @@
 package frc.robot.enums;
 
-public class HatchPivotState {
+public enum HatchPivotState {
+    VERT, HOR;
 }
