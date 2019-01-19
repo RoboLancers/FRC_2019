@@ -37,4 +37,7 @@ public class RobotMap {
 
     //Climber
     public static final int CLIMBER_MOTOR = 9;
+
+    //Compressor
+    public static final int COMPRESSOR = 21;
 }
