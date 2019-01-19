@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.drivetrain;
 
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.robolancers.lib.subsystem.drivetrain.TankDriveSubsystem;
