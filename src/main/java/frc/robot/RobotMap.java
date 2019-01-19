@@ -15,4 +15,7 @@ public class RobotMap {
 
     //Hatch
     public static final int PIVOT_MOTOR = 8;
+
+    //Climber
+    public static final int CLIMBER_MOTOR = 9;
 }
