@@ -12,4 +12,7 @@ public class RobotMap {
     //Cargo
     public static final int SHOOTER_LEFT = 6;
     public static final int SHOOTER_RIGHT = 7;
+
+    //Hatch
+    public static final int PIVOT_MOTOR = 8;
 }
