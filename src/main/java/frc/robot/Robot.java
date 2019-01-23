@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.drivetrain.Drivetrain;
+import frc.robot.subsystems.manipulators.Cargo.CargoBlock;
+import frc.robot.subsystems.manipulators.Cargo.CargoPivot;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +28,8 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         Drivetrain.getInstance();
+        CargoBlock.getInstance();
+        CargoPivot.getInstance();
     }
 
     @Override
