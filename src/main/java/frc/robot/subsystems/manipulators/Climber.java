@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.robolancers.lib.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.UseClimber;
 import frc.robot.enums.ClimberState;
 
 public class Climber extends Subsystem {
@@ -25,10 +26,11 @@ public class Climber extends Subsystem {
 
     public void setClimberMotorDown(double power) {
         climberMotor.set(ControlMode.PercentOutput, Utilities.range(power, -10));
-}
+    }
+
     public void stop(){
         climberMotor.set(ControlMode.PercentOutput, 0);
-}
+    }
 
     public synchronized static Climber getInstance() {
         if (getInstance() == null) {
@@ -37,12 +39,10 @@ public class Climber extends Subsystem {
         return instance;
     }
 
-        @Override
+    @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new UseClimber());
     }
-
-
-    }
+}
 
 //mantis arms and liftoff piston
