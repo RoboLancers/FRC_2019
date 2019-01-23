@@ -27,7 +27,7 @@ public class RobotMap {
     public static final int LIFTOFF_FORWARD = 15;
     public static final int LIFTOFF_REVERSE = 16;
 
-    //CargoBlock
+    //CargoBlock and Pivot
     public static final int CARGO_BLOCK_FORWARD = 17;
     public static final int CARGO_BLOCK_REVERSE = 18;
 
