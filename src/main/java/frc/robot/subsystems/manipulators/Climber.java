@@ -7,6 +7,7 @@ import com.robolancers.lib.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
+import frc.robot.enums.LiftoffState;
 
 public class Climber extends Subsystem {
 
@@ -40,7 +41,7 @@ public class Climber extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new Elevate());
+        setDefaultCommand(new Elevate(LiftoffState.DOWN));
     }
 }
 
