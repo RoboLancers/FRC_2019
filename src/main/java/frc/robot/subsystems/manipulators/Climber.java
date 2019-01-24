@@ -6,8 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.robolancers.lib.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.UseClimber;
-import frc.robot.enums.ClimberState;
+import frc.robot.commands.Elevate;
 
 public class Climber extends Subsystem {
 
@@ -41,7 +40,7 @@ public class Climber extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new UseClimber());
+        setDefaultCommand(new Elevate());
     }
 }
 
