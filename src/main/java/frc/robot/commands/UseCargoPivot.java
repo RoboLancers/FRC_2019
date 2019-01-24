@@ -14,7 +14,7 @@ public class UseCargoPivot extends InstantCommand {
 
     @Override
     protected void initialize(){
-        if(cargoPivotState == cargoPivotState.UP){
+        if(cargoPivotState == CargoPivotState.UP){
             CargoPivot.getInstance().setUp();
         }else{
             CargoPivot.getInstance().setDown();

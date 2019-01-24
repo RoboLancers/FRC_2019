@@ -15,7 +15,7 @@ public class UseCargoBlock extends InstantCommand {
 
     @Override
     protected void initialize(){
-        if(cargoBlockState == cargoBlockState.UP){
+        if(cargoBlockState == CargoBlockState.UP){
             CargoBlock.getInstance().setUp();
         }else{
             CargoBlock.getInstance().setDown();
