@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
+import frc.robot.enums.ClimberState;
 import frc.robot.enums.LiftoffState;
 
 public class Liftoff extends Subsystem {
@@ -30,6 +31,6 @@ public class Liftoff extends Subsystem {
     }
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new Elevate(LiftoffState.DOWN));
+        setDefaultCommand(new Elevate(LiftoffState.DOWN, ClimberState.DOWN));
     }
 }

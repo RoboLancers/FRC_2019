@@ -7,6 +7,7 @@ import com.robolancers.lib.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
+import frc.robot.enums.ClimberState;
 import frc.robot.enums.LiftoffState;
 
 public class Climber extends Subsystem {
@@ -21,11 +22,15 @@ public class Climber extends Subsystem {
     }
 
     public void setClimberMotorUp(double power) {
-        climberMotor.set(ControlMode.PercentOutput, Utilities.range(power, 1));
+        climberMotor.set(ControlMode.Position, ClimberState.UP.getPosition());
     }
 
     public void setClimberMotorDown(double power) {
-        climberMotor.set(ControlMode.PercentOutput, Utilities.range(power, -10));
+        climberMotor.set(ControlMode.Position, ClimberState.DOWN.getPosition());
+    }
+
+    public void set(ClimberState climberState){
+        climberMotor.set(ControlMode.Position, climberState.getPosition());
     }
 
     public void stop(){
@@ -41,7 +46,7 @@ public class Climber extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new Elevate(LiftoffState.DOWN));
+        setDefaultCommand(new Elevate(LiftoffState.DOWN, ClimberState.DOWN));
     }
 }
 
