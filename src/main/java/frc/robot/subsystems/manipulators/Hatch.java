@@ -3,6 +3,8 @@ package frc.robot.subsystems.manipulators;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.UseHatch;
+import frc.robot.enums.HatchState;
 
 public class Hatch extends Subsystem {
 
@@ -37,6 +39,6 @@ public class Hatch extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new UseHatch(HatchState.IN));
     }
 }
