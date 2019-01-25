@@ -7,6 +7,7 @@ import com.robolancers.lib.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.UseHatchPivot;
+import frc.robot.enums.HatchPivotState;
 
 public class HatchPivot extends Subsystem {
 
@@ -19,23 +20,21 @@ public class HatchPivot extends Subsystem {
         pivotMotor.setNeutralMode(NeutralMode.Brake);
     }
 
-    public void setPivotMotorUp(double power) {
-        pivotMotor.set(ControlMode.PercentOutput, Utilities.range(power, 1));
+    public void setPivotMotorUp() {
+        pivotMotor.set(ControlMode.PercentOutput, HatchPivotState.UP.getPower());
     }
 
-    public void setPivotMotorDown(double power) {
-        pivotMotor.set(ControlMode.PercentOutput, Utilities.range(power, -1));
+    public void setPivotMotorDown() {
+        pivotMotor.set(ControlMode.PercentOutput, HatchPivotState.DOWN.getPower());
+    }
+    public void setPivotMotorIn() {
+        pivotMotor.set(ControlMode.PercentOutput, HatchPivotState.IN.getPower());
     }
 
-
-    public void setAll(double power) {
-        setPivotMotorUp(power);
-        setPivotMotorDown(power);
-    }
 
 
     public void stop() {
-        setAll(0);
+        pivotMotor.set(ControlMode.PercentOutput, 0);
     }
 
     public synchronized static HatchPivot getInstance() {
