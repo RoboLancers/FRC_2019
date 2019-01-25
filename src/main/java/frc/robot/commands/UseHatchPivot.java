@@ -1,37 +1,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.enums.HatchPivotState;
 import frc.robot.subsystems.manipulators.HatchPivot;
 
-public class UseHatchPivot extends Command {
+public class UseHatchPivot extends InstantCommand {
 
-    private double power;
+    private HatchPivotState hatchPivotState;
 
-    public UseHatchPivot(double power) {
+    public UseHatchPivot(HatchPivotState hatchPivotState) {
         requires(HatchPivot.getInstance());
-        this.power = power;
+        this.hatchPivotState = hatchPivotState;
     }
 
     @Override
     protected void initialize() {
-        HatchPivot.getInstance().stop();
-    }
-
-
-    @Override
-    protected void execute() {
-        HatchPivot.getInstance().setAll(power);
-
-    }
-
-    @Override
-    protected void end() {
-        HatchPivot.getInstance().stop();
-    }
-
-
-    @Override
-    protected boolean isFinished() {
-        return false;
+        HatchPivot.getInstance().set(hatchPivotState);
     }
 }
