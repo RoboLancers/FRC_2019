@@ -3,7 +3,7 @@ package frc.robot.enums;
 public enum HatchPivotState {
     UP(0), DOWN(1200), IN(3000);
 
-    public double getPower() {
+    public double getPosition() {
         return power;
     }
 
