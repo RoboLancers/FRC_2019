@@ -5,17 +5,30 @@ import frc.robot.subsystems.manipulators.HatchPivot;
 
 public class UseHatchPivot extends Command {
 
-    private int position;
+    private double power;
 
-    public UseHatchPivot(int position){
+    public UseHatchPivot(double power) {
         requires(HatchPivot.getInstance());
-        this.position = position;
+        this.power = power;
     }
 
     @Override
-    protected void initialize(){
-        HatchPivot.getInstance().setPosition(position);
+    protected void initialize() {
+        HatchPivot.getInstance().stop();
     }
+
+
+    @Override
+    protected void execute() {
+        HatchPivot.getInstance().setAll(power);
+
+    }
+
+    @Override
+    protected void end() {
+        HatchPivot.getInstance().stop();
+    }
+
 
     @Override
     protected boolean isFinished() {

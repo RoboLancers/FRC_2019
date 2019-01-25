@@ -38,6 +38,5 @@ public class Hatch extends Subsystem {
     @Override
     protected void initDefaultCommand() {
 
-
     }
 }

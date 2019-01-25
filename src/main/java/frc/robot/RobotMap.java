@@ -23,11 +23,11 @@ public class RobotMap {
     public static final int HATCH3_FORWARD = 13;
     public static final int HATCH3_REVERSE = 14 ;
 
-    //LiftOff
+    //Liftoff
     public static final int LIFTOFF_FORWARD = 15;
     public static final int LIFTOFF_REVERSE = 16;
 
-    //CargoBlock
+    //CargoBlock and Pivot
     public static final int CARGO_BLOCK_FORWARD = 17;
     public static final int CARGO_BLOCK_REVERSE = 18;
 

@@ -30,7 +30,6 @@ public class Robot extends TimedRobot {
         Drivetrain.getInstance();
         CargoBlock.getInstance();
         CargoPivot.getInstance();
-
     }
 
     @Override
