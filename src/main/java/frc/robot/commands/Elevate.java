@@ -1,23 +1,26 @@
 package frc.robot.commands;
 
-import com.robolancers.lib.wrappers.hid.XboxController;
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.enums.ClimberState;
 import frc.robot.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.Climber;
 import frc.robot.subsystems.manipulators.Liftoff;
 
-public class Elevate extends Command {
+public class Elevate extends InstantCommand {
 
     private LiftoffState liftoffState;
+    private ClimberState climberState;
 
-    public Elevate(LiftoffState liftoffState) {
+    public Elevate(LiftoffState liftoffState, ClimberState climberState) {
         requires(Climber.getInstance());
+        this.climberState = climberState;
+
         requires(Liftoff.getInstance());
         this.liftoffState = liftoffState;
 
     }
 
+    @Override
     protected void initialize(){
         Climber.getInstance().stop();
         if(liftoffState == LiftoffState.UP){
@@ -25,18 +28,11 @@ public class Elevate extends Command {
         }else{
             Liftoff.getInstance().land();
         }
+
+        Climber.getInstance().set(climberState);
     }
 
-    protected void execute(){
-        if(OI.xboxController.getButtonState(XboxController.Button.X)){
-            Climber.getInstance().setClimberMotorUp(1);
-        } else if (OI.xboxController.getButtonState(XboxController.Button.Y)){
-            Climber.getInstance().setClimberMotorDown(-1);
-        } else {
-            Climber.getInstance().stop();
-        }
-    }
-
+    @Override
     protected void end(){
         Climber.getInstance().stop();
     }
