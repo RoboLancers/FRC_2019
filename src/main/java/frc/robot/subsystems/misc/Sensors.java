@@ -1,4 +1,12 @@
 package frc.robot.subsystems.misc;
 
-public class Sensors {
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class Sensors extends Subsystem {
+
+
+    @Override
+    protected void initDefaultCommand() {
+
+    }
 }
