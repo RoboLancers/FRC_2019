@@ -16,17 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class Drivetrain extends TankDriveSubsystem {
     public static Drivetrain instance;
 
-    private LancerSparkMax<Length> masterRight,  rightSlave1, rightSlave2;
+    private LancerSparkMax<Length> masterRight, rightSlave1, rightSlave2;
     private LancerSparkMax<Length> masterLeft, leftSlave1, leftSlave2;
 
-    public Drivetrain(){
-       masterRight = new LancerSparkMax<>(RobotMap.MASTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-       rightSlave1 = new LancerSparkMax<>(RobotMap.RIGHT_SLAVE_1, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-       rightSlave2 = new LancerSparkMax<>(RobotMap.RIGHT_SLAVE_2, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+    public Drivetrain() {
+        masterRight = new LancerSparkMax<>(RobotMap.MASTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+        rightSlave1 = new LancerSparkMax<>(RobotMap.RIGHT_SLAVE_1, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+        rightSlave2 = new LancerSparkMax<>(RobotMap.RIGHT_SLAVE_2, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
 
-       masterLeft = new LancerSparkMax<>(RobotMap.MASTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-       leftSlave1 = new LancerSparkMax<>(RobotMap.LEFT_SLAVE_1, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-       leftSlave2 = new LancerSparkMax<>(RobotMap.LEFT_SLAVE_2, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+        masterLeft = new LancerSparkMax<>(RobotMap.MASTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+        leftSlave1 = new LancerSparkMax<>(RobotMap.LEFT_SLAVE_1, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+        leftSlave2 = new LancerSparkMax<>(RobotMap.LEFT_SLAVE_2, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
     }
 
 
@@ -65,8 +65,8 @@ public class Drivetrain extends TankDriveSubsystem {
         setDefaultCommand(new UseDrivetrain());
     }
 
-    public static synchronized Drivetrain getInstance(){
-        if(instance == null){
+    public static synchronized Drivetrain getInstance() {
+        if (instance == null) {
             instance = new Drivetrain();
         }
 

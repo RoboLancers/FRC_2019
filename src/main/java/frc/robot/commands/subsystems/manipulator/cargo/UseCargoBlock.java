@@ -8,16 +8,16 @@ public class UseCargoBlock extends InstantCommand {
 
     private CargoBlockState cargoBlockState;
 
-    public UseCargoBlock(CargoBlockState cargoBlockState){
+    public UseCargoBlock(CargoBlockState cargoBlockState) {
         requires(CargoBlock.getInstance());
-        this.cargoBlockState =  cargoBlockState;
+        this.cargoBlockState = cargoBlockState;
     }
 
     @Override
-    protected void initialize(){
-        if(cargoBlockState == CargoBlockState.UP){
+    protected void initialize() {
+        if (cargoBlockState == CargoBlockState.UP) {
             CargoBlock.getInstance().setUp();
-        }else{
+        } else {
             CargoBlock.getInstance().setDown();
         }
     }

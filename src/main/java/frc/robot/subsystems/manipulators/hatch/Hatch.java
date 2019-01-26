@@ -30,7 +30,7 @@ public class Hatch extends Subsystem {
     }
 
     public synchronized static Hatch getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Hatch();
         }
         return instance;

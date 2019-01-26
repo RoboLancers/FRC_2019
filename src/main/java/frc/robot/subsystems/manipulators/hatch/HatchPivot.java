@@ -41,7 +41,7 @@ public class HatchPivot extends Subsystem {
     }
 
     public synchronized static HatchPivot getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new HatchPivot();
         }
         return instance;

@@ -41,7 +41,9 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void robotPeriodic(){ Scheduler.getInstance().run(); }
+    public void robotPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     @Override
     public void autonomousInit() {

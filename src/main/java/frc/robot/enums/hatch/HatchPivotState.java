@@ -10,7 +10,7 @@ public enum HatchPivotState {
     private double power;
 
     HatchPivotState(double power) {
-      this.power = power;
+        this.power = power;
     }
 
 }

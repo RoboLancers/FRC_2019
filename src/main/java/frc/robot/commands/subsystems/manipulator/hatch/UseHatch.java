@@ -13,8 +13,8 @@ public class UseHatch extends InstantCommand {
     }
 
     @Override
-    protected void initialize(){
-        if(hatchState == HatchState.IN){
+    protected void initialize() {
+        if (hatchState == HatchState.IN) {
             Hatch.getInstance().setForward();
         } else {
             Hatch.getInstance().setBack();

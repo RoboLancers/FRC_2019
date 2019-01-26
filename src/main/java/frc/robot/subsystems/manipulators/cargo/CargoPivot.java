@@ -19,17 +19,18 @@ public class CargoPivot extends Subsystem {
     public void setUp() {
         cargoPivot.set(DoubleSolenoid.Value.kForward);
     }
+
     public void setDown() {
         cargoPivot.set(DoubleSolenoid.Value.kReverse);
     }
 
 
-    public boolean isPivotUp(){
+    public boolean isPivotUp() {
         return cargoPivot.get() == DoubleSolenoid.Value.kForward;
     }
 
-    public synchronized static CargoPivot getInstance(){
-        if(instance == null){
+    public synchronized static CargoPivot getInstance() {
+        if (instance == null) {
             instance = new CargoPivot();
         }
         return instance;

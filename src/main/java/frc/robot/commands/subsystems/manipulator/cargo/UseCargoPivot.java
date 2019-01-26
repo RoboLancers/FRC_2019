@@ -7,16 +7,16 @@ import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 public class UseCargoPivot extends InstantCommand {
     private CargoPivotState cargoPivotState;
 
-    public UseCargoPivot(CargoPivotState cargoPivotState){
+    public UseCargoPivot(CargoPivotState cargoPivotState) {
         requires(CargoPivot.getInstance());
-        this.cargoPivotState =  cargoPivotState;
+        this.cargoPivotState = cargoPivotState;
     }
 
     @Override
-    protected void initialize(){
-        if(cargoPivotState == CargoPivotState.UP){
+    protected void initialize() {
+        if (cargoPivotState == CargoPivotState.UP) {
             CargoPivot.getInstance().setUp();
-        }else{
+        } else {
             CargoPivot.getInstance().setDown();
         }
     }

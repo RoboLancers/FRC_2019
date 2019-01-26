@@ -22,12 +22,12 @@ public class CargoBlock extends Subsystem {
         cargoBlock.set(DoubleSolenoid.Value.kReverse);
     }
 
-    public boolean isBlockUp(){
+    public boolean isBlockUp() {
         return cargoBlock.get() == DoubleSolenoid.Value.kForward;
     }
 
-    public synchronized static CargoBlock getInstance(){
-        if(instance == null){
+    public synchronized static CargoBlock getInstance() {
+        if (instance == null) {
             instance = new CargoBlock();
         }
         return instance;

@@ -28,11 +28,11 @@ public class Climber extends Subsystem {
         climberMotor.set(ControlMode.Position, ClimberState.DOWN.getPosition());
     }
 
-    public void set(ClimberState climberState){
+    public void set(ClimberState climberState) {
         climberMotor.set(ControlMode.Position, climberState.getPosition());
     }
 
-    public void stop(){
+    public void stop() {
         climberMotor.set(ControlMode.PercentOutput, 0);
     }
 

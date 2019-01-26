@@ -21,7 +21,7 @@ public class RobotMap {
     public static final int HATCH2_REVERSE = 12;
 
     public static final int HATCH3_FORWARD = 13;
-    public static final int HATCH3_REVERSE = 14 ;
+    public static final int HATCH3_REVERSE = 14;
 
     //Liftoff
     public static final int LIFTOFF_FORWARD = 15;

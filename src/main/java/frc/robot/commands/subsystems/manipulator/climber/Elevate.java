@@ -21,11 +21,11 @@ public class Elevate extends InstantCommand {
     }
 
     @Override
-    protected void initialize(){
+    protected void initialize() {
         Climber.getInstance().stop();
-        if(liftoffState == LiftoffState.UP){
+        if (liftoffState == LiftoffState.UP) {
             Liftoff.getInstance().takeOff();
-        }else{
+        } else {
             Liftoff.getInstance().land();
         }
 
@@ -33,9 +33,10 @@ public class Elevate extends InstantCommand {
     }
 
     @Override
-    protected void end(){
+    protected void end() {
         Climber.getInstance().stop();
     }
+
     @Override
     protected boolean isFinished() {
         return false;
