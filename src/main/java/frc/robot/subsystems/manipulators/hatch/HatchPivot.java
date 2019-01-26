@@ -24,10 +24,6 @@ public class HatchPivot extends Subsystem {
         pivotMotor.set(ControlMode.Position, hatchPivotState.getPosition());
     }
 
-    public void stop() {
-        pivotMotor.set(ControlMode.PercentOutput, 0);
-    }
-
     public synchronized static HatchPivot getInstance() {
         if (instance == null) {
             instance = new HatchPivot();
@@ -37,7 +33,5 @@ public class HatchPivot extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new UseHatchPivot(HatchPivotState.DOWN));
-
     }
 }
