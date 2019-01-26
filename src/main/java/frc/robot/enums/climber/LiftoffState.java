@@ -10,4 +10,8 @@ public enum LiftoffState {
     LiftoffState(DoubleSolenoid.Value value){
         this.value = value;
     }
+
+    public DoubleSolenoid.Value getValue() {
+        return value;
+    }
 }
