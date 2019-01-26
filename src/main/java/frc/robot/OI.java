@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.commands.subsystems.manipulator.cargo.UseCargoBlock;
 import frc.robot.commands.subsystems.manipulator.cargo.UseCargoPivot;
@@ -19,7 +20,11 @@ public class OI {
             .toggleWhenPressed(XboxController.Button.START, new UseCargoPivot(CargoPivotState.UP))
             .toggleWhenPressed(XboxController.Button.SELECT, new UseCargoBlock(CargoBlockState.UP))
             .toggleWhenPressed(XboxController.Button.A, new UseHatchPiston(HatchPistonState.IN))
-            .toggleWhenPressed(XboxController.Button.X, new UseHatchPivot(HatchPivotState.DOWN))
             .toggleWhenPressed(XboxController.Button.LEFT_JOYSTICK_BUTTON, new UseLiftoffPiston(LiftoffState.UP))
             .toggleWhenPressed(XboxController.Button.RIGHT_JOYSTICK_BUTTON, new UseClimberArm(ClimberState.UP));
+    public static FlightController flightController = new FlightController(1)
+            .whenPressed(FlightController.Button.INNER_TOP, new UseHatchPivot(HatchPivotState.UP))
+            .whenPressed(FlightController.Button.INNER_MIDDLE, new UseHatchPivot(HatchPivotState.DOWN))
+            .whenPressed(FlightController.Button.INNER_BOTTOM, new UseHatchPivot(HatchPivotState.IN));
+
 }
