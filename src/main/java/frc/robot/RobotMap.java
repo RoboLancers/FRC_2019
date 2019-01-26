@@ -12,7 +12,7 @@ public class RobotMap {
     //HatchPivot
     public static final int PIVOT_MOTOR = 8;
 
-    //Hatch Pistons
+    //HatchPiston Pistons
     public static final int HATCH1_FORWARD = 10;
     public static final int HATCH1_REVERSE = 11;
 
