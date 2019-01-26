@@ -4,16 +4,13 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.enums.cargo.CargoPivotState;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 
-public class UseCargoPivot extends InstantCommand {
-    private CargoPivotState cargoPivotState;
-
-    public UseCargoPivot(CargoPivotState cargoPivotState) {
+public class ToggleCargoPivot extends InstantCommand {
+    public ToggleCargoPivot() {
         requires(CargoPivot.getInstance());
-        this.cargoPivotState = cargoPivotState;
     }
 
     @Override
     protected void initialize() {
-        CargoPivot.getInstance().set(cargoPivotState);
+        CargoPivot.getInstance().set(CargoPivot.getInstance().get() == CargoPivotState.UP ? CargoPivotState.DOWN : CargoPivotState.UP);
     }
 }

@@ -14,16 +14,16 @@ public class CargoBlock extends Subsystem {
         cargoBlock = new DoubleSolenoid(RobotMap.CARGO_BLOCK_FORWARD, RobotMap.CARGO_BLOCK_REVERSE);
     }
 
-    public void setUp() {
-        cargoBlock.set(DoubleSolenoid.Value.kForward);
+    public void set(CargoBlockState cargoBlockState) {
+        cargoBlock.set(cargoBlockState.getValue());
     }
 
-    public void setDown() {
-        cargoBlock.set(DoubleSolenoid.Value.kReverse);
-    }
-
-    public boolean isBlockUp() {
-        return cargoBlock.get() == DoubleSolenoid.Value.kForward;
+    public CargoBlockState get() {
+        if (cargoBlock.get() == CargoBlockState.UP.value) {
+            return CargoBlockState.UP;
+        } else {
+            return CargoBlockState.DOWN;
+        }
     }
 
     public synchronized static CargoBlock getInstance() {
@@ -35,6 +35,5 @@ public class CargoBlock extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new UseCargoBlock(CargoBlockState.UP));
     }
 }
