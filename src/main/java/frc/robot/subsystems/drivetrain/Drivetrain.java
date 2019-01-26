@@ -1,63 +1,89 @@
 package frc.robot.subsystems.drivetrain;
 
-import com.revrobotics.CANSparkMaxLowLevel;
 import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
-import com.robolancers.lib.wrappers.motors.LancerSparkMax;
+import com.team254.lib.physics.DCMotorTransmission;
 import com.team254.lib.physics.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.commands.subsystems.drivetrain.UseDrivetrain;
+import frc.robot.subsystems.misc.Sensors;
 import org.ghrobotics.lib.localization.Localization;
+import org.ghrobotics.lib.localization.TankEncoderLocalization;
+import org.ghrobotics.lib.mathematics.twodim.control.RamseteTracker;
 import org.ghrobotics.lib.mathematics.twodim.control.TrajectoryTracker;
 import org.ghrobotics.lib.mathematics.units.Length;
+import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.wrappers.FalconMotor;
 import org.jetbrains.annotations.NotNull;
 
 public class Drivetrain extends TankDriveSubsystem {
     public static Drivetrain instance;
+    Transmission leftTransmission, rightTransmission;
 
-    private LancerSparkMax<Length> masterRight, rightSlave1, rightSlave2;
-    private LancerSparkMax<Length> masterLeft, leftSlave1, leftSlave2;
+    private Localization localization;
+    private DCMotorTransmission dcMotorTransmission;
+    private DifferentialDrive differentialDrive;
+
+    private RamseteTracker trajectoryTracker;
 
     public Drivetrain() {
-        masterRight = new LancerSparkMax<>(RobotMap.MASTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-        rightSlave1 = new LancerSparkMax<>(RobotMap.RIGHT_SLAVE_1, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-        rightSlave2 = new LancerSparkMax<>(RobotMap.RIGHT_SLAVE_2, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+        leftTransmission = new Transmission(RobotMap.MASTER_LEFT, RobotMap.LEFT_SLAVE_1, RobotMap.LEFT_SLAVE_2);
+        rightTransmission = new Transmission(RobotMap.MASTER_RIGHT, RobotMap.RIGHT_SLAVE_1, RobotMap.RIGHT_SLAVE_2);
 
-        masterLeft = new LancerSparkMax<>(RobotMap.MASTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-        leftSlave1 = new LancerSparkMax<>(RobotMap.LEFT_SLAVE_1, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
-        leftSlave2 = new LancerSparkMax<>(RobotMap.LEFT_SLAVE_2, CANSparkMaxLowLevel.MotorType.kBrushless, Constants.nativeUnitModel);
+        localization = new TankEncoderLocalization(
+                () -> Rotation2dKt.getDegree(Sensors.getInstance().getAngle()),
+                () -> leftTransmission.getMaster().getSensorPosition(),
+                () -> rightTransmission.getMaster().getSensorPosition()
+        );
+
+        dcMotorTransmission = new DCMotorTransmission(
+                1/ Constants.kDrivetrainKV,
+                Math.pow(Constants.kDrivetrainWheelRadius.getValue(), 2) * Constants.kRobotMass / (2.0 * Constants.kDrivetrainKA),
+                Constants.kDrivetrainStaticFrictionVolt
+        );
+
+        differentialDrive = new DifferentialDrive(
+                Constants.kRobotMass,
+                Constants.kMomentOfInertia,
+                Constants.kRobotAngularDrag,
+                Constants.kDrivetrainWheelRadius.getValue(),
+                Constants.kTrackWidth.getValue() / 2.0,
+                dcMotorTransmission,
+                dcMotorTransmission
+        );
+
+        trajectoryTracker = new RamseteTracker(Constants.kDrivetrainBeta, Constants.kDrivetrainZeta);
     }
 
 
     @Override
     public Localization getLocalization() {
-        return null;
+        return localization;
     }
 
     @NotNull
     @Override
     public DifferentialDrive getDifferentialDrive() {
-        return null;
+        return differentialDrive;
     }
 
 
     @NotNull
     @Override
     public FalconMotor<Length> getLeftMotor() {
-        return masterLeft;
+        return leftTransmission.getMaster();
     }
 
     @NotNull
     @Override
     public FalconMotor<Length> getRightMotor() {
-        return masterRight;
+        return rightTransmission.getMaster();
     }
 
     @NotNull
     @Override
     public TrajectoryTracker getTrajectoryTracker() {
-        return null;
+        return trajectoryTracker;
     }
 
     @Override
