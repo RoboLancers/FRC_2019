@@ -5,12 +5,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.enums.climber.LiftoffState;
 
-public class Liftoff extends Subsystem {
+public class LiftoffPiston extends Subsystem {
 
     private DoubleSolenoid liftOff;
-    private static Liftoff instance;
+    private static LiftoffPiston instance;
 
-    public Liftoff() {
+    public LiftoffPiston() {
         liftOff = new DoubleSolenoid(RobotMap.LIFTOFF_FORWARD, RobotMap.LIFTOFF_REVERSE);
     }
 
@@ -18,9 +18,9 @@ public class Liftoff extends Subsystem {
         liftOff.set(liftoffState.getValue());
     }
 
-    public synchronized static Liftoff getInstance() {
+    public synchronized static LiftoffPiston getInstance() {
         if (instance == null) {
-            instance = new Liftoff();
+            instance = new LiftoffPiston();
         }
         return instance;
     }

@@ -1,7 +1,6 @@
 package frc.robot.enums.climber;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import frc.robot.subsystems.manipulators.climber.Liftoff;
 
 public enum LiftoffState {
     UP(DoubleSolenoid.Value.kForward), DOWN(DoubleSolenoid.Value.kReverse);
