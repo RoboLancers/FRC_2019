@@ -25,10 +25,6 @@ public class ClimberArm extends Subsystem {
         climberMotor.set(ControlMode.Position, climberState.getPosition());
     }
 
-    public void stop() {
-        climberMotor.set(ControlMode.PercentOutput, 0);
-    }
-
     public synchronized static ClimberArm getInstance() {
         if (instance == null) {
             instance = new ClimberArm();
