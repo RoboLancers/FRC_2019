@@ -1,6 +1,7 @@
 package frc.robot.subsystems.manipulators.climber;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +19,8 @@ public class ClimberArm extends Subsystem {
         climberMotor = new TalonSRX(RobotMap.CLIMBER_MOTOR);
 
         climberMotor.setNeutralMode(NeutralMode.Brake);
+
+        climberMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     }
 
     public void set(ClimberState climberState) {
