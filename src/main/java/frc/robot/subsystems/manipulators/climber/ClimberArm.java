@@ -37,7 +37,6 @@ public class ClimberArm extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new Elevate(LiftoffState.DOWN, ClimberState.DOWN));
     }
 }
 
