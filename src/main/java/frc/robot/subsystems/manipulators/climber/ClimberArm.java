@@ -9,12 +9,12 @@ import frc.robot.commands.subsystems.manipulator.climber.Elevate;
 import frc.robot.enums.climber.ClimberState;
 import frc.robot.enums.climber.LiftoffState;
 
-public class Climber extends Subsystem {
+public class ClimberArm extends Subsystem {
 
     private TalonSRX climberMotor;
-    private static Climber instance;
+    private static ClimberArm instance;
 
-    public Climber() {
+    public ClimberArm() {
         climberMotor = new TalonSRX(RobotMap.CLIMBER_MOTOR);
 
         climberMotor.setNeutralMode(NeutralMode.Brake);
@@ -36,9 +36,9 @@ public class Climber extends Subsystem {
         climberMotor.set(ControlMode.PercentOutput, 0);
     }
 
-    public synchronized static Climber getInstance() {
-        if (getInstance() == null) {
-            instance = new Climber();
+    public synchronized static ClimberArm getInstance() {
+        if (instance == null) {
+            instance = new ClimberArm();
         }
         return instance;
     }
