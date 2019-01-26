@@ -6,9 +6,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.subsystems.manipulator.climber.Elevate;
 import frc.robot.enums.climber.ClimberState;
-import frc.robot.enums.climber.LiftoffState;
 
 public class ClimberArm extends Subsystem {
 
