@@ -14,6 +14,10 @@ public class CargoBlock extends Subsystem {
         cargoBlock = new DoubleSolenoid(RobotMap.CARGO_BLOCK_FORWARD, RobotMap.CARGO_BLOCK_REVERSE);
     }
 
+    public void set(CargoBlockState cargoBlockState){
+        cargoBlock.set(cargoBlockState.getValue());
+    }
+/*
     public void setUp() {
         cargoBlock.set(DoubleSolenoid.Value.kForward);
     }
@@ -21,6 +25,7 @@ public class CargoBlock extends Subsystem {
     public void setDown() {
         cargoBlock.set(DoubleSolenoid.Value.kReverse);
     }
+    */
 
     public boolean isBlockUp() {
         return cargoBlock.get() == DoubleSolenoid.Value.kForward;
