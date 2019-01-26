@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class Drivetrain extends TankDriveSubsystem {
     public static Drivetrain instance;
-    Transmission leftTransmission, rightTrasmission;
+    Transmission leftTransmission, rightTransmission;
 
     private Localization localization;
     private DCMotorTransmission dcMotorTransmission;
@@ -28,12 +28,12 @@ public class Drivetrain extends TankDriveSubsystem {
 
     public Drivetrain() {
         leftTransmission = new Transmission(RobotMap.MASTER_LEFT, RobotMap.LEFT_SLAVE_1, RobotMap.LEFT_SLAVE_2);
-        rightTrasmission = new Transmission(RobotMap.MASTER_RIGHT, RobotMap.RIGHT_SLAVE_1, RobotMap.RIGHT_SLAVE_2);
+        rightTransmission = new Transmission(RobotMap.MASTER_RIGHT, RobotMap.RIGHT_SLAVE_1, RobotMap.RIGHT_SLAVE_2);
 
         localization = new TankEncoderLocalization(
                 () -> Rotation2dKt.getDegree(Sensors.getInstance().getAngle()),
                 () -> leftTransmission.getMaster().getSensorPosition(),
-                () -> rightTrasmission.getMaster().getSensorPosition()
+                () -> rightTransmission.getMaster().getSensorPosition()
         );
 
         dcMotorTransmission = new DCMotorTransmission(
@@ -77,7 +77,7 @@ public class Drivetrain extends TankDriveSubsystem {
     @NotNull
     @Override
     public FalconMotor<Length> getRightMotor() {
-        return rightTrasmission.getMaster();
+        return rightTransmission.getMaster();
     }
 
     @NotNull
