@@ -20,8 +20,12 @@ public class CargoPivot extends Subsystem {
         cargoPivot.set(cargoPivotState.getValue());
     }
 
-    public boolean isPivotUp() {
-        return cargoPivot.get() == DoubleSolenoid.Value.kForward;
+    public CargoPivotState get() {
+        if (cargoPivot.get() == CargoPivotState.UP.value) {
+            return CargoPivotState.UP;
+        } else {
+            return CargoPivotState.DOWN;
+        }
     }
 
     public synchronized static CargoPivot getInstance() {
@@ -33,6 +37,5 @@ public class CargoPivot extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new UseCargoPivot(CargoPivotState.UP));
     }
 }
