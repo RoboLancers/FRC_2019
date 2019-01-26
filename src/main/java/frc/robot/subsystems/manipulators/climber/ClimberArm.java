@@ -20,14 +20,6 @@ public class ClimberArm extends Subsystem {
         climberMotor.setNeutralMode(NeutralMode.Brake);
     }
 
-    public void setClimberMotorUp(double power) {
-        climberMotor.set(ControlMode.Position, ClimberState.UP.getPosition());
-    }
-
-    public void setClimberMotorDown(double power) {
-        climberMotor.set(ControlMode.Position, ClimberState.DOWN.getPosition());
-    }
-
     public void set(ClimberState climberState) {
         climberMotor.set(ControlMode.Position, climberState.getPosition());
     }

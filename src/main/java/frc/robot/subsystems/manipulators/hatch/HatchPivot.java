@@ -20,18 +20,6 @@ public class HatchPivot extends Subsystem {
         pivotMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     }
 
-    public void setPivotMotorUp() {
-        pivotMotor.set(ControlMode.PercentOutput, HatchPivotState.UP.getPosition());
-    }
-
-    public void setPivotMotorDown() {
-        pivotMotor.set(ControlMode.PercentOutput, HatchPivotState.DOWN.getPosition());
-    }
-
-    public void setPivotMotorIn() {
-        pivotMotor.set(ControlMode.PercentOutput, HatchPivotState.IN.getPosition());
-    }
-
     public void set(HatchPivotState hatchPivotState) {
         pivotMotor.set(ControlMode.Position, hatchPivotState.getPosition());
     }
