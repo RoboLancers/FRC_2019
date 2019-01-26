@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
-import frc.robot.subsystems.manipulators.climber.Climber;
+import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.hatch.Hatch;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
         CargoPivot.getInstance();
         Hatch.getInstance();
         HatchPivot.getInstance();
-        Climber.getInstance();
+        ClimberArm.getInstance();
         Pneumatic.getInstance();
     }
 

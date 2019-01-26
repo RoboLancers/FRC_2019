@@ -16,14 +16,9 @@ public class CargoPivot extends Subsystem {
         cargoPivot = new DoubleSolenoid(RobotMap.CARGO_PIVOT_FORWARD, RobotMap.CARGO_PIVOT_REVERSE);
     }
 
-    public void setUp() {
-        cargoPivot.set(DoubleSolenoid.Value.kForward);
+    public void set(CargoPivotState cargoPivotState) {
+        cargoPivot.set(cargoPivotState.getValue());
     }
-
-    public void setDown() {
-        cargoPivot.set(DoubleSolenoid.Value.kReverse);
-    }
-
 
     public boolean isPivotUp() {
         return cargoPivot.get() == DoubleSolenoid.Value.kForward;
