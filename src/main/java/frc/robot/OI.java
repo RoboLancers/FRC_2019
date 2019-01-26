@@ -26,5 +26,4 @@ public class OI {
             .whenPressed(FlightController.Button.INNER_TOP, new UseHatchPivot(HatchPivotState.UP))
             .whenPressed(FlightController.Button.INNER_MIDDLE, new UseHatchPivot(HatchPivotState.DOWN))
             .whenPressed(FlightController.Button.INNER_BOTTOM, new UseHatchPivot(HatchPivotState.IN));
-
 }
