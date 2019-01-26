@@ -39,4 +39,10 @@ public class RobotMap {
 
     //Compressor
     public static final int COMPRESSOR = 21;
+
+    //Limit Switch
+    public static final int LIMIT_SWITCH_1 = 22;
+    public static final int LIMIT_SWITCH_2 = 23;
+    public static final int LIMIT_SWITCH_3 = 24;
+
 }
