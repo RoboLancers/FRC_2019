@@ -1,11 +1,11 @@
-package frc.robot.subsystems.manipulators;
+package frc.robot.subsystems.manipulators.climber;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.Elevate;
-import frc.robot.enums.ClimberState;
-import frc.robot.enums.LiftoffState;
+import frc.robot.commands.subsystems.manipulator.climber.Elevate;
+import frc.robot.enums.climber.ClimberState;
+import frc.robot.enums.climber.LiftoffState;
 
 public class Liftoff extends Subsystem {
 

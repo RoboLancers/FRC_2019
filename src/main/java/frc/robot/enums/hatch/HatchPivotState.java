@@ -1,4 +1,4 @@
-package frc.robot.enums;
+package frc.robot.enums.hatch;
 
 public enum HatchPivotState {
     UP(0), DOWN(1200), IN(3000);

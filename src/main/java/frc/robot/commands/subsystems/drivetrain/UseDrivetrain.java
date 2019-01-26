@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.subsystems.drivetrain;
 
 import com.robolancers.lib.wrappers.hid.XboxController;
 import edu.wpi.first.wpilibj.command.Command;

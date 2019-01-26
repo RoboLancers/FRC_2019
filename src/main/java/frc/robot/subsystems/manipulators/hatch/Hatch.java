@@ -1,10 +1,10 @@
-package frc.robot.subsystems.manipulators;
+package frc.robot.subsystems.manipulators.hatch;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.UseHatch;
-import frc.robot.enums.HatchState;
+import frc.robot.commands.subsystems.manipulator.hatch.UseHatch;
+import frc.robot.enums.hatch.HatchState;
 
 public class Hatch extends Subsystem {
 

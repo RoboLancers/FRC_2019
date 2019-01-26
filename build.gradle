@@ -2,7 +2,7 @@ import edu.wpi.first.gradlerio.GradleRIOPlugin
 
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2019.1.1"
+    id "edu.wpi.first.GradleRIO" version "2019.2.1"
 }
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
@@ -62,7 +62,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile('com.github.5190GreenHopeRobotics:FalconLibrary:56ecff06c9')
-    compile('com.github.RoboLancers:LancerLibrary:c09dfb716e')
+    compile('com.github.RoboLancers:LancerLibrary:fb92ed47ca')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

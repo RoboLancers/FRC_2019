@@ -1,4 +1,4 @@
-package frc.robot.enums;
+package frc.robot.enums.climber;
 
 public enum ClimberState{
     UP(2000), DOWN(0);

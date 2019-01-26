@@ -1,10 +1,10 @@
-package frc.robot.subsystems.manipulators.Cargo;
+package frc.robot.subsystems.manipulators.cargo;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.UseCargoPivot;
-import frc.robot.enums.CargoPivotState;
+import frc.robot.commands.subsystems.manipulator.cargo.UseCargoPivot;
+import frc.robot.enums.cargo.CargoPivotState;
 
 
 public class CargoPivot extends Subsystem {

@@ -1,16 +1,13 @@
-package frc.robot.subsystems.manipulators;
+package frc.robot.subsystems.manipulators.hatch;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.robolancers.lib.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.UseHatch;
-import frc.robot.commands.UseHatchPivot;
-import frc.robot.enums.HatchPivotState;
-import org.apache.commons.math3.analysis.function.Power;
+import frc.robot.commands.subsystems.manipulator.hatch.UseHatchPivot;
+import frc.robot.enums.hatch.HatchPivotState;
 
 public class HatchPivot extends Subsystem {
 

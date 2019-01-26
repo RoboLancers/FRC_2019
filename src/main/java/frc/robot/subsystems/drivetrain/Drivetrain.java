@@ -1,12 +1,12 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.revrobotics.CANSparkMaxLowLevel;
-import com.robolancers.lib.subsystem.drivetrain.TankDriveSubsystem;
+import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
 import com.robolancers.lib.wrappers.motors.LancerSparkMax;
 import com.team254.lib.physics.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
-import frc.robot.commands.UseDrivetrain;
+import frc.robot.commands.subsystems.drivetrain.UseDrivetrain;
 import org.ghrobotics.lib.localization.Localization;
 import org.ghrobotics.lib.mathematics.twodim.control.TrajectoryTracker;
 import org.ghrobotics.lib.mathematics.units.Length;

@@ -7,14 +7,15 @@
 
 package frc.robot;
 
+import com.robolancers.lib.subsystems.misc.Pneumatic;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.manipulators.Cargo.CargoBlock;
-import frc.robot.subsystems.manipulators.Cargo.CargoPivot;
-import frc.robot.subsystems.manipulators.Climber;
-import frc.robot.subsystems.manipulators.Hatch;
-import frc.robot.subsystems.manipulators.HatchPivot;
+import frc.robot.subsystems.manipulators.cargo.CargoBlock;
+import frc.robot.subsystems.manipulators.cargo.CargoPivot;
+import frc.robot.subsystems.manipulators.climber.Climber;
+import frc.robot.subsystems.manipulators.hatch.Hatch;
+import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
         Hatch.getInstance();
         HatchPivot.getInstance();
         Climber.getInstance();
+        Pneumatic.getInstance();
     }
 
     @Override

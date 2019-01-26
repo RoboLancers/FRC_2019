@@ -1,9 +1,8 @@
-package frc.robot.commands;
+package frc.robot.commands.subsystems.manipulator.hatch;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.enums.HatchPivotState;
-import frc.robot.subsystems.manipulators.HatchPivot;
+import frc.robot.enums.hatch.HatchPivotState;
+import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 
 public class UseHatchPivot extends InstantCommand {
 

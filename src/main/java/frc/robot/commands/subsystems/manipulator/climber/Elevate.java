@@ -1,10 +1,10 @@
-package frc.robot.commands;
+package frc.robot.commands.subsystems.manipulator.climber;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.enums.ClimberState;
-import frc.robot.enums.LiftoffState;
-import frc.robot.subsystems.manipulators.Climber;
-import frc.robot.subsystems.manipulators.Liftoff;
+import frc.robot.enums.climber.ClimberState;
+import frc.robot.enums.climber.LiftoffState;
+import frc.robot.subsystems.manipulators.climber.Climber;
+import frc.robot.subsystems.manipulators.climber.Liftoff;
 
 public class Elevate extends InstantCommand {
 

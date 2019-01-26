@@ -1,14 +1,13 @@
-package frc.robot.subsystems.manipulators;
+package frc.robot.subsystems.manipulators.climber;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.robolancers.lib.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.Elevate;
-import frc.robot.enums.ClimberState;
-import frc.robot.enums.LiftoffState;
+import frc.robot.commands.subsystems.manipulator.climber.Elevate;
+import frc.robot.enums.climber.ClimberState;
+import frc.robot.enums.climber.LiftoffState;
 
 public class Climber extends Subsystem {
 

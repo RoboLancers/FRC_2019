@@ -2,8 +2,17 @@ package frc.robot;
 
 
 import com.robolancers.lib.wrappers.hid.XboxController;
-import frc.robot.commands.*;
-import frc.robot.enums.*;
+import frc.robot.commands.subsystems.manipulator.cargo.UseCargoBlock;
+import frc.robot.commands.subsystems.manipulator.cargo.UseCargoPivot;
+import frc.robot.commands.subsystems.manipulator.climber.Elevate;
+import frc.robot.commands.subsystems.manipulator.hatch.UseHatch;
+import frc.robot.commands.subsystems.manipulator.hatch.UseHatchPivot;
+import frc.robot.enums.cargo.CargoBlockState;
+import frc.robot.enums.cargo.CargoPivotState;
+import frc.robot.enums.climber.ClimberState;
+import frc.robot.enums.climber.LiftoffState;
+import frc.robot.enums.hatch.HatchPivotState;
+import frc.robot.enums.hatch.HatchState;
 
 public class OI {
     public static XboxController xboxController = new XboxController(0)

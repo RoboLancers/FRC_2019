@@ -1,12 +1,8 @@
-package frc.robot.commands;
+package frc.robot.commands.subsystems.manipulator.hatch;
 
-import com.robolancers.lib.wrappers.hid.XboxController;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.OI;
-import frc.robot.enums.HatchPivotState;
-import frc.robot.enums.HatchState;
-import frc.robot.subsystems.manipulators.Hatch;
+import frc.robot.enums.hatch.HatchState;
+import frc.robot.subsystems.manipulators.hatch.Hatch;
 
 public class UseHatch extends InstantCommand {
     private HatchState hatchState;

@@ -1,8 +1,8 @@
-package frc.robot.commands;
+package frc.robot.commands.subsystems.manipulator.cargo;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.enums.CargoBlockState;
-import frc.robot.subsystems.manipulators.Cargo.CargoBlock;
+import frc.robot.enums.cargo.CargoBlockState;
+import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 
 public class UseCargoBlock extends InstantCommand {
 
