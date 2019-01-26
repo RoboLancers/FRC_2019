@@ -24,9 +24,9 @@ public class Elevate extends InstantCommand {
     protected void initialize() {
         ClimberArm.getInstance().stop();
         if (liftoffState == LiftoffState.UP) {
-            Liftoff.getInstance().takeOff();
+            Liftoff.getInstance().set(LiftoffState.UP);
         } else {
-            Liftoff.getInstance().land();
+            Liftoff.getInstance().set(LiftoffState.DOWN);
         }
 
         ClimberArm.getInstance().set(climberState);

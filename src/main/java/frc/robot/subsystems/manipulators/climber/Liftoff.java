@@ -16,12 +16,8 @@ public class Liftoff extends Subsystem {
         liftOff = new DoubleSolenoid(RobotMap.LIFTOFF_FORWARD, RobotMap.LIFTOFF_REVERSE);
     }
 
-    public void takeOff() {
-        liftOff.set(DoubleSolenoid.Value.kForward);
-    }
-
-    public void land() {
-        liftOff.set(DoubleSolenoid.Value.kReverse);
+    public void set(LiftoffState liftoffState) {
+        liftOff.set(liftoffState.getValue());
     }
 
     public synchronized static Liftoff getInstance() {
@@ -33,6 +29,6 @@ public class Liftoff extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-       
+
     }
 }
