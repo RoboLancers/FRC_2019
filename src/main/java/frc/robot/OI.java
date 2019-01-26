@@ -1,9 +1,10 @@
 package frc.robot;
 
-
 import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.commands.subsystems.manipulator.cargo.UseCargoBlock;
 import frc.robot.commands.subsystems.manipulator.cargo.UseCargoPivot;
+import frc.robot.commands.subsystems.manipulator.climber.UseClimberArm;
+import frc.robot.commands.subsystems.manipulator.climber.UseLiftoffPiston;
 import frc.robot.commands.subsystems.manipulator.hatch.UseHatch;
 import frc.robot.commands.subsystems.manipulator.hatch.UseHatchPivot;
 import frc.robot.enums.cargo.CargoBlockState;
@@ -18,5 +19,7 @@ public class OI {
             .toggleWhenPressed(XboxController.Button.START, new UseCargoPivot(CargoPivotState.UP))
             .toggleWhenPressed(XboxController.Button.SELECT, new UseCargoBlock(CargoBlockState.UP))
             .toggleWhenPressed(XboxController.Button.A, new UseHatch(HatchState.IN))
-            .toggleWhenPressed(XboxController.Button.X, new UseHatchPivot(HatchPivotState.DOWN));
+            .toggleWhenPressed(XboxController.Button.X, new UseHatchPivot(HatchPivotState.DOWN))
+            .toggleWhenPressed(XboxController.Button.LEFT_JOYSTICK_BUTTON, new UseLiftoffPiston(LiftoffState.UP))
+            .toggleWhenPressed(XboxController.Button.RIGHT_JOYSTICK_BUTTON, new UseClimberArm(ClimberState.UP));
 }
