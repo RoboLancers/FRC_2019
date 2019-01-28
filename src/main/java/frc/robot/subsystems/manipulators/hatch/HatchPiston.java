@@ -2,6 +2,7 @@ package frc.robot.subsystems.manipulators.hatch;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.enums.hatch.HatchPistonState;
@@ -9,10 +10,10 @@ import frc.robot.enums.hatch.HatchPistonState;
 public class HatchPiston extends Subsystem {
     private static HatchPiston instance;
     private DigitalInput hatchDetector;
-    private DoubleSolenoid ejector;
+    private Solenoid ejector;
 
     private HatchPiston() {
-        ejector = new DoubleSolenoid(RobotMap.HATCH.EJECTOR, RobotMap.HATCH.EJECTOR);
+        ejector = new Solenoid(RobotMap.HATCH.EJECTOR, RobotMap.HATCH.EJECTOR);
         hatchDetector = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH_PORT);
     }
 

@@ -1,17 +1,19 @@
 package frc.robot.enums.hatch;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 
 public enum HatchPistonState {
-    IN(DoubleSolenoid.Value.kForward), OUT(DoubleSolenoid.Value.kReverse);
+    IN(true), OUT(false);
 
-    private DoubleSolenoid.Value value;
+    private boolean value;
 
-    HatchPistonState(DoubleSolenoid.Value value) {
+    HatchPistonState(boolean value) {
+
         this.value = value;
     }
 
-    public DoubleSolenoid.Value getValue() {
+    public boolean getValue() {
         return value;
     }
 }
