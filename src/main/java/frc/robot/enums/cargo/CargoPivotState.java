@@ -1,17 +1,16 @@
 package frc.robot.enums.cargo;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public enum CargoPivotState {
-    UP(DoubleSolenoid.Value.kForward), DOWN(DoubleSolenoid.Value.kReverse);
+    UP(true), DOWN(false);
 
-    private DoubleSolenoid.Value value;
+    private boolean value;
 
-    CargoPivotState(DoubleSolenoid.Value value) {
+    CargoPivotState(boolean value) {
         this.value = value;
     }
 
-    public DoubleSolenoid.Value getValue() {
+    public boolean getValue() {
         return value;
     }
 }
