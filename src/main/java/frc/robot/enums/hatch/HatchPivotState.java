@@ -1,16 +1,15 @@
 package frc.robot.enums.hatch;
 
 public enum HatchPivotState {
-    UP(0), DOWN(1200), IN(3000);
+    DEFENSE(0), SCORING(3000), FLOOR(9000);
+
+    private double position;
+
+    HatchPivotState(int position) {
+        this.position = position;
+    }
 
     public double getPosition() {
-        return power;
+        return position;
     }
-
-    private double power;
-
-    HatchPivotState(double power) {
-        this.power = power;
-    }
-
 }

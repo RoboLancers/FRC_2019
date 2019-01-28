@@ -5,7 +5,6 @@ import frc.robot.enums.hatch.HatchPivotState;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 
 public class UseHatchPivot extends InstantCommand {
-
     private HatchPivotState hatchPivotState;
 
     public UseHatchPivot(HatchPivotState hatchPivotState) {

@@ -1,8 +1,6 @@
 package frc.robot.subsystems.drivetrain;
 
-import com.revrobotics.CANSparkMaxLowLevel;
 import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
-import com.robolancers.lib.wrappers.motors.LancerSparkMax;
 import com.team254.lib.physics.DCMotorTransmission;
 import com.team254.lib.physics.DifferentialDrive;
 import edu.wpi.first.wpilibj.Notifier;
@@ -22,17 +20,16 @@ import org.ghrobotics.lib.wrappers.FalconMotor;
 import org.jetbrains.annotations.NotNull;
 
 public class Drivetrain extends TankDriveSubsystem {
-    public static Drivetrain instance;
+    private static Drivetrain instance;
 
-    Transmission left, right;
+    private Transmission left, right;
 
     private Localization localization;
-    private DCMotorTransmission dcMotorTransmission;
     private DifferentialDrive differentialDrive;
 
     private TrajectoryTracker trajectoryTracker;
 
-    public Drivetrain() {
+    private Drivetrain() {
         left = new Transmission(TransmissionSide.LEFT, RobotMap.DRIVETRAIN.MASTER_LEFT, RobotMap.DRIVETRAIN.LEFT_SLAVE_1, RobotMap.DRIVETRAIN.LEFT_SLAVE_2);
         right = new Transmission(TransmissionSide.RIGHT, RobotMap.DRIVETRAIN.MASTER_RIGHT, RobotMap.DRIVETRAIN.RIGHT_SLAVE_1, RobotMap.DRIVETRAIN.RIGHT_SLAVE_2);
 
@@ -49,8 +46,8 @@ public class Drivetrain extends TankDriveSubsystem {
             LiveDashboard.INSTANCE.setRobotHeading(localization.getRobotPosition().getRotation().getRadian());
         }).startPeriodic(0.01);
 
-        dcMotorTransmission = new DCMotorTransmission(
-            1 / Constants.DRIVETRAIN.kV,
+        DCMotorTransmission dcMotorTransmission = new DCMotorTransmission(
+                1 / Constants.DRIVETRAIN.kV,
                 Math.pow(Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(), 2) * Constants.ROBOT.MASS / (2 * Constants.DRIVETRAIN.kA),
                 Constants.DRIVETRAIN.kStaticFrictionVoltage
         );

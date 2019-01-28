@@ -14,27 +14,30 @@ public class RobotMap {
 
     public static final class HATCH {
         // Motors
-        public static final int PIVOT_MOTOR = 7;
+        public static final int PIVOT = 7;
 
         // Pneumatics
-        public static final int HATCH_PISTON = 0;
+        public static final int EJECTOR = 0;
+
+        // Sensors
+        public static final int LIMIT_SWITCH_PORT = 0;
     }
 
     public static final class CARGO {
         // Pneumatics
-        public static final int CARGO_BLOCK_FORWARD = 1;
-        public static final int CARGO_BLOCK_REVERSE = 2;
+        public static final int BLOCK_FORWARD = 1;
+        public static final int BLOCK_REVERSE = 2;
 
-        public static final int CARGO_PIVOT_FORWARD = 3;
-        public static final int CARGO_PIVOT_REVERSE = 4;
+        public static final int PIVOT_FORWARD = 3;
+        public static final int PIVOT_REVERSE = 4;
     }
 
     public static final class CLIMBER {
         // Motors
-        public static final int CLIMBER_MOTOR = 8;
+        public static final int ARM = 8;
 
         //Pneumatics
-        public static final int LIFTOFF_FORWARD = 5;
-        public static final int LIFTOFF_REVERSE = 6;
+        public static final int LIFTOFF_PISTON_FORWARD = 5;
+        public static final int LIFTOFF_PISTON_REVERSE = 6;
     }
 }

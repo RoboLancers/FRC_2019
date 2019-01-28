@@ -6,22 +6,17 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.subsystems.manipulator.hatch.UseHatchPivot;
 import frc.robot.enums.hatch.HatchPivotState;
 
 public class HatchPivot extends Subsystem {
-
+    private static HatchPivot instance;
     private TalonSRX pivotMotor;
-    public static HatchPivot instance;
 
-    public HatchPivot() {
-        pivotMotor = new TalonSRX(RobotMap.PIVOT_MOTOR);
+    private HatchPivot() {
+        pivotMotor = new TalonSRX(RobotMap.HATCH.PIVOT);
+
         pivotMotor.setNeutralMode(NeutralMode.Brake);
         pivotMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-    }
-
-    public void set(HatchPivotState hatchPivotState) {
-        pivotMotor.set(ControlMode.Position, hatchPivotState.getPosition());
     }
 
     public synchronized static HatchPivot getInstance() {
@@ -29,6 +24,10 @@ public class HatchPivot extends Subsystem {
             instance = new HatchPivot();
         }
         return instance;
+    }
+
+    public void set(HatchPivotState hatchPivotState) {
+        pivotMotor.set(ControlMode.Position, hatchPivotState.getPosition());
     }
 
     @Override

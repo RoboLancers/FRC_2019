@@ -10,11 +10,12 @@ import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 import java.util.Arrays;
 import java.util.List;
 
-public class Transmission {
+@SuppressWarnings({"WeakerAccess", "FieldCanBeLocal"})
+class Transmission {
     private FalconSRX<Length> master;
     private List<FalconSRX<Length>> allMotors;
 
-    public Transmission(TransmissionSide side, int masterPort, int slave1Port, int slave2Port){
+    Transmission(TransmissionSide side, int masterPort, int slave1Port, int slave2Port) {
         master = new FalconSRX<>(masterPort, Constants.DRIVETRAIN.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
         FalconSRX<Length> slave1 = new FalconSRX<>(slave1Port, Constants.DRIVETRAIN.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
         FalconSRX<Length> slave2 = new FalconSRX<>(slave2Port, Constants.DRIVETRAIN.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
@@ -25,7 +26,7 @@ public class Transmission {
         allMotors = Arrays.asList(master, slave1, slave2);
 
         for (FalconSRX<Length> motor : allMotors) {
-            if(side == TransmissionSide.LEFT){
+            if (side == TransmissionSide.LEFT) {
                 motor.setInverted(InvertType.InvertMotorOutput);
             }
 
@@ -48,7 +49,7 @@ public class Transmission {
         master.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
     }
 
-    public FalconSRX<Length> getMaster(){
+    public FalconSRX<Length> getMaster() {
         return master;
     }
 }

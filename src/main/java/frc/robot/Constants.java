@@ -14,8 +14,8 @@ import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitLengthModel;
 import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitModel;
 
 public class Constants {
-    public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
     public static final double EPSILON = 1E-9;
+    public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
 
     public static final class PATH_FOLLOWING {
         public static final Velocity<Length> MAX_VELOCITY = VelocityKt.getVelocity(LengthKt.getFeet(10));
@@ -31,6 +31,7 @@ public class Constants {
         public static final double ANGULAR_DRAG = 12;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static final class DRIVETRAIN {
         public static final int PEAK_CURRENT_LIMIT = 80;
         public static final int CONTINUOUS_CURRENT_LIMIT = 36;

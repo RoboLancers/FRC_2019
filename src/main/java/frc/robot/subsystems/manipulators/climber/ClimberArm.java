@@ -9,20 +9,13 @@ import frc.robot.RobotMap;
 import frc.robot.enums.climber.ClimberState;
 
 public class ClimberArm extends Subsystem {
-
-    private TalonSRX climberMotor;
     private static ClimberArm instance;
+    private TalonSRX climberArm;
 
-    public ClimberArm() {
-        climberMotor = new TalonSRX(RobotMap.CLIMBER_MOTOR);
-
-        climberMotor.setNeutralMode(NeutralMode.Brake);
-
-        climberMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-    }
-
-    public void set(ClimberState climberState) {
-        climberMotor.set(ControlMode.Position, climberState.getPosition());
+    private ClimberArm() {
+        climberArm = new TalonSRX(RobotMap.CLIMBER.ARM);
+        climberArm.setNeutralMode(NeutralMode.Brake);
+        climberArm.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     }
 
     public synchronized static ClimberArm getInstance() {
@@ -32,9 +25,11 @@ public class ClimberArm extends Subsystem {
         return instance;
     }
 
+    public void set(ClimberState climberState) {
+        climberArm.set(ControlMode.Position, climberState.getPosition());
+    }
+
     @Override
     protected void initDefaultCommand() {
     }
 }
-
-//mantis arms and liftoff piston

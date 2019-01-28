@@ -17,6 +17,7 @@ import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
+import frc.robot.subsystems.misc.Sensors;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,12 +34,17 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         Drivetrain.getInstance();
+
         CargoBlock.getInstance();
         CargoPivot.getInstance();
+
         HatchPiston.getInstance();
         HatchPivot.getInstance();
+
         ClimberArm.getInstance();
         LiftoffPiston.getInstance();
+
+        Sensors.getInstance();
         Pneumatic.getInstance();
     }
 
@@ -49,6 +55,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        Sensors.getInstance().resetNavX();
     }
 
     @Override
