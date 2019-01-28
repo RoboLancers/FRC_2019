@@ -8,46 +8,53 @@ import org.ghrobotics.lib.mathematics.units.derivedunits.Acceleration;
 import org.ghrobotics.lib.mathematics.units.derivedunits.AccelerationKt;
 import org.ghrobotics.lib.mathematics.units.derivedunits.Velocity;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
+import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnit;
 import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitKt;
 import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitLengthModel;
 import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitModel;
 
 public class Constants {
-    //NativeUnitModel tells me how many motor turns per wheel rotation 9.76:1
-    public static final Time TIMEOUT_MS = TimeUnitsKt.getSecond(0);
+    public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
+    public static final double EPSILON = 1E-9;
 
-    public static final double kRobotMass = 54.53 /* Robot */ + 5.669 /* Battery */ + 7; /* Bumpers */ // kg
-    public static final double kMomentOfInertia = 10.0;
-    public static final double kRobotAngularDrag = 12.0;
+    public static final class PATH_FOLLOWING {
+        public static final Velocity<Length> MAX_VELOCITY = VelocityKt.getVelocity(LengthKt.getFeet(10));
+        public static final Acceleration<Length> MAX_ACCELERATION = AccelerationKt.getAcceleration(LengthKt.getFeet(10));
 
-    public static final Velocity<Length> maxVelocity = VelocityKt.getVelocity(LengthKt.getFeet(10));
-    public static final Acceleration<Length> maxAcceleration = AccelerationKt.getAcceleration(LengthKt.getFeet(4));
+        public static final double RAMSETE_BETA = 1.4;
+        public static final double RAMSETE_ZETA = 0.9;
+    }
 
-    // Drivetrain Constants
-    public static final Length kTrackWidth = LengthKt.getMeter(0.6858);
+    public static final class ROBOT {
+        public static final double MASS = 27;
+        public static final double MOMENT_OF_INTERTIA = 10;
+        public static final double ANGULAR_DRAG = 12;
+    }
 
-    public static final int kDrivetrainEncoderTicksPerRev = 1024;
+    public static final class DRIVETRAIN {
+        public static final int PEAK_CURRENT_LIMIT = 80;
+        public static final int CONTINUOUS_CURRENT_LIMIT = 36;
+        public static final int PEAK_CURRENT_DURATION = 10;
 
-    public static final double kDrivetrainWheelDiameter = 0.51;
-    public static final Length kDrivetrainWheelRadius = LengthKt.getFeet(kDrivetrainWheelDiameter / 2);
+        public static final int VOLTAGE_COMPENSATION = 12;
+        public static final int VOLTAGE_MEASUREMENT_FILTER = 32;
 
-    public static final double kDrivetrainWheelbase = 2.25;
+        public static final double kF = 0.0;
+        public static final double kP = 1.7;
+        public static final double kI = 0.0;
+        public static final double kD = 2.0;
 
-    public static final double kDrivetrainStaticFrictionVolt = 1.8;
+        public static final double kStaticFrictionVoltage = 1.8;
+        public static final double kV = 1 / 12.0;
+        public static final double kA = 1 / 30.0;
 
-    public static final double kDrivetrainKV = 0.0769;
-    public static final double kDrivetrainKA = 0.0333;
+        public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getSTU(1024);
+        public static final Length WHEEL_RADIUS = LengthKt.getInch(3);
+        public static final Length TRACK_WIDTH = LengthKt.getMeter(0.634);
 
-    public static final double kDrivetrainBeta = 1.4;
-    public static final double kDrivetrainZeta = 0.9;
-
-    public static final double kDrivetrainF = 0;
-    public static final double kDrivetrainKP = 0.0001;
-
-    public static final int kCurrentLimit = 80;
-
-    public static final NativeUnitModel<Length> nativeUnitModel = new NativeUnitLengthModel(
-            NativeUnitKt.getSTU(kDrivetrainEncoderTicksPerRev),
-            kDrivetrainWheelRadius
-    );
+        public static NativeUnitModel<Length> NATIVE_UNIT_MODEL = new NativeUnitLengthModel(
+                SENSOR_UNIT_PER_ROTATION,
+                WHEEL_RADIUS
+        );
+    }
 }

@@ -1,48 +1,40 @@
 package frc.robot;
 
 public class RobotMap {
-    //Motors
-    public static final int MASTER_RIGHT = 1;
-    public static final int RIGHT_SLAVE_1 = 3;
-    public static final int RIGHT_SLAVE_2 = 4;
-    public static final int MASTER_LEFT = 2;
-    public static final int LEFT_SLAVE_1 = 5;
-    public static final int LEFT_SLAVE_2 = 6;
+    public static final class DRIVETRAIN {
+        // Motors
+        public static final int MASTER_LEFT = 1;
+        public static final int LEFT_SLAVE_1 = 2;
+        public static final int LEFT_SLAVE_2 = 3;
 
-    //HatchPivot
-    public static final int PIVOT_MOTOR = 8;
+        public static final int MASTER_RIGHT = 4;
+        public static final int RIGHT_SLAVE_1 = 5;
+        public static final int RIGHT_SLAVE_2 = 6;
+    }
 
-    //HatchPiston Pistons
-    public static final int HATCH1_FORWARD = 10;
-    public static final int HATCH1_REVERSE = 11;
+    public static final class HATCH {
+        // Motors
+        public static final int PIVOT_MOTOR = 7;
 
-    public static final int HATCH2_FORWARD = 11;
-    public static final int HATCH2_REVERSE = 12;
+        // Pneumatics
+        public static final int HATCH_PISTON = 0;
+    }
 
-    public static final int HATCH3_FORWARD = 13;
-    public static final int HATCH3_REVERSE = 14;
+    public static final class CARGO {
+        // Pneumatics
+        public static final int CARGO_BLOCK_FORWARD = 1;
+        public static final int CARGO_BLOCK_REVERSE = 2;
 
-    //LiftoffPiston
-    public static final int LIFTOFF_FORWARD = 15;
-    public static final int LIFTOFF_REVERSE = 16;
+        public static final int CARGO_PIVOT_FORWARD = 3;
+        public static final int CARGO_PIVOT_REVERSE = 4;
+    }
 
-    //CargoBlock and Pivot
-    public static final int CARGO_BLOCK_FORWARD = 17;
-    public static final int CARGO_BLOCK_REVERSE = 18;
+    public static final class CLIMBER {
+        // Motors
+        public static final int CLIMBER_MOTOR = 8;
 
-    public static final int CARGO_PIVOT_FORWARD = 19;
-    public static final int CARGO_PIVOT_REVERSE = 20;
-
-
-    //Climber
-    public static final int CLIMBER_MOTOR = 9;
-
-    //Compressor
-    public static final int COMPRESSOR = 21;
-
-    //Limit Switch
-    public static final int LIMIT_SWITCH_1 = 22;
-    public static final int LIMIT_SWITCH_2 = 23;
-    public static final int LIMIT_SWITCH_3 = 24;
-
+        //Pneumatics
+        public static final int LIFTOFF_FORWARD = 5;
+        public static final int LIFTOFF_REVERSE = 6;
+    }
 }
