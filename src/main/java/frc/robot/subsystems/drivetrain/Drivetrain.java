@@ -1,12 +1,17 @@
 package frc.robot.subsystems.drivetrain;
 
+import com.revrobotics.CANSparkMaxLowLevel;
 import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
+import com.robolancers.lib.wrappers.motors.LancerSparkMax;
 import com.team254.lib.physics.DCMotorTransmission;
 import com.team254.lib.physics.DifferentialDrive;
+import edu.wpi.first.wpilibj.Notifier;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.commands.subsystems.drivetrain.UseDrivetrain;
+import frc.robot.enums.drivetrain.TransmissionSide;
 import frc.robot.subsystems.misc.Sensors;
+import org.ghrobotics.lib.debug.LiveDashboard;
 import org.ghrobotics.lib.localization.Localization;
 import org.ghrobotics.lib.localization.TankEncoderLocalization;
 import org.ghrobotics.lib.mathematics.twodim.control.RamseteTracker;
@@ -18,43 +23,58 @@ import org.jetbrains.annotations.NotNull;
 
 public class Drivetrain extends TankDriveSubsystem {
     public static Drivetrain instance;
-    Transmission leftTransmission, rightTransmission;
+
+    Transmission left, right;
 
     private Localization localization;
     private DCMotorTransmission dcMotorTransmission;
     private DifferentialDrive differentialDrive;
 
-    private RamseteTracker trajectoryTracker;
+    private TrajectoryTracker trajectoryTracker;
 
     public Drivetrain() {
-        leftTransmission = new Transmission(RobotMap.MASTER_LEFT, RobotMap.LEFT_SLAVE_1, RobotMap.LEFT_SLAVE_2);
-        rightTransmission = new Transmission(RobotMap.MASTER_RIGHT, RobotMap.RIGHT_SLAVE_1, RobotMap.RIGHT_SLAVE_2);
+        left = new Transmission(TransmissionSide.LEFT, RobotMap.DRIVETRAIN.MASTER_LEFT, RobotMap.DRIVETRAIN.LEFT_SLAVE_1, RobotMap.DRIVETRAIN.LEFT_SLAVE_2);
+        right = new Transmission(TransmissionSide.RIGHT, RobotMap.DRIVETRAIN.MASTER_RIGHT, RobotMap.DRIVETRAIN.RIGHT_SLAVE_1, RobotMap.DRIVETRAIN.RIGHT_SLAVE_2);
 
         localization = new TankEncoderLocalization(
                 () -> Rotation2dKt.getDegree(Sensors.getInstance().getAngle()),
-                () -> leftTransmission.getMaster().getSensorPosition(),
-                () -> rightTransmission.getMaster().getSensorPosition()
+                () -> left.getMaster().getSensorPosition(),
+                () -> right.getMaster().getSensorPosition()
         );
 
+        new Notifier(() -> {
+            localization.update();
+            LiveDashboard.INSTANCE.setRobotX(localization.getRobotPosition().getTranslation().getX().getFeet());
+            LiveDashboard.INSTANCE.setRobotY(localization.getRobotPosition().getTranslation().getY().getFeet());
+            LiveDashboard.INSTANCE.setRobotHeading(localization.getRobotPosition().getRotation().getRadian());
+        }).startPeriodic(0.01);
+
         dcMotorTransmission = new DCMotorTransmission(
-                1/ Constants.kDrivetrainKV,
-                Math.pow(Constants.kDrivetrainWheelRadius.getValue(), 2) * Constants.kRobotMass / (2.0 * Constants.kDrivetrainKA),
-                Constants.kDrivetrainStaticFrictionVolt
+            1 / Constants.DRIVETRAIN.kV,
+                Math.pow(Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(), 2) * Constants.ROBOT.MASS / (2 * Constants.DRIVETRAIN.kA),
+                Constants.DRIVETRAIN.kStaticFrictionVoltage
         );
 
         differentialDrive = new DifferentialDrive(
-                Constants.kRobotMass,
-                Constants.kMomentOfInertia,
-                Constants.kRobotAngularDrag,
-                Constants.kDrivetrainWheelRadius.getValue(),
-                Constants.kTrackWidth.getValue() / 2.0,
+                Constants.ROBOT.MASS,
+                Constants.ROBOT.MOMENT_OF_INTERTIA,
+                Constants.ROBOT.ANGULAR_DRAG,
+                Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(),
+                Constants.DRIVETRAIN.TRACK_WIDTH.getValue() / 2.0,
                 dcMotorTransmission,
                 dcMotorTransmission
         );
 
-        trajectoryTracker = new RamseteTracker(Constants.kDrivetrainBeta, Constants.kDrivetrainZeta);
+        trajectoryTracker = new RamseteTracker(Constants.PATH_FOLLOWING.RAMSETE_BETA, Constants.PATH_FOLLOWING.RAMSETE_ZETA);
     }
 
+    public static synchronized Drivetrain getInstance() {
+        if (instance == null) {
+            instance = new Drivetrain();
+        }
+
+        return instance;
+    }
 
     @Override
     public Localization getLocalization() {
@@ -67,17 +87,16 @@ public class Drivetrain extends TankDriveSubsystem {
         return differentialDrive;
     }
 
-
     @NotNull
     @Override
     public FalconMotor<Length> getLeftMotor() {
-        return leftTransmission.getMaster();
+        return left.getMaster();
     }
 
     @NotNull
     @Override
     public FalconMotor<Length> getRightMotor() {
-        return rightTransmission.getMaster();
+        return right.getMaster();
     }
 
     @NotNull
@@ -89,13 +108,5 @@ public class Drivetrain extends TankDriveSubsystem {
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new UseDrivetrain());
-    }
-
-    public static synchronized Drivetrain getInstance() {
-        if (instance == null) {
-            instance = new Drivetrain();
-        }
-
-        return instance;
     }
 }
