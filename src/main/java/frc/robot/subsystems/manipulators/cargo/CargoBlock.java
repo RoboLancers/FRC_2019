@@ -1,6 +1,7 @@
 package frc.robot.subsystems.manipulators.cargo;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.enums.cargo.CargoBlockState;
@@ -8,10 +9,10 @@ import frc.robot.enums.cargo.CargoBlockState;
 @SuppressWarnings("unused")
 public class CargoBlock extends Subsystem {
     private static CargoBlock instance;
-    private DoubleSolenoid cargoBlock;
+    private Solenoid cargoBlock;
 
     private CargoBlock() {
-        cargoBlock = new DoubleSolenoid(RobotMap.CARGO.BLOCK_FORWARD, RobotMap.CARGO.BLOCK_REVERSE);
+        cargoBlock = new Solenoid(RobotMap.CARGO.BLOCK_FORWARD, RobotMap.CARGO.BLOCK_REVERSE);
     }
 
     public synchronized static CargoBlock getInstance() {

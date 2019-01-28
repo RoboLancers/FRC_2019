@@ -1,6 +1,7 @@
 package frc.robot.subsystems.manipulators.cargo;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.enums.cargo.CargoPivotState;
@@ -8,10 +9,10 @@ import frc.robot.enums.cargo.CargoPivotState;
 
 public class CargoPivot extends Subsystem {
     private static CargoPivot instance;
-    private DoubleSolenoid cargoPivot;
+    private Solenoid cargoPivot;
 
     private CargoPivot() {
-        cargoPivot = new DoubleSolenoid(RobotMap.CARGO.PIVOT_FORWARD, RobotMap.CARGO.PIVOT_REVERSE);
+        cargoPivot = new Solenoid(RobotMap.CARGO.PIVOT_FORWARD, RobotMap.CARGO.PIVOT_REVERSE);
     }
 
     public synchronized static CargoPivot getInstance() {
