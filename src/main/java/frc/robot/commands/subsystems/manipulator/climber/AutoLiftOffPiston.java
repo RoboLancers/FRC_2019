@@ -5,6 +5,7 @@ import frc.robot.enums.climber.LiftoffState;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.misc.Sensors;
 
+@SuppressWarnings("WeakerAccess")
 public class AutoLiftOffPiston extends Command {
     public AutoLiftOffPiston() {
         requires(LiftoffPiston.getInstance());
