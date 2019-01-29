@@ -23,6 +23,10 @@ public class Sensors {
         return -navX.getAngle();
     }
 
+    public double getRoll() {
+        return navX.getRoll();
+    }
+
     public void resetNavX() {
         navX.reset();
     }
