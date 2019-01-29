@@ -1,6 +1,5 @@
 package frc.robot.subsystems.manipulators.cargo;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -27,10 +26,10 @@ public class CargoBlock extends Subsystem {
     }
 
     public CargoBlockState get() {
-        if (cargoBlock.get() == CargoBlockState.UP.getValue()) {
-            return CargoBlockState.UP;
+        if (cargoBlock.get() == CargoBlockState.BLOCK.getValue()) {
+            return CargoBlockState.BLOCK;
         } else {
-            return CargoBlockState.DOWN;
+            return CargoBlockState.UNBLOCK;
         }
     }
 

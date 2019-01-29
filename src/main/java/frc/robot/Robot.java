@@ -15,7 +15,7 @@ import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
-import frc.robot.subsystems.manipulators.hatch.HatchPiston;
+import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 import frc.robot.subsystems.misc.Sensors;
 
@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
         CargoBlock.getInstance();
         CargoPivot.getInstance();
 
-        HatchPiston.getInstance();
+        HatchEjector.getInstance();
         HatchPivot.getInstance();
 
         ClimberArm.getInstance();
