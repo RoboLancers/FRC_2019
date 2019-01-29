@@ -28,7 +28,7 @@ public class HatchPiston extends Subsystem {
         ejector.set(hatchPistonState.getValue());
     }
 
-    public boolean get() {
+    public boolean getLimitSwitch() {
         return hatchDetector.get();
     }
 

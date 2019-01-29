@@ -14,10 +14,10 @@ public class UseHatchPiston extends InstantCommand {
 
     @Override
     protected void initialize() {
-        if (hatchState == HatchPistonState.IN) {
-            HatchPiston.getInstance().set(HatchPistonState.IN);
-        } else {
+        if (hatchState == HatchPistonState.OUT) {
             HatchPiston.getInstance().set(HatchPistonState.OUT);
+        } else {
+            HatchPiston.getInstance().set(HatchPistonState.IN);
         }
     }
 }
