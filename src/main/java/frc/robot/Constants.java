@@ -1,5 +1,6 @@
 package frc.robot;
 
+import org.ghrobotics.lib.mathematics.twodim.geometry.Rectangle2d;
 import org.ghrobotics.lib.mathematics.units.Length;
 import org.ghrobotics.lib.mathematics.units.LengthKt;
 import org.ghrobotics.lib.mathematics.units.Time;
@@ -57,5 +58,27 @@ public class Constants {
                 SENSOR_UNIT_PER_ROTATION,
                 WHEEL_RADIUS
         );
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public static final class RECTANGLES {
+        public static final Length CARGOSHIP_X = LengthKt.getFeet(16.0);
+        public static final Length CARGOSHIP_Y = LengthKt.getFeet(9.5);
+        public static final Length CARGOSHIP_WIDTH = LengthKt.getFeet(11.0);
+        public static final Length CARGOSHIP_HEIGHT = LengthKt.getFeet(8.0);
+
+        public static final Length TOP_ROCKET_X = LengthKt.getFeet(16.0);
+        public static final Length TOP_ROCKET_Y = LengthKt.getFeet(3.0);
+
+        public static final Length BOTTOM_ROCKET_X = LengthKt.getFeet(16.0);
+        public static final Length BOTTOM_ROCKET_Y = LengthKt.getFeet(0.0);
+
+        public static final Length ROCKET_WIDTH = LengthKt.getFeet(6.0);
+        public static final Length ROCKET_HEIGHT = LengthKt.getFeet(4.0);
+
+        public static final Rectangle2d CARGOSHIP = new Rectangle2d(CARGOSHIP_X, CARGOSHIP_Y, CARGOSHIP_WIDTH, CARGOSHIP_HEIGHT);
+        public static final Rectangle2d TOP_ROCKET = new Rectangle2d(TOP_ROCKET_X, TOP_ROCKET_Y, ROCKET_WIDTH, ROCKET_HEIGHT);
+        public static final Rectangle2d BOTTOM_ROCKET = new Rectangle2d(BOTTOM_ROCKET_X, BOTTOM_ROCKET_Y, ROCKET_WIDTH, ROCKET_HEIGHT);
+
     }
 }
