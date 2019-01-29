@@ -29,6 +29,10 @@ public class ClimberArm extends Subsystem {
         climberArm.set(ControlMode.Position, climberState.getPosition());
     }
 
+    public double getPosition() {
+        return climberArm.getSelectedSensorPosition();
+    }
+
     @Override
     protected void initDefaultCommand() {
     }
