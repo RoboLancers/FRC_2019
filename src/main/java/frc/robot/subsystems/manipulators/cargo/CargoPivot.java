@@ -1,10 +1,9 @@
 package frc.robot.subsystems.manipulators.cargo;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.enums.cargo.CargoAdjustment;
+import frc.robot.commands.subsystems.manipulator.cargo.CargoAdjustment;
 import frc.robot.enums.cargo.CargoPivotState;
 
 

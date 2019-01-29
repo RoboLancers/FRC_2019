@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Trajectories {
     public static TimedTrajectory<Pose2dWithCurvature> levelOneLeftCargo, levelOneRightCargo;
-    public static TimedTrajectory<Pose2dWithCurvature> RightCargoToLeftHatch, leftCargoToLeftHatch, leftHatchToLeftCargo, leftHatchToRightCargo;
+    public static TimedTrajectory<Pose2dWithCurvature> RightCargoToRightHatch, leftCargoToRighttHatch, RightHatchToLeftCargo, RightHatchToRightCargo;
     private static List<TimingConstraint<Pose2dWithCurvature>> constraints = Arrays.asList(
             new CentripetalAccelerationConstraint(AccelerationKt.getAcceleration(LengthKt.getFeet(4.5))),
             new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(3.0)))
@@ -32,6 +32,7 @@ public class Trajectories {
                 ),
                 false
         );
+
         levelOneRightCargo = generateTrajectory(
                 Arrays.asList(
                         new Pose2d(LengthKt.getFeet(5.25), LengthKt.getFeet(13.25), Rotation2dKt.getDegree(0.0)),
@@ -39,7 +40,8 @@ public class Trajectories {
                 ),
                 false
         );
-        RightCargoToLeftHatch = generateTrajectory(
+
+        RightCargoToRightHatch = generateTrajectory(
                 Arrays.asList(
                         new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(12.5), Rotation2dKt.getDegree(0.0)),
                         new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
@@ -47,7 +49,8 @@ public class Trajectories {
                 ),
                 true
         );
-        leftCargoToLeftHatch = generateTrajectory(
+
+        leftCargoToRighttHatch = generateTrajectory(
                 Arrays.asList(
                         new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(14.25), Rotation2dKt.getDegree(0.0)),
                         new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
@@ -55,7 +58,8 @@ public class Trajectories {
                 ),
                 true
         );
-        leftHatchToLeftCargo = generateTrajectory(
+
+        RightHatchToLeftCargo = generateTrajectory(
                 Arrays.asList(
                         new Pose2d(LengthKt.getFeet(0.5), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(0.0)),
                         new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
@@ -63,7 +67,8 @@ public class Trajectories {
                 ),
                 false
         );
-        leftHatchToRightCargo = generateTrajectory(
+
+        RightHatchToRightCargo = generateTrajectory(
                 Arrays.asList(
                         new Pose2d(LengthKt.getFeet(0.5), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(0.0)),
                         new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
