@@ -1,7 +1,7 @@
 package frc.robot.enums.cargo;
 
 public enum CargoBlockState {
-    UP(true), DOWN(false);
+    BLOCK(true), UNBLOCK(false);
 
     private boolean value;
 

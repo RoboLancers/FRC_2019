@@ -1,11 +1,11 @@
 package frc.robot.enums.hatch;
 
-public enum HatchPistonState {
+public enum HatchEjectorState {
     IN(false), OUT(true);
 
     private boolean value;
 
-    HatchPistonState(boolean value) {
+    HatchEjectorState(boolean value) {
 
         this.value = value;
     }
