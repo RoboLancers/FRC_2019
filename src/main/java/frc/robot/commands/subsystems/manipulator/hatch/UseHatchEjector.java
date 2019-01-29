@@ -14,10 +14,6 @@ public class UseHatchEjector extends InstantCommand {
 
     @Override
     protected void initialize() {
-        if (hatchState == HatchEjectorState.OUT) {
-            HatchEjector.getInstance().set(HatchEjectorState.OUT);
-        } else {
-            HatchEjector.getInstance().set(HatchEjectorState.IN);
-        }
+        HatchEjector.getInstance().set(hatchState);
     }
 }

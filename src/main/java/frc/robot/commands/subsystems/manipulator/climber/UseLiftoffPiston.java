@@ -14,10 +14,6 @@ public class UseLiftoffPiston extends InstantCommand {
 
     @Override
     public void initialize() {
-        if (liftoffState == LiftoffState.UP) {
-            LiftoffPiston.getInstance().set(LiftoffState.UP);
-        } else {
-            LiftoffPiston.getInstance().set(LiftoffState.DOWN);
-        }
+        LiftoffPiston.getInstance().set(liftoffState);
     }
 }
