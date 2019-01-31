@@ -19,14 +19,14 @@ public class OI {
             .whenPressed(XboxController.Trigger.LEFT_TRIGGER_BUTTON, new UseHatchPivot(HatchPivotState.FLOOR))
             .whenPressed(XboxController.Trigger.RIGHT_TRIGGER_BUTTON, new UseHatchPivot(HatchPivotState.DEFENSE))
             .whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchPivot(HatchPivotState.SCORING))
-            .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.OUT))
+            .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.EJECT))
             .whenPressed(XboxController.Button.START, new AutoClimb());
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
             .whenReleased(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.BLOCK))
             .whenPressed(FlightController.Button.INNER_BOTTOM, new UseClimberArm(ClimberState.DOWN))
-            .whenPressed(FlightController.Button.FAR_BOTTOM, new UseClimberArm(ClimberState.UP))
+            .whenPressed(FlightController.Button.OUTER_BOTTOM, new UseClimberArm(ClimberState.UP))
             .whenPressed(FlightController.Button.INNER_MIDDLE, new UseLiftoffPiston(LiftoffState.UP))
-            .whenPressed(FlightController.Button.FAR_MIDDLE, new UseLiftoffPiston(LiftoffState.DOWN));
+            .whenPressed(FlightController.Button.OUTER_MIDDLE, new UseLiftoffPiston(LiftoffState.DOWN));
 }

@@ -12,7 +12,7 @@ public class LevelOneFrontCargo extends CommandGroup {
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.levelOneRightCargo));
         addSequential(new AutoHatchRelease());
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.RightCargoToRightHatch));
-        addSequential(new UseHatchEjector(HatchEjectorState.IN));
+        addSequential(new UseHatchEjector(HatchEjectorState.RETRACT));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.RightHatchToLeftCargo));
         addSequential(new AutoHatchRelease());
     }

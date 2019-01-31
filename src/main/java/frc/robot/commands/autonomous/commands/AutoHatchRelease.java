@@ -11,7 +11,7 @@ public class AutoHatchRelease extends Command {
 
     @Override
     protected void execute() {
-            HatchEjector.getInstance().set(HatchEjectorState.OUT);
+            HatchEjector.getInstance().set(HatchEjectorState.EJECT);
     }
 
     @Override
