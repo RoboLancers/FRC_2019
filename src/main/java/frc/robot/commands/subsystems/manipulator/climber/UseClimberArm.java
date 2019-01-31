@@ -15,7 +15,7 @@ public class UseClimberArm extends Command {
     }
 
     @Override
-    public void initialize() {
+    public void execute() {
         ClimberArm.getInstance().set(climberState);
     }
 

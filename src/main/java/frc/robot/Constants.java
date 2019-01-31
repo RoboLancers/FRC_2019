@@ -1,18 +1,9 @@
 package frc.robot;
 
 import org.ghrobotics.lib.mathematics.twodim.geometry.Rectangle2d;
-import org.ghrobotics.lib.mathematics.units.Length;
-import org.ghrobotics.lib.mathematics.units.LengthKt;
-import org.ghrobotics.lib.mathematics.units.Time;
-import org.ghrobotics.lib.mathematics.units.TimeUnitsKt;
-import org.ghrobotics.lib.mathematics.units.derivedunits.Acceleration;
-import org.ghrobotics.lib.mathematics.units.derivedunits.AccelerationKt;
-import org.ghrobotics.lib.mathematics.units.derivedunits.Velocity;
-import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
-import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnit;
-import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitKt;
-import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitLengthModel;
-import org.ghrobotics.lib.mathematics.units.nativeunits.NativeUnitModel;
+import org.ghrobotics.lib.mathematics.units.*;
+import org.ghrobotics.lib.mathematics.units.derivedunits.*;
+import org.ghrobotics.lib.mathematics.units.nativeunits.*;
 
 public class Constants {
     public static final double EPSILON = 1E-9;
@@ -57,6 +48,16 @@ public class Constants {
         public static NativeUnitModel<Length> NATIVE_UNIT_MODEL = new NativeUnitLengthModel(
                 SENSOR_UNIT_PER_ROTATION,
                 WHEEL_RADIUS
+        );
+    }
+
+    public static final class CLIMBER {
+        public static final Volt MINIMUM_VOLTAGE = VoltKt.getVolt(2);
+
+        public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getSTU(1024);
+
+        public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(
+                SENSOR_UNIT_PER_ROTATION
         );
     }
 
