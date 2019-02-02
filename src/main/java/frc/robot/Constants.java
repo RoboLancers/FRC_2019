@@ -74,6 +74,7 @@ public class Constants {
     @SuppressWarnings("WeakerAccess")
     public static final class CLIMBER {
         public static final Volt MINIMUM_VOLTAGE = VoltKt.getVolt(2);
+        public static final double MINIMUM_PERCENT_OUT = MINIMUM_VOLTAGE.getValue() / 12.0;
 
         public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
 

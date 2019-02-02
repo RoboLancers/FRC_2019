@@ -30,7 +30,7 @@ public class ClimberArm extends Subsystem {
     }
 
     public void set(ClimberState climberState) {
-        climberArm.set(ControlMode.Position, climberState.getPosition(), DemandType.ArbitraryFeedForward, Math.cos(getAngle()) * Constants.CLIMBER.MINIMUM_VOLTAGE.getValue());
+        climberArm.set(ControlMode.Position, climberState.getPosition(), DemandType.ArbitraryFeedForward, Math.cos(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
     }
 
     public double getPosition() {
