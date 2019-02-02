@@ -1,5 +1,6 @@
 package frc.robot.commands.autonomous;
 
+import frc.robot.Constants;
 import org.ghrobotics.lib.mathematics.twodim.geometry.Pose2d;
 import org.ghrobotics.lib.mathematics.twodim.geometry.Pose2dWithCurvature;
 import org.ghrobotics.lib.mathematics.twodim.geometry.Rectangle2d;
@@ -17,68 +18,67 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Trajectories {
-    public static TimedTrajectory<Pose2dWithCurvature> levelOneLeftCargo, levelOneRightCargo;
-    public static TimedTrajectory<Pose2dWithCurvature> RightCargoToRightHatch, leftCargoToRighttHatch, RightHatchToLeftCargo, RightHatchToRightCargo;
+    // Measured from middle of front
+    private static final Pose2d CARGOSHIP_LEFT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(0));
+    private static final Pose2d CARGOSHIP_RIGHT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(12.6), Rotation2dKt.getDegree(0));
+
+    private static final Pose2d CARGOSHIP_LEFT_FACING_LEFT_LOADING_STATION = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(90));
+    private static final Pose2d CARGOSHIP_LEFT_FACING_RIGHT_LOADING_STATION = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(-90));
+
+    private static final Pose2d LOADING_STATION_LEFT_PICKUP = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(24.9), Rotation2dKt.getDegree(180));
+    private static final Pose2d LOADING_STATION_RIGHT_PICKUP = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.5), Rotation2dKt.getDegree(180));
+
+    private static final Pose2d LOADING_STATION_LEFT_LEAVE = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(24.9), Rotation2dKt.getDegree(0));
+    private static final Pose2d LOADING_STATION_RIGHT_LEAVE = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.5), Rotation2dKt.getDegree(0));
+
+    //Trajectories
+    public static TimedTrajectory<Pose2dWithCurvature> leftStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_LEFT,
+            CARGOSHIP_LEFT_SCORING
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> centerStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_CENTER,
+            CARGOSHIP_LEFT_SCORING
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> rightStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_RIGHT,
+            CARGOSHIP_LEFT_SCORING
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> frontLeftCargoToLeftLoadingStation = generateTrajectory(Arrays.asList(
+            CARGOSHIP_LEFT_FACING_LEFT_LOADING_STATION,
+            LOADING_STATION_LEFT_PICKUP
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> frontLeftCargoToRightLoadingStation = generateTrajectory(Arrays.asList(
+            CARGOSHIP_LEFT_FACING_RIGHT_LOADING_STATION,
+            LOADING_STATION_RIGHT_PICKUP
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> leftLoadingStationToFrontRightCargo = generateTrajectory(Arrays.asList(
+            LOADING_STATION_LEFT_LEAVE,
+            CARGOSHIP_RIGHT_SCORING
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> rightLoadingStationToFrontRightCargo = generateTrajectory(Arrays.asList(
+            LOADING_STATION_RIGHT_LEAVE,
+            CARGOSHIP_RIGHT_SCORING
+    ));
+
+    public static void generateTrajectories() { }
+
     private static List<TimingConstraint<Pose2dWithCurvature>> constraints = Arrays.asList(
             new CentripetalAccelerationConstraint(AccelerationKt.getAcceleration(LengthKt.getFeet(4.5))),
             new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(3.0)))
     );
 
-    public static void generateTimedTrajectories() {
-        levelOneLeftCargo = generateTrajectory(
-                Arrays.asList(
-                        new Pose2d(LengthKt.getFeet(5.25), LengthKt.getFeet(13.25), Rotation2dKt.getDegree(0.0)),
-                        new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(14.25), Rotation2dKt.getDegree(0.0))
-                ),
-                false
-        );
-
-        levelOneRightCargo = generateTrajectory(
-                Arrays.asList(
-                        new Pose2d(LengthKt.getFeet(5.25), LengthKt.getFeet(13.25), Rotation2dKt.getDegree(0.0)),
-                        new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(12.5), Rotation2dKt.getDegree(0.0))
-                ),
-                false
-        );
-
-        RightCargoToRightHatch = generateTrajectory(
-                Arrays.asList(
-                        new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(12.5), Rotation2dKt.getDegree(0.0)),
-                        new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
-                        new Pose2d(LengthKt.getFeet(0.5), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0))
-                ),
-                true
-        );
-
-        leftCargoToRighttHatch = generateTrajectory(
-                Arrays.asList(
-                        new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(14.25), Rotation2dKt.getDegree(0.0)),
-                        new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
-                        new Pose2d(LengthKt.getFeet(0.5), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0))
-                ),
-                true
-        );
-
-        RightHatchToLeftCargo = generateTrajectory(
-                Arrays.asList(
-                        new Pose2d(LengthKt.getFeet(0.5), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(0.0)),
-                        new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
-                        new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(14.25), Rotation2dKt.getDegree(180.0))
-                ),
-                false
-        );
-
-        RightHatchToRightCargo = generateTrajectory(
-                Arrays.asList(
-                        new Pose2d(LengthKt.getFeet(0.5), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(0.0)),
-                        new Pose2d(LengthKt.getFeet(11.75), LengthKt.getFeet(2.25), Rotation2dKt.getDegree(180.0)),
-                        new Pose2d(LengthKt.getFeet(17.0), LengthKt.getFeet(12.5), Rotation2dKt.getDegree(180.0))
-                ),
-                false
-        );
+    private static TimedTrajectory<Pose2dWithCurvature> generateTrajectory(List<Pose2d> waypoints) {
+        return generateTrajectory(waypoints, false);
     }
 
-    public static TimedTrajectory<Pose2dWithCurvature> generateTrajectory(List<Pose2d> waypoints, boolean reversed) {
+    private static TimedTrajectory<Pose2dWithCurvature> generateTrajectory(List<Pose2d> waypoints, boolean reversed) {
         return TrajectoryGeneratorKt.getDefaultTrajectoryGenerator().generateTrajectory(
                 waypoints,
                 constraints,
@@ -90,5 +90,3 @@ public class Trajectories {
         );
     }
 }
-
-// comment

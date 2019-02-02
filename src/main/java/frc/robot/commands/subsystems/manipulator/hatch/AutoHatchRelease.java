@@ -1,4 +1,4 @@
-package frc.robot.commands.autonomous.commands;
+package frc.robot.commands.subsystems.manipulator.hatch;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.enums.hatch.HatchEjectorState;
@@ -12,6 +12,11 @@ public class AutoHatchRelease extends Command {
     @Override
     protected void execute() {
             HatchEjector.getInstance().set(HatchEjectorState.EJECT);
+    }
+
+    @Override
+    protected void end(){
+        HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
     }
 
     @Override

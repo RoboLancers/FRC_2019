@@ -10,8 +10,8 @@ import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 import java.util.Arrays;
 import java.util.List;
 
-@SuppressWarnings({"WeakerAccess", "FieldCanBeLocal"})
-class Transmission {
+@SuppressWarnings("FieldCanBeLocal")
+public class Transmission {
     private FalconSRX<Length> master;
     private List<FalconSRX<Length>> allMotors;
 

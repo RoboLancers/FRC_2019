@@ -90,16 +90,29 @@ public class Drivetrain extends TankDriveSubsystem {
         return left.getMaster();
     }
 
+    public Transmission getLeftTransmission() {
+        return left;
+    }
+
     @NotNull
     @Override
     public FalconMotor<Length> getRightMotor() {
         return right.getMaster();
     }
 
+    public Transmission getRightTransmission() {
+        return right;
+    }
+
     @NotNull
     @Override
     public TrajectoryTracker getTrajectoryTracker() {
         return trajectoryTracker;
+    }
+
+    public void resetEncoders(){
+        left.getMaster().setSelectedSensorPosition(0);
+        right.getMaster().setSelectedSensorPosition(0);
     }
 
     @Override

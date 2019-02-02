@@ -16,9 +16,9 @@ public class CargoAdjustment extends Command {
     protected void execute() {
         Pose2d robotPosition = Drivetrain.getInstance().getLocalization().getRobotPosition();
 
-        if(Constants.RECTANGLES.CARGOSHIP.contains(robotPosition.getTranslation())) {
+        if(Constants.AREAS.CARGOSHIP_BOX.contains(robotPosition.getTranslation())) {
             CargoPivot.getInstance().set(CargoPivotState.UP);
-        } else if(Constants.RECTANGLES.TOP_ROCKET.contains(robotPosition.getTranslation()) || Constants.RECTANGLES.BOTTOM_ROCKET.contains(robotPosition.getTranslation())) {
+        } else if(Constants.AREAS.TOP_ROCKET_BOX.contains(robotPosition.getTranslation()) || Constants.AREAS.BOTTOM_ROCKET_BOX.contains(robotPosition.getTranslation())) {
             CargoPivot.getInstance().set(CargoPivotState.DOWN);
         }
     }
