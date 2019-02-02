@@ -3,13 +3,13 @@ package frc.robot;
 public class RobotMap {
     public static final class DRIVETRAIN {
         // Motors
-        public static final int MASTER_LEFT = 1;
-        public static final int LEFT_SLAVE_1 = 2;
-        public static final int LEFT_SLAVE_2 = 3;
+        public static final int MASTER_LEFT = 14;
+        public static final int LEFT_SLAVE_1 = 12;//
+        public static final int LEFT_SLAVE_2 = 13;
 
-        public static final int MASTER_RIGHT = 4;
-        public static final int RIGHT_SLAVE_1 = 5;
-        public static final int RIGHT_SLAVE_2 = 6;
+        public static final int MASTER_RIGHT = 0;
+        public static final int RIGHT_SLAVE_1 = 1;
+        public static final int RIGHT_SLAVE_2 = 2;//
     }
 
     public static final class HATCH {
@@ -34,7 +34,7 @@ public class RobotMap {
 
     public static final class CLIMBER {
         // Motors
-        public static final int ARM = 8;
+        public static final int ARM = 15;
 
         //Pneumatics
         public static final int LIFTOFF_PISTON_FORWARD = 5;

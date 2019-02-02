@@ -1,10 +1,10 @@
 package frc.robot.subsystems.drivetrain;
 
-import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import frc.robot.Constants;
 import frc.robot.enums.drivetrain.TransmissionSide;
 import org.ghrobotics.lib.mathematics.units.Length;
+import org.ghrobotics.lib.mathematics.units.TimeUnitsKt;
 import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
 import java.util.Arrays;
@@ -23,12 +23,20 @@ public class Transmission {
         slave1.follow(master);
         slave2.follow(master);
 
+        if(side == TransmissionSide.RIGHT) {
+            master.setInverted(true);
+            slave1.setInverted(true);
+        }
+
         allMotors = Arrays.asList(master, slave1, slave2);
 
         for (FalconSRX<Length> motor : allMotors) {
-            if (side == TransmissionSide.LEFT) {
-                motor.setInverted(InvertType.InvertMotorOutput);
+
+            if(side == TransmissionSide.RIGHT) {
+                motor.setInverted(true);
             }
+
+            motor.setOpenLoopRamp(TimeUnitsKt.getSecond(Constants.DRIVETRAIN.RAMP_RATE));
 
             motor.setKF(Constants.DRIVETRAIN.kF);
             motor.setKP(Constants.DRIVETRAIN.kP);

@@ -16,8 +16,8 @@ import frc.robot.enums.hatch.HatchPivotState;
 
 public class OI {
     public static XboxController xboxController = new XboxController(0)
-            .whenPressed(XboxController.Trigger.LEFT_TRIGGER_BUTTON, new UseHatchPivot(HatchPivotState.FLOOR))
-            .whenPressed(XboxController.Trigger.RIGHT_TRIGGER_BUTTON, new UseHatchPivot(HatchPivotState.DEFENSE))
+            .whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseHatchPivot(HatchPivotState.FLOOR))
+            .whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new UseHatchPivot(HatchPivotState.DEFENSE))
             .whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchPivot(HatchPivotState.SCORING))
             .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.EJECT))
             .whenPressed(XboxController.Button.START, new AutoClimb());

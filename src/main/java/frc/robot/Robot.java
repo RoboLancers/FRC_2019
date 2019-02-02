@@ -25,20 +25,20 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         Drivetrain.getInstance();
 
-        CargoBlock.getInstance();
-        CargoPivot.getInstance();
+        //CargoBlock.getInstance();
+        //CargoPivot.getInstance();
 
-        HatchEjector.getInstance();
-        HatchPivot.getInstance();
+        //HatchEjector.getInstance();
+        //HatchPivot.getInstance();
 
         ClimberArm.getInstance();
-        LiftoffPiston.getInstance();
+        //LiftoffPiston.getInstance();
 
         Sensors.getInstance();
-        Pneumatic.getInstance();
+        //Pneumatic.getInstance();
         NetworkInterface.getInstance();
 
-        Trajectories.generateTrajectories();
+        //Trajectories.generateTrajectories();
     }
 
     @Override

@@ -52,6 +52,8 @@ public class Constants {
         public static final int VOLTAGE_COMPENSATION = 12;
         public static final int VOLTAGE_MEASUREMENT_FILTER = 32;
 
+        public static final double RAMP_RATE = 0.5;
+
         public static final double kF = 0.0;
         public static final double kP = 1.7;
         public static final double kI = 0.0;

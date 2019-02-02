@@ -62,7 +62,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile('com.github.5190GreenHopeRobotics:FalconLibrary:ca4549d458')
-    compile('com.github.RoboLancers:LancerLibrary:388caa3e22')
+    compile('com.github.RoboLancers:LancerLibrary:0e0cdc6525')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
