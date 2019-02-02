@@ -41,6 +41,10 @@ public class ClimberArm extends Subsystem {
         return climberArm.getSensorPosition().getDegree();
     }
 
+    public void resetEncoders(){
+        climberArm.setSelectedSensorPosition(0);
+    }
+
     @Override
     protected void initDefaultCommand() {
     }
