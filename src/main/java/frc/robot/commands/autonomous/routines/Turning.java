@@ -28,6 +28,6 @@ public class Turning extends Command {
 
     @Override
     protected boolean isFinished() {
-        return Math.abs(error) < 5;
+        return Math.abs(error) < Constants.DRIVETRAIN.ALLOWABLE_ERROR;
     }
 }

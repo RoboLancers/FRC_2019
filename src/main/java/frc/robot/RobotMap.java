@@ -17,7 +17,7 @@ public class RobotMap {
         public static final int PIVOT = 7;
 
         // Pneumatics
-        public static final int EJECTOR = 0;
+        public static final int EJECTOR = 6;
 
         // Sensors
         public static final int LIMIT_SWITCH_PORT = 0;
@@ -25,8 +25,8 @@ public class RobotMap {
 
     public static final class CARGO {
         // Pneumatics
-        public static final int BLOCK_FORWARD = 1;
-        public static final int BLOCK_REVERSE = 2;
+        public static final int BLOCK_FORWARD = 2;
+        public static final int BLOCK_REVERSE = 5;
 
         public static final int PIVOT_FORWARD = 3;
         public static final int PIVOT_REVERSE = 4;
@@ -37,7 +37,7 @@ public class RobotMap {
         public static final int ARM = 15;
 
         //Pneumatics
-        public static final int LIFTOFF_PISTON_FORWARD = 5;
-        public static final int LIFTOFF_PISTON_REVERSE = 6;
+        public static final int LIFTOFF_PISTON_FORWARD = 7;
+        public static final int LIFTOFF_PISTON_REVERSE = 0;
     }
 }

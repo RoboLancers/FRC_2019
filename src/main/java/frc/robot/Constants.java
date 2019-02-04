@@ -62,6 +62,7 @@ public class Constants {
         public static final double TALON_kD = 2.0;
 
         public static final double TURNING_kP = 0.01;
+        public static final double ALLOWABLE_ERROR = 5;
 
         public static final double kStaticFrictionVoltage = 1.8;
         public static final double kV = 1 / 12.0;

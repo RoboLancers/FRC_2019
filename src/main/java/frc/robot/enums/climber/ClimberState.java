@@ -1,7 +1,7 @@
 package frc.robot.enums.climber;
 
 public enum ClimberState {
-    UP(0), DOWN(2000);
+    UP(0), DOWN(257);
 
     private int position;
 
