@@ -3,10 +3,9 @@ package frc.robot.commands.autonomous.routines;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.autonomous.Trajectories;
 import frc.robot.commands.subsystems.manipulator.hatch.AutoHatchRelease;
-import frc.robot.commands.subsystems.manipulator.hatch.UseHatchEjector;
 import frc.robot.enums.autonomous.StartingPosition;
-import frc.robot.enums.hatch.HatchEjectorState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
+import org.ghrobotics.lib.mathematics.twodim.trajectory.types.Trajectory;
 
 public class LevelOneFrontCargo extends CommandGroup {
     public LevelOneFrontCargo(StartingPosition startingPosition) {
@@ -19,10 +18,10 @@ public class LevelOneFrontCargo extends CommandGroup {
         }
 
         addSequential(new AutoHatchRelease());
-        addSequential(new Turning(-90));
-        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.frontLeftCargoToLeftLoadingStation));
-        addSequential(new Turning(180));
-        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftLoadingStationToFrontRightCargo));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.frontLeftCargoToLeftUTurn));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftUTurnToLeftLoadingStation));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftLoadingStationToLeftUTurn));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftUTurnToFrontRightCargo));
         addSequential(new AutoHatchRelease());
     }
 }
