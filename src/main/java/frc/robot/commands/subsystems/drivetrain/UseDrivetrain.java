@@ -3,11 +3,14 @@ package frc.robot.commands.subsystems.drivetrain;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.robolancers.lib.wrappers.hid.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.drivetrain.Drivetrain;
+import org.ghrobotics.lib.mathematics.units.LengthKt;
+import org.ghrobotics.lib.mathematics.units.derivedunits.Velocity;
+import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 public class UseDrivetrain extends Command {
-
     public UseDrivetrain() {
         requires(Drivetrain.getInstance());
     }
@@ -15,10 +18,13 @@ public class UseDrivetrain extends Command {
     @Override
     protected void execute() {
         double throttle = OI.xboxController.getAxisValue(XboxController.Axis.LEFT_Y);
-        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X) * 0.50;
+        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X) * 0.35;
 
-        Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, throttle + turn);
-        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, throttle - turn);
+        double leftPower = throttle + turn;
+        double rightPower = throttle - turn;
+
+        Drivetrain.getInstance().getLeftMotor().setVelocity(VelocityKt.getVelocity(LengthKt.getFeet(leftPower * Constants.DRIVETRAIN.MAX_VELOCITY)));
+        Drivetrain.getInstance().getRightMotor().setVelocity(VelocityKt.getVelocity(LengthKt.getFeet(rightPower * Constants.DRIVETRAIN.MAX_VELOCITY)));
     }
 
     @Override
