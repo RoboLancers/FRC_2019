@@ -19,9 +19,9 @@ public class LevelOneFrontCargo extends CommandGroup {
         }
 
         addSequential(new AutoHatchRelease());
-        //TODO Turn 90
+        addSequential(new Turning(-90));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.frontLeftCargoToLeftLoadingStation));
-        //TODO Turn 180
+        addSequential(new Turning(180));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftLoadingStationToFrontRightCargo));
         addSequential(new AutoHatchRelease());
     }
