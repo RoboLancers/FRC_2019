@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
+import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.enums.climber.ClimberState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
@@ -20,6 +21,7 @@ public class ClimberArm extends Subsystem {
         climberArm = new FalconSRX<>(RobotMap.CLIMBER.ARM, Constants.CLIMBER.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
         climberArm.setNeutralMode(NeutralMode.Brake);
         climberArm.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+        climberArm.setKP(0.1);
     }
 
     public synchronized static ClimberArm getInstance() {
@@ -30,7 +32,11 @@ public class ClimberArm extends Subsystem {
     }
 
     public void set(ClimberState climberState) {
-        climberArm.set(ControlMode.Position, climberState.getPosition(), DemandType.ArbitraryFeedForward, Math.cos(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
+        climberArm.set(ControlMode.Position, climberState.getPosition(), DemandType.ArbitraryFeedForward, Math.sin(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
+    }
+
+    public void set(double power) {
+        climberArm.set(ControlMode.PercentOutput, power);
     }
 
     public double getPosition() {
