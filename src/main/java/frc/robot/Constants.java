@@ -45,25 +45,29 @@ public class Constants {
 
     @SuppressWarnings("WeakerAccess")
     public static final class DRIVETRAIN {
-        public static final int PEAK_CURRENT_LIMIT = 80;
+        public static final int PEAK_CURRENT_LIMIT = 40;
         public static final int CONTINUOUS_CURRENT_LIMIT = 36;
         public static final int PEAK_CURRENT_DURATION = 10;
 
         public static final int VOLTAGE_COMPENSATION = 12;
         public static final int VOLTAGE_MEASUREMENT_FILTER = 32;
 
-        public static final double RAMP_RATE = 0.5;
+        public static final double MAX_VELOCITY = 13;
 
-        public static final double kF = 0.0;
-        public static final double kP = 1.7;
-        public static final double kI = 0.0;
-        public static final double kD = 2.0;
+        public static final double RAMP_RATE = 0.25;
+
+        public static final double TALON_kF = 0.0;
+        public static final double TALON_kP = 1.7;
+        public static final double TALON_kI = 0.0;
+        public static final double TALON_kD = 2.0;
+
+        public static final double TURNING_kP = 0.01;
 
         public static final double kStaticFrictionVoltage = 1.8;
         public static final double kV = 1 / 12.0;
         public static final double kA = 1 / 30.0;
 
-        public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
+        public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024 * 9.76);
         public static final Length WHEEL_RADIUS = LengthKt.getInch(3);
         public static final Length TRACK_WIDTH = LengthKt.getMeter(0.634);
 

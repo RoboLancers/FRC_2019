@@ -8,8 +8,11 @@
 package frc.robot;
 
 import com.robolancers.lib.subsystems.misc.Pneumatic;
+import com.robolancers.lib.wrappers.vision.JeVois;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.autonomous.Trajectories;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;

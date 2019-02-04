@@ -2,6 +2,7 @@ package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
+import frc.robot.commands.autonomous.routines.AimLock;
 import frc.robot.commands.subsystems.manipulator.cargo.UseCargoBlock;
 import frc.robot.commands.subsystems.manipulator.climber.AutoClimb;
 import frc.robot.commands.subsystems.manipulator.climber.UseClimberArm;
@@ -20,7 +21,8 @@ public class OI {
             .whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new UseHatchPivot(HatchPivotState.DEFENSE))
             .whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchPivot(HatchPivotState.SCORING))
             .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.EJECT))
-            .whenPressed(XboxController.Button.START, new AutoClimb());
+            .whenPressed(XboxController.Button.START, new AutoClimb())
+            .whileHeld(XboxController.Button.A, new AimLock());
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))

@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Trajectories {
     // Measured from middle of front
-    private static final Pose2d CARGOSHIP_LEFT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(0));
-    private static final Pose2d CARGOSHIP_RIGHT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(12.6), Rotation2dKt.getDegree(0));
+    private static final Pose2d CARGOSHIP_FRONT_LEFT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(0));
+    private static final Pose2d CARGOSHIP_FRONT_RIGHT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(12.6), Rotation2dKt.getDegree(0));
 
     private static final Pose2d CARGOSHIP_LEFT_FACING_LEFT_LOADING_STATION = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(90));
     private static final Pose2d CARGOSHIP_LEFT_FACING_RIGHT_LOADING_STATION = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(-90));
@@ -34,17 +34,17 @@ public class Trajectories {
     //Trajectories
     public static TimedTrajectory<Pose2dWithCurvature> leftStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
             Constants.ROBOT.LEVEL_1_LEFT,
-            CARGOSHIP_LEFT_SCORING
+            CARGOSHIP_FRONT_LEFT_SCORING
     ));
 
     public static TimedTrajectory<Pose2dWithCurvature> centerStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
             Constants.ROBOT.LEVEL_1_CENTER,
-            CARGOSHIP_LEFT_SCORING
+            CARGOSHIP_FRONT_LEFT_SCORING
     ));
 
     public static TimedTrajectory<Pose2dWithCurvature> rightStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
             Constants.ROBOT.LEVEL_1_RIGHT,
-            CARGOSHIP_LEFT_SCORING
+            CARGOSHIP_FRONT_LEFT_SCORING
     ));
 
     public static TimedTrajectory<Pose2dWithCurvature> frontLeftCargoToLeftLoadingStation = generateTrajectory(Arrays.asList(
@@ -59,12 +59,12 @@ public class Trajectories {
 
     public static TimedTrajectory<Pose2dWithCurvature> leftLoadingStationToFrontRightCargo = generateTrajectory(Arrays.asList(
             LOADING_STATION_LEFT_LEAVE,
-            CARGOSHIP_RIGHT_SCORING
+            CARGOSHIP_FRONT_RIGHT_SCORING
     ));
 
     public static TimedTrajectory<Pose2dWithCurvature> rightLoadingStationToFrontRightCargo = generateTrajectory(Arrays.asList(
             LOADING_STATION_RIGHT_LEAVE,
-            CARGOSHIP_RIGHT_SCORING
+            CARGOSHIP_FRONT_RIGHT_SCORING
     ));
 
     public static void generateTrajectories() { }

@@ -31,17 +31,18 @@ public class Transmission {
         allMotors = Arrays.asList(master, slave1, slave2);
 
         for (FalconSRX<Length> motor : allMotors) {
-
             if(side == TransmissionSide.RIGHT) {
                 motor.setInverted(true);
+            }else{
+                motor.setSensorPhase(true);
             }
 
             motor.setOpenLoopRamp(TimeUnitsKt.getSecond(Constants.DRIVETRAIN.RAMP_RATE));
 
-            motor.setKF(Constants.DRIVETRAIN.kF);
-            motor.setKP(Constants.DRIVETRAIN.kP);
-            motor.setKI(Constants.DRIVETRAIN.kI);
-            motor.setKD(Constants.DRIVETRAIN.kD);
+            motor.setKF(Constants.DRIVETRAIN.TALON_kF);
+            motor.setKP(Constants.DRIVETRAIN.TALON_kP);
+            motor.setKI(Constants.DRIVETRAIN.TALON_kI);
+            motor.setKD(Constants.DRIVETRAIN.TALON_kD);
 
             motor.configPeakCurrentLimit(Constants.DRIVETRAIN.PEAK_CURRENT_LIMIT);
             motor.configContinuousCurrentLimit(Constants.DRIVETRAIN.CONTINUOUS_CURRENT_LIMIT);
