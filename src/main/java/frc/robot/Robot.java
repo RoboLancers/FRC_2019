@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.autonomous.Trajectories;
+import frc.robot.enums.cargo.CargoBlockState;
+import frc.robot.enums.cargo.CargoPivotState;
+import frc.robot.enums.climber.LiftoffState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
@@ -35,10 +38,10 @@ public class Robot extends TimedRobot {
         //HatchPivot.getInstance();
 
         ClimberArm.getInstance();
-        //LiftoffPiston.getInstance();
+        LiftoffPiston.getInstance();
 
         Sensors.getInstance();
-        //Pneumatic.getInstance();
+        Pneumatic.getInstance();
         NetworkInterface.getInstance();
 
         //Trajectories.generateTrajectories();
@@ -59,5 +62,10 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void teleopInit() { }
+    public void teleopInit() {
+        ClimberArm.getInstance().resetEncoders();
+        LiftoffPiston.getInstance().set(LiftoffState.UP);
+        CargoPivot.getInstance().set(CargoPivotState.DOWN);
+        CargoBlock.getInstance().set(CargoBlockState.BLOCK);
+    }
 }
