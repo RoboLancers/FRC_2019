@@ -10,7 +10,7 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 
 public class RobotCharacterization extends Command {
 
-    RobotCharacterization(){
+    public RobotCharacterization(){
         requires(Drivetrain.getInstance());
     }
 
