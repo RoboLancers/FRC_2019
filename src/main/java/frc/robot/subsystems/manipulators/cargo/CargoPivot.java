@@ -32,6 +32,6 @@ public class CargoPivot extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new CargoAdjustment());
+        //setDefaultCommand(new CargoAdjustment());
     }
 }

@@ -21,8 +21,10 @@ public class UseDrivetrain extends Command {
         double leftPower = throttle + turn;
         double rightPower = throttle - turn;
 
-        Drivetrain.getInstance().getLeftMotor().setVelocity(VelocityKt.getVelocity(LengthKt.getFeet(leftPower * Constants.DRIVETRAIN.MAX_VELOCITY)));
-        Drivetrain.getInstance().getRightMotor().setVelocity(VelocityKt.getVelocity(LengthKt.getFeet(rightPower * Constants.DRIVETRAIN.MAX_VELOCITY)));
+        //Drivetrain.getInstance().getLeftMotor().setVelocity(VelocityKt.getVelocity(LengthKt.getFeet(leftPower * Constants.DRIVETRAIN.MAX_VELOCITY)));
+        //Drivetrain.getInstance().getRightMotor().setVelocity(VelocityKt.getVelocity(LengthKt.getFeet(rightPower * Constants.DRIVETRAIN.MAX_VELOCITY)));
+        Drivetrain.getInstance().getLeftMotor().setPercentOutput(leftPower);
+        Drivetrain.getInstance().getRightMotor().setPercentOutput(rightPower);
     }
 
     @Override

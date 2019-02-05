@@ -4,8 +4,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.enums.climber.ClimberState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
@@ -15,6 +17,7 @@ import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 public class ClimberArm extends Subsystem {
     private static ClimberArm instance;
     private FalconSRX<Rotation2d> climberArm;
+    private AnalogInput armLimitSwitch;
 
     private ClimberArm() {
         climberArm = new FalconSRX<>(RobotMap.CLIMBER.ARM, Constants.CLIMBER.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
@@ -27,6 +30,8 @@ public class ClimberArm extends Subsystem {
         climberArm.setKD(Constants.CLIMBER.ARM_kD);
 
         climberArm.configAllowableClosedloopError(Constants.CLIMBER.PID_SLOT_INDEX, Constants.CLIMBER.ALLOWABLE_ARM_ERROR);
+
+        armLimitSwitch = new AnalogInput(RobotMap.CLIMBER.ARM_LIMIT_SWITCH);
     }
 
     public synchronized static ClimberArm getInstance() {
@@ -58,6 +63,10 @@ public class ClimberArm extends Subsystem {
 
     public void resetEncoders(){
         climberArm.setSensorPosition(Rotation2dKt.getDegree(0));
+    }
+
+    public double getVoltage(){
+        return armLimitSwitch.getVoltage();
     }
 
     @Override

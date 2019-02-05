@@ -35,8 +35,8 @@ public class OI {
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
             .whenReleased(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.BLOCK))
 
-            .whileHeld(FlightController.Trigger.Y_FORWARD, new UseCargoPivot(CargoPivotState.DOWN))
-            .whileHeld(FlightController.Trigger.Y_BACKWARD, new UseCargoPivot(CargoPivotState.UP))
+            .whenPressed(FlightController.Trigger.Y_FORWARD, new UseCargoPivot(CargoPivotState.DOWN))
+            .whenPressed(FlightController.Trigger.Y_BACKWARD, new UseCargoPivot(CargoPivotState.UP))
 
             .whenPressed(FlightController.Button.INNER_TOP, new UseClimberArm(ClimberState.DOWN))
             .whenPressed(FlightController.Button.OUTER_TOP, new UseClimberArm(ClimberState.UP))

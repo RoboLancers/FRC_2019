@@ -20,7 +20,7 @@ public class Constants {
     }
 
     public static final class ROBOT {
-        public static final double MASS = 27;
+        public static final double MASS = 52.16;
         public static final double MOMENT_OF_INTERTIA = 10;
         public static final double ANGULAR_DRAG = 12;
 

@@ -18,7 +18,7 @@ public class NetworkInterface {
 
     private NetworkTableEntry
             leftEncoderCountEntry, rightEncoderCountEntry,
-            armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry,
+            armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry, armLimitSwitchVoltage,
             cargoBlockStateEntry, cargoPivotStateEntry,
             robotAngleEntry;
 
@@ -31,6 +31,7 @@ public class NetworkInterface {
         armEncoderEntry = mainShuffleboardDisplay.add("Arm Encoder Count", 0.0).getEntry();
         armAngleEntry = mainShuffleboardDisplay.add("Arm Angle", 0.0).getEntry();
         armErrorEntry = mainShuffleboardDisplay.add("Arm Closed Loop Error", 0.0).getEntry();
+        armLimitSwitchVoltage = mainShuffleboardDisplay.add("Arm Voltage", 0.0).getEntry();
 
         liftOffPistonStateEntry = mainShuffleboardDisplay.add("Liftoff Piston State", "").getEntry();
 
@@ -47,6 +48,7 @@ public class NetworkInterface {
         armEncoderEntry.setDouble(ClimberArm.getInstance().getPosition());
         armAngleEntry.setDouble(ClimberArm.getInstance().getAngle());
         armErrorEntry.setDouble(ClimberArm.getInstance().getClosedLoopError());
+        armLimitSwitchVoltage.setDouble(ClimberArm.getInstance().getVoltage());
 
         liftOffPistonStateEntry.setString(LiftoffPiston.getInstance().get().toString());
 
