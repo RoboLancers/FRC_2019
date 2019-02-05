@@ -11,6 +11,7 @@ import com.robolancers.lib.subsystems.misc.Pneumatic;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.autonomous.Trajectories;
+import frc.robot.commands.subsystems.drivetrain.RobotCharacterization;
 import frc.robot.enums.cargo.CargoBlockState;
 import frc.robot.enums.cargo.CargoPivotState;
 import frc.robot.enums.climber.LiftoffState;
@@ -56,6 +57,8 @@ public class Robot extends TimedRobot {
 
         Drivetrain.getInstance().resetEncoders();
         ClimberArm.getInstance().resetEncoders();
+
+        new RobotCharacterization().start();
     }
 
     @Override

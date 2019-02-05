@@ -16,15 +16,15 @@ import frc.robot.enums.climber.LiftoffState;
 @SuppressWarnings("unused")
 public class OI {
     public static XboxController xboxController = new XboxController(0)
-           // .whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseHatchPivot(HatchPivotState.FLOOR))
+            //.whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseHatchPivot(HatchPivotState.FLOOR))
             //.whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new UseHatchPivot(HatchPivotState.DEFENSE))
-           // .whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchPivot(HatchPivotState.SCORING))
+            //.whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchPivot(HatchPivotState.SCORING))
 
             //.whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.EJECT))
 
             .whenPressed(XboxController.Button.START, new AutoClimb())
 
-           // .whileHeld(XboxController.Button.A, new AimLock())
+            //.whileHeld(XboxController.Button.A, new AimLock())
 
             .whenPressed(XboxController.Button.B, new UseClimberArmPower(0.5))
             .whenReleased(XboxController.Button.B, new UseClimberArmPower(0))

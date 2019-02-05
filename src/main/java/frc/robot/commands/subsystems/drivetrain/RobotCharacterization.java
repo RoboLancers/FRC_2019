@@ -1,4 +1,4 @@
-package frc.robot.commands.autonomous;
+package frc.robot.commands.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -7,8 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.RobotController;
 import frc.robot.subsystems.drivetrain.Drivetrain;
+import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 public class RobotCharacterization extends Command {
+    private NetworkTableEntry autoSpeedEntry = NetworkTableInstance.getDefault().getEntry("/robot/autospeed");
+    private NetworkTableEntry telemetryEntry = NetworkTableInstance.getDefault().getEntry("/robot/telemetry");
+
+    private Number[] numberArray = new Number[9];
+    private double priorAutoSpeed;
 
     public RobotCharacterization(){
         requires(Drivetrain.getInstance());
@@ -16,20 +22,13 @@ public class RobotCharacterization extends Command {
 
     @Override
     protected void execute() {
-        NetworkTableEntry autoSpeedEntry = NetworkTableInstance.getDefault().getEntry("/robot/autospeed");
-        NetworkTableEntry telemetryEntry = NetworkTableInstance.getDefault().getEntry("/robot/telemetry");
-
-        Number[] numberArray = new Number[9];
-        double priorAutoSpeed;
-
         double now = Timer.getFPGATimestamp();
 
         double leftPosition = Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorPosition().getFeet();
-        // I am not sure if .getValue() will return feet
-        double leftVelocity = Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorVelocity().getValue();
+        double leftVelocity = VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorVelocity());
 
         double rightPosition = Drivetrain.getInstance().getRightTransmission().getMaster().getSensorPosition().getFeet();
-        double rightVelocity = Drivetrain.getInstance().getRightTransmission().getMaster().getSensorVelocity().getValue();
+        double rightVelocity = VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightTransmission().getMaster().getSensorVelocity());
 
         double battery = RobotController.getBatteryVoltage();
 
