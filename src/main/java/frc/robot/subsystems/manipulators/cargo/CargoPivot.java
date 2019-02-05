@@ -1,18 +1,18 @@
 package frc.robot.subsystems.manipulators.cargo;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.subsystems.manipulator.cargo.CargoAdjustment;
 import frc.robot.enums.cargo.CargoPivotState;
 
-
+@SuppressWarnings("unused")
 public class CargoPivot extends Subsystem {
     private static CargoPivot instance;
-    private Solenoid cargoPivot;
+    private DoubleSolenoid cargoPivot;
 
     private CargoPivot() {
-        cargoPivot = new Solenoid(RobotMap.CARGO.PIVOT_FORWARD, RobotMap.CARGO.PIVOT_REVERSE);
+        cargoPivot = new DoubleSolenoid(RobotMap.CARGO.PIVOT_UP, RobotMap.CARGO.PIVOT_DOWN);
     }
 
     public synchronized static CargoPivot getInstance() {
@@ -27,11 +27,7 @@ public class CargoPivot extends Subsystem {
     }
 
     public CargoPivotState get() {
-        if (cargoPivot.get() == CargoPivotState.UP.getValue()) {
-            return CargoPivotState.UP;
-        } else {
-            return CargoPivotState.DOWN;
-        }
+        return cargoPivot.get() == CargoPivotState.UP.getValue() ? CargoPivotState.UP : CargoPivotState.DOWN;
     }
 
     @Override

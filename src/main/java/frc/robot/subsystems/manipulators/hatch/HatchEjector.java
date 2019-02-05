@@ -8,11 +8,14 @@ import frc.robot.enums.hatch.HatchEjectorState;
 
 public class HatchEjector extends Subsystem {
     private static HatchEjector instance;
-    private DigitalInput hatchDetector;
+
     private Solenoid ejector;
+
+    private DigitalInput hatchDetector;
 
     private HatchEjector() {
         ejector = new Solenoid(RobotMap.HATCH.EJECTOR, RobotMap.HATCH.EJECTOR);
+
         hatchDetector = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH_PORT);
     }
 
@@ -27,11 +30,10 @@ public class HatchEjector extends Subsystem {
         ejector.set(hatchEjectorState.getValue());
     }
 
-    public boolean getLimitSwitch() {
+    public boolean hasHatch() {
         return hatchDetector.get();
     }
 
     @Override
-    protected void initDefaultCommand() {
-    }
+    protected void initDefaultCommand() { }
 }

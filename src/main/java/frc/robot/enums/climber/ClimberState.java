@@ -1,15 +1,18 @@
 package frc.robot.enums.climber;
 
+import org.ghrobotics.lib.mathematics.units.Rotation2d;
+import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
+
 public enum ClimberState {
-    UP(0), DOWN(257);
+    UP(Rotation2dKt.getDegree(0)), DOWN(Rotation2dKt.getDegree(135));
 
-    private int position;
+    private Rotation2d rotation2d;
 
-    ClimberState(int position) {
-        this.position = position;
+    ClimberState(Rotation2d rotation2d) {
+        this.rotation2d = rotation2d;
     }
 
-    public double getPosition() {
-        return position;
+    public Rotation2d getRotation2d() {
+        return rotation2d;
     }
 }

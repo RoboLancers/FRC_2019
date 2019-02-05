@@ -1,6 +1,8 @@
 package frc.robot.subsystems.drivetrain;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import frc.robot.Constants;
 import frc.robot.enums.drivetrain.TransmissionSide;
 import org.ghrobotics.lib.mathematics.units.Length;
@@ -19,6 +21,8 @@ public class Transmission {
         master = new FalconSRX<>(masterPort, Constants.DRIVETRAIN.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
         FalconSRX<Length> slave1 = new FalconSRX<>(slave1Port, Constants.DRIVETRAIN.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
         FalconSRX<Length> slave2 = new FalconSRX<>(slave2Port, Constants.DRIVETRAIN.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
+
+        master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
         slave1.follow(master);
         slave2.follow(master);

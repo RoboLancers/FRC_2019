@@ -7,10 +7,11 @@ import frc.robot.enums.climber.LiftoffState;
 
 public class LiftoffPiston extends Subsystem {
     private static LiftoffPiston instance;
+
     private DoubleSolenoid liftOff;
 
     private LiftoffPiston() {
-        liftOff = new DoubleSolenoid(RobotMap.CLIMBER.LIFTOFF_PISTON_FORWARD, RobotMap.CLIMBER.LIFTOFF_PISTON_REVERSE);
+        liftOff = new DoubleSolenoid(RobotMap.CLIMBER.LIFTOFF_PISTON_UP, RobotMap.CLIMBER.LIFTOFF_PISTON_DOWN);
     }
 
     public synchronized static LiftoffPiston getInstance() {
@@ -24,7 +25,10 @@ public class LiftoffPiston extends Subsystem {
         liftOff.set(liftoffState.getValue());
     }
 
-    @Override
-    protected void initDefaultCommand() {
+    public LiftoffState get(){
+        return liftOff.get() == LiftoffState.UP.getValue() ? LiftoffState.UP : LiftoffState.DOWN;
     }
+
+    @Override
+    protected void initDefaultCommand() { }
 }

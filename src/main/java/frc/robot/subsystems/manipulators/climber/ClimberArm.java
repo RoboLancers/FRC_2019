@@ -4,13 +4,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.enums.climber.ClimberState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
+import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
 public class ClimberArm extends Subsystem {
@@ -21,7 +20,13 @@ public class ClimberArm extends Subsystem {
         climberArm = new FalconSRX<>(RobotMap.CLIMBER.ARM, Constants.CLIMBER.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
         climberArm.setNeutralMode(NeutralMode.Brake);
         climberArm.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-        climberArm.setKP(0.1);
+
+        climberArm.setKF(Constants.CLIMBER.ARM_kF);
+        climberArm.setKP(Constants.CLIMBER.ARM_kP);
+        climberArm.setKI(Constants.CLIMBER.ARM_kI);
+        climberArm.setKD(Constants.CLIMBER.ARM_kD);
+
+        climberArm.configAllowableClosedloopError(Constants.CLIMBER.PID_SLOT_INDEX, Constants.CLIMBER.ALLOWABLE_ARM_ERROR);
     }
 
     public synchronized static ClimberArm getInstance() {
@@ -32,7 +37,7 @@ public class ClimberArm extends Subsystem {
     }
 
     public void set(ClimberState climberState) {
-        climberArm.set(ControlMode.Position, climberState.getPosition(), DemandType.ArbitraryFeedForward, Math.sin(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
+        climberArm.set(ControlMode.Position, climberState.getRotation2d(), DemandType.ArbitraryFeedForward, -Math.sin(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
     }
 
     public void set(double power) {
@@ -47,11 +52,14 @@ public class ClimberArm extends Subsystem {
         return climberArm.getSensorPosition().getDegree();
     }
 
+    public double getClosedLoopError() {
+        return climberArm.getClosedLoopError();
+    }
+
     public void resetEncoders(){
-        climberArm.setSelectedSensorPosition(0);
+        climberArm.setSensorPosition(Rotation2dKt.getDegree(0));
     }
 
     @Override
-    protected void initDefaultCommand() {
-    }
+    protected void initDefaultCommand() { }
 }

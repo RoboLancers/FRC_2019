@@ -21,6 +21,6 @@ public class AutoHatchRelease extends Command {
 
     @Override
     protected boolean isFinished() {
-        return !HatchEjector.getInstance().getLimitSwitch();
+        return !HatchEjector.getInstance().hasHatch();
     }
 }

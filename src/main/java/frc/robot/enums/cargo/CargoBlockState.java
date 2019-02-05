@@ -1,15 +1,18 @@
 package frc.robot.enums.cargo;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
+@SuppressWarnings("unused")
 public enum CargoBlockState {
-    BLOCK(true), UNBLOCK(false);
+    BLOCK(DoubleSolenoid.Value.kForward), UNBLOCK(DoubleSolenoid.Value.kReverse), NEUTRAL(DoubleSolenoid.Value.kOff);
 
-    private boolean value;
+    private DoubleSolenoid.Value value;
 
-    CargoBlockState(boolean value) {
+    CargoBlockState(DoubleSolenoid.Value value) {
         this.value = value;
     }
 
-    public boolean getValue() {
+    public DoubleSolenoid.Value getValue() {
         return value;
     }
 }

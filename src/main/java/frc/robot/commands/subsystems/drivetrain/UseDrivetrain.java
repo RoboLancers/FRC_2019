@@ -1,13 +1,11 @@
 package frc.robot.commands.subsystems.drivetrain;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.robolancers.lib.wrappers.hid.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import org.ghrobotics.lib.mathematics.units.LengthKt;
-import org.ghrobotics.lib.mathematics.units.derivedunits.Velocity;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 public class UseDrivetrain extends Command {

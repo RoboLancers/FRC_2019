@@ -8,11 +8,8 @@
 package frc.robot;
 
 import com.robolancers.lib.subsystems.misc.Pneumatic;
-import com.robolancers.lib.wrappers.vision.JeVois;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.autonomous.Trajectories;
 import frc.robot.enums.cargo.CargoBlockState;
 import frc.robot.enums.cargo.CargoPivotState;
@@ -31,8 +28,8 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         Drivetrain.getInstance();
 
-        //CargoBlock.getInstance();
-        //CargoPivot.getInstance();
+        CargoBlock.getInstance();
+        CargoPivot.getInstance();
 
         //HatchEjector.getInstance();
         //HatchPivot.getInstance();
@@ -64,7 +61,9 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         ClimberArm.getInstance().resetEncoders();
+
         LiftoffPiston.getInstance().set(LiftoffState.UP);
+
         CargoPivot.getInstance().set(CargoPivotState.DOWN);
         CargoBlock.getInstance().set(CargoBlockState.BLOCK);
     }

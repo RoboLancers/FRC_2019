@@ -6,6 +6,7 @@ import org.ghrobotics.lib.mathematics.units.*;
 import org.ghrobotics.lib.mathematics.units.derivedunits.*;
 import org.ghrobotics.lib.mathematics.units.nativeunits.*;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Constants {
     public static final double EPSILON = 1E-9;
     public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
@@ -18,7 +19,6 @@ public class Constants {
         public static final double RAMSETE_ZETA = 0.9;
     }
 
-    @SuppressWarnings("WeakerAccess")
     public static final class ROBOT {
         public static final double MASS = 27;
         public static final double MOMENT_OF_INTERTIA = 10;
@@ -43,7 +43,6 @@ public class Constants {
         public static final Length RIGHT_ROBOT_START_Y_LEVEL_1 = LEVEL_1_RIGHT.getTranslation().getY().minus(ROBOT_WIDTH.div(2.0)).minus(BUMPER_THICKNESS);
     }
 
-    @SuppressWarnings("WeakerAccess")
     public static final class DRIVETRAIN {
         public static final int PEAK_CURRENT_LIMIT = 40;
         public static final int CONTINUOUS_CURRENT_LIMIT = 36;
@@ -83,7 +82,28 @@ public class Constants {
         public static final Volt MINIMUM_VOLTAGE = VoltKt.getVolt(2);
         public static final double MINIMUM_PERCENT_OUT = MINIMUM_VOLTAGE.getValue() / 12.0;
 
+        public static final int PID_SLOT_INDEX = 0;
+        public static final int ALLOWABLE_ARM_ERROR = 10;
+
+        public static final double ARM_kF = 0.0;
+        public static final double ARM_kP = 0.15;
+        public static final double ARM_kI = 0.0;
+        public static final double ARM_kD = 1.0;
+
         public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
+
+        public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(
+                SENSOR_UNIT_PER_ROTATION
+        );
+    }
+
+    public static final class HATCH {
+        public static final double PIVOT_kF = 0.0;
+        public static final double PIVOT_kP = 0.15;
+        public static final double PIVOT_kI = 0.0;
+        public static final double PIVOT_kD = 1.0;
+
+        public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(4096);
 
         public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(
                 SENSOR_UNIT_PER_ROTATION

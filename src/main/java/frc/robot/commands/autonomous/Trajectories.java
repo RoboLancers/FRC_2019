@@ -106,7 +106,8 @@ public class Trajectories {
                 VelocityKt.getVelocity(LengthKt.getFeet(0)),
                 VelocityKt.getVelocity(LengthKt.getFeet(10)),
                 AccelerationKt.getAcceleration(LengthKt.getFeet(4.0)),
-                reversed
+                reversed,
+                false
         );
     }
 }

@@ -1,6 +1,6 @@
 package frc.robot.subsystems.manipulators.cargo;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.enums.cargo.CargoBlockState;
@@ -8,10 +8,10 @@ import frc.robot.enums.cargo.CargoBlockState;
 @SuppressWarnings("unused")
 public class CargoBlock extends Subsystem {
     private static CargoBlock instance;
-    private Solenoid cargoBlock;
+    private DoubleSolenoid cargoBlock;
 
     private CargoBlock() {
-        cargoBlock = new Solenoid(RobotMap.CARGO.BLOCK_FORWARD, RobotMap.CARGO.BLOCK_REVERSE);
+        cargoBlock = new DoubleSolenoid(RobotMap.CARGO.BLOCK_UP, RobotMap.CARGO.BLOCK_DOWN);
     }
 
     public synchronized static CargoBlock getInstance() {
@@ -26,14 +26,9 @@ public class CargoBlock extends Subsystem {
     }
 
     public CargoBlockState get() {
-        if (cargoBlock.get() == CargoBlockState.BLOCK.getValue()) {
-            return CargoBlockState.BLOCK;
-        } else {
-            return CargoBlockState.UNBLOCK;
-        }
+        return cargoBlock.get() == CargoBlockState.BLOCK.getValue() ? CargoBlockState.BLOCK : CargoBlockState.UNBLOCK;
     }
 
     @Override
-    protected void initDefaultCommand() {
-    }
+    protected void initDefaultCommand() { }
 }
