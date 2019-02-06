@@ -73,9 +73,19 @@ public class Trajectories {
             CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN
     ));
 
+    public static TimedTrajectory<Pose2dWithCurvature> frontRightCargoToRightUTurn = generateTrajectory(Arrays.asList(
+            CARGOSHIP_FRONT_RIGHT_SCORING,
+            CARGOSHIP_AND_NEAR_ROCKET_RIGHT_UTURN
+    ));
+
     public static TimedTrajectory<Pose2dWithCurvature> leftUTurnToLeftLoadingStation = generateTrajectory(Arrays.asList(
             CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN,
             LOADING_STATION_LEFT_PICKUP
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> rightUTurnToRightLoadingStation = generateTrajectory(Arrays.asList(
+            CARGOSHIP_AND_NEAR_ROCKET_RIGHT_UTURN,
+            LOADING_STATION_RIGHT_PICKUP
     ));
 
     public static TimedTrajectory<Pose2dWithCurvature> leftLoadingStationToLeftUTurn = generateTrajectory(Arrays.asList(
@@ -83,17 +93,27 @@ public class Trajectories {
             LOADING_STATION_LEFT_UTURN
     ));
 
+    public static TimedTrajectory<Pose2dWithCurvature> rightLoadingStationToRightUTurn = generateTrajectory(Arrays.asList(
+            LOADING_STATION_RIGHT_PICKUP,
+            LOADING_STATION_RIGHT_UTURN
+    ));
+
     public static TimedTrajectory<Pose2dWithCurvature> leftUTurnToFrontRightCargo = generateTrajectory(Arrays.asList(
             CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN,
             CARGOSHIP_FRONT_RIGHT_SCORING
     ));
 
-    public static TimedTrajectory<Pose2dWithCurvature> leftStartToLeftRocket = generateTrajectory(Arrays.asList(
+    public static TimedTrajectory<Pose2dWithCurvature> rightUTurnToFrontLeftCargo = generateTrajectory(Arrays.asList(
+            LOADING_STATION_RIGHT_UTURN,
+            CARGOSHIP_FRONT_LEFT_SCORING
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> leftStartToLeftNearRocket = generateTrajectory(Arrays.asList(
             Constants.ROBOT.LEVEL_1_LEFT,
             LEFT_ROCKET_NEAR_HATCH
     ));
 
-    public static TimedTrajectory<Pose2dWithCurvature> rightStartToRightRocket = generateTrajectory(Arrays.asList(
+    public static TimedTrajectory<Pose2dWithCurvature> rightStartToRightNearRocket = generateTrajectory(Arrays.asList(
             Constants.ROBOT.LEVEL_1_RIGHT,
             RIGHT_ROCKET_NEAR_HATCH
     ));
@@ -107,7 +127,6 @@ public class Trajectories {
             RIGHT_ROCKET_NEAR_HATCH,
             CARGOSHIP_AND_NEAR_ROCKET_RIGHT_UTURN
     ));
-
 
 
     public static void generateTrajectories() { }

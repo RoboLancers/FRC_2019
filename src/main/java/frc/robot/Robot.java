@@ -10,6 +10,7 @@ package frc.robot;
 import com.robolancers.lib.subsystems.misc.Pneumatic;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.commands.autonomous.Trajectories;
 import frc.robot.commands.subsystems.drivetrain.RobotCharacterization;
 import frc.robot.enums.cargo.CargoBlockState;
@@ -49,6 +50,7 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         NetworkInterface.getInstance().updateShuffleboard();
         Scheduler.getInstance().run();
+        Shuffleboard.startRecording();
     }
 
     @Override

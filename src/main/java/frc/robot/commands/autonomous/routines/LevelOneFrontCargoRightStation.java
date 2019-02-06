@@ -17,10 +17,10 @@ public class LevelOneFrontCargoRightStation extends CommandGroup {
         }
 
         addSequential(new AutoHatchRelease());
-        //addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.frontRightCargoToRightUTurn));
-        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftUTurnToLeftLoadingStation));
-        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftLoadingStationToLeftUTurn));
-        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftUTurnToFrontRightCargo));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.frontRightCargoToRightUTurn));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.rightUTurnToRightLoadingStation));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.rightLoadingStationToRightUTurn));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.rightUTurnToFrontLeftCargo));
         addSequential(new AutoHatchRelease());
 
     }

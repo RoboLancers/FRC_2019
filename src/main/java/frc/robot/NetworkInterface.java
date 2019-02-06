@@ -45,6 +45,8 @@ public class NetworkInterface {
         cargoPivotStateEntry = mainShuffleboardDisplay.add("Cargo Pivot State", "").getEntry();
 
         robotAngleEntry = mainShuffleboardDisplay.add("Robot Angle", 0.0).getEntry();
+
+        Shuffleboard.startRecording();
     }
 
     public void updateShuffleboard(){
@@ -63,6 +65,7 @@ public class NetworkInterface {
 
 
         robotAngleEntry.setDouble(Sensors.getInstance().getAngle());
+
     }
 
     public static synchronized NetworkInterface getInstance() {
