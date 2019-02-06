@@ -22,14 +22,20 @@ public class Trajectories {
     private static final Pose2d CARGOSHIP_FRONT_LEFT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.45), Rotation2dKt.getDegree(0));
     private static final Pose2d CARGOSHIP_FRONT_RIGHT_SCORING = new Pose2d(LengthKt.getFeet(18.2).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(12.6), Rotation2dKt.getDegree(0));
 
-    private static final Pose2d CARGOSHIP_LEFT_UTURN = new Pose2d(LengthKt.getFeet(13), LengthKt.getFeet(24.65), Rotation2dKt.getDegree(180));
-    private static final Pose2d CARGOSHIP_RIGHT_UTURN = new Pose2d(LengthKt.getFeet(13), LengthKt.getFeet(2.5), Rotation2dKt.getDegree(180));
+    private static final Pose2d CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN = new Pose2d(LengthKt.getFeet(18), LengthKt.getFeet(20.5), Rotation2dKt.getDegree(180));
+    private static final Pose2d CARGOSHIP_AND_NEAR_ROCKET_RIGHT_UTURN = new Pose2d(LengthKt.getFeet(18), LengthKt.getFeet(6.5), Rotation2dKt.getDegree(180));
 
     private static final Pose2d LOADING_STATION_LEFT_PICKUP = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(24.9), Rotation2dKt.getDegree(180));
     private static final Pose2d LOADING_STATION_RIGHT_PICKUP = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(14.5), Rotation2dKt.getDegree(180));
 
     private static final Pose2d LOADING_STATION_LEFT_UTURN = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(14.5), Rotation2dKt.getDegree(0));
     private static final Pose2d LOADING_STATION_RIGHT_UTURN = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(12.5), Rotation2dKt.getDegree(0));
+
+    private static final Pose2d LEFT_ROCKET_NEAR_HATCH = new Pose2d(LengthKt.getFeet(17).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(25.1), Rotation2dKt.getDegree(30));
+    private static final Pose2d LEFT_ROCKET_FAR_HATCH = new Pose2d(LengthKt.getFeet(21).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(25.1), Rotation2dKt.getDegree(150));
+
+    private static final Pose2d RIGHT_ROCKET_NEAR_HATCH = new Pose2d(LengthKt.getFeet(17).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(2.0), Rotation2dKt.getDegree(-30));
+    private static final Pose2d RIGHT_ROCKET_FAR_HATCH = new Pose2d(LengthKt.getFeet(21).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(2.0), Rotation2dKt.getDegree(-150));
 
     //Trajectories
     public static TimedTrajectory<Pose2dWithCurvature> leftStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
@@ -47,24 +53,29 @@ public class Trajectories {
             CARGOSHIP_FRONT_LEFT_SCORING
     ));
 
-    public static TimedTrajectory<Pose2dWithCurvature> frontLeftCargoToLeftUTurn = generateTrajectory(Arrays.asList(
-            CARGOSHIP_FRONT_LEFT_SCORING,
-            CARGOSHIP_LEFT_UTURN
+    public static TimedTrajectory<Pose2dWithCurvature> rightStartToFrontRightCargo = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_RIGHT,
+            CARGOSHIP_FRONT_RIGHT_SCORING
     ));
 
-    public static TimedTrajectory<Pose2dWithCurvature> frontRightCargoToRightUTurn = generateTrajectory(Arrays.asList(
-            CARGOSHIP_FRONT_RIGHT_SCORING,
-            CARGOSHIP_RIGHT_UTURN
+    public static TimedTrajectory<Pose2dWithCurvature> centerStartToFrontRightCargo = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_CENTER,
+            CARGOSHIP_FRONT_RIGHT_SCORING
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> LeftStartToFrontRightCargo = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_LEFT,
+            CARGOSHIP_FRONT_RIGHT_SCORING
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> frontLeftCargoToLeftUTurn = generateTrajectory(Arrays.asList(
+            CARGOSHIP_FRONT_LEFT_SCORING,
+            CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN
     ));
 
     public static TimedTrajectory<Pose2dWithCurvature> leftUTurnToLeftLoadingStation = generateTrajectory(Arrays.asList(
-            CARGOSHIP_LEFT_UTURN,
+            CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN,
             LOADING_STATION_LEFT_PICKUP
-    ));
-
-    public static TimedTrajectory<Pose2dWithCurvature> rightUTurnToRightLoadingStation = generateTrajectory(Arrays.asList(
-            CARGOSHIP_RIGHT_UTURN,
-            LOADING_STATION_RIGHT_PICKUP
     ));
 
     public static TimedTrajectory<Pose2dWithCurvature> leftLoadingStationToLeftUTurn = generateTrajectory(Arrays.asList(
@@ -72,20 +83,32 @@ public class Trajectories {
             LOADING_STATION_LEFT_UTURN
     ));
 
-    public static TimedTrajectory<Pose2dWithCurvature> rightLoadingStationToRightUTurn = generateTrajectory(Arrays.asList(
-            LOADING_STATION_RIGHT_PICKUP,
-            LOADING_STATION_RIGHT_UTURN
-    ));
-
-    public static TimedTrajectory<Pose2dWithCurvature> rightUTurnToFrontLeftCargo = generateTrajectory(Arrays.asList(
-            CARGOSHIP_FRONT_LEFT_SCORING,
-            CARGOSHIP_LEFT_UTURN
-    ));
-
     public static TimedTrajectory<Pose2dWithCurvature> leftUTurnToFrontRightCargo = generateTrajectory(Arrays.asList(
-            CARGOSHIP_LEFT_UTURN,
+            CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN,
             CARGOSHIP_FRONT_RIGHT_SCORING
     ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> leftStartToLeftRocket = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_LEFT,
+            LEFT_ROCKET_NEAR_HATCH
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> rightStartToRightRocket = generateTrajectory(Arrays.asList(
+            Constants.ROBOT.LEVEL_1_RIGHT,
+            RIGHT_ROCKET_NEAR_HATCH
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> leftNearRocketToLeftUTurn = generateTrajectory(Arrays.asList(
+            LEFT_ROCKET_NEAR_HATCH,
+            CARGOSHIP_AND_NEAR_ROCKET_LEFT_UTURN
+    ));
+
+    public static TimedTrajectory<Pose2dWithCurvature> rightNearRocketToRightUTurn = generateTrajectory(Arrays.asList(
+            RIGHT_ROCKET_NEAR_HATCH,
+            CARGOSHIP_AND_NEAR_ROCKET_RIGHT_UTURN
+    ));
+
+
 
     public static void generateTrajectories() { }
 

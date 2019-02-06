@@ -1,6 +1,10 @@
 package frc.robot;
 
+import edu.wpi.cscore.VideoSource;
+import edu.wpi.cscore.VideoSource.Kind;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.subsystems.drivetrain.Drivetrain;
@@ -8,7 +12,9 @@ import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
+import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.Sensors;
+import org.opencv.videoio.VideoCapture;
 
 @SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class NetworkInterface {
@@ -54,6 +60,7 @@ public class NetworkInterface {
 
         cargoBlockStateEntry.setString(CargoBlock.getInstance().get().toString());
         cargoPivotStateEntry.setValue(CargoPivot.getInstance().get().toString());
+
 
         robotAngleEntry.setDouble(Sensors.getInstance().getAngle());
     }
