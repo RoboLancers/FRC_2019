@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
         ClimberArm.getInstance();
         LiftoffPiston.getInstance();
 
-        //Camera.getInstance();
+        Camera.getInstance();
         Sensors.getInstance();
         Pneumatic.getInstance();
         NetworkInterface.getInstance();

@@ -6,6 +6,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.shuffleboard.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
@@ -50,7 +51,7 @@ public class NetworkInterface {
         robotAngleEntry = mainShuffleboardDisplay.add("Robot Angle", 0.0).withPosition(0, 5).withSize(2, 1).getEntry();
 
         frontJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getFrontJeVois().getVisionCam()).withPosition(4, 0).withSize(2, 2);
-        backJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getBackJeVois().getVisionCam()).withPosition(4, 2).withSize(2, 2);
+        //backJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getBackJeVois().getVisionCam()).withPosition(4, 2).withSize(2, 2);
 
         Shuffleboard.startRecording();
     }
