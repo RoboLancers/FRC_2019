@@ -9,7 +9,7 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 public class LevelOneFrontCargoRightStation extends CommandGroup {
     public LevelOneFrontCargoRightStation(StartingPosition startingPosition) {
         if(startingPosition == StartingPosition.LEVEL_1_LEFT){
-            addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.LeftStartToFrontRightCargo));
+            addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftStartToFrontRightCargo));
         }else if(startingPosition == StartingPosition.LEVEL_1_CENTER){
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.centerStartToFrontRightCargo));
         }else if(startingPosition == StartingPosition.LEVEL_1_RIGHT){
@@ -19,7 +19,7 @@ public class LevelOneFrontCargoRightStation extends CommandGroup {
         addSequential(new AutoHatchRelease());
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.frontRightCargoToRightUTurn));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.rightUTurnToRightLoadingStation));
-        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.rightLoadingStationToRightUTurn));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.rightLoadingStationToRightCargoUTurn));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.rightUTurnToFrontLeftCargo));
         addSequential(new AutoHatchRelease());
 

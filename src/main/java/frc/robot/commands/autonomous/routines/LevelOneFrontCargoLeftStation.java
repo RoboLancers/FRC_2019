@@ -5,7 +5,6 @@ import frc.robot.commands.autonomous.Trajectories;
 import frc.robot.commands.subsystems.manipulator.hatch.AutoHatchRelease;
 import frc.robot.enums.autonomous.StartingPosition;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import org.ghrobotics.lib.mathematics.twodim.trajectory.types.Trajectory;
 
 public class LevelOneFrontCargoLeftStation extends CommandGroup {
     public LevelOneFrontCargoLeftStation(StartingPosition startingPosition) {
@@ -20,7 +19,7 @@ public class LevelOneFrontCargoLeftStation extends CommandGroup {
         addSequential(new AutoHatchRelease());
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.frontLeftCargoToLeftUTurn));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftUTurnToLeftLoadingStation));
-        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftLoadingStationToLeftUTurn));
+        addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftLoadingStationToLeftCargoUTurn));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftUTurnToFrontRightCargo));
         addSequential(new AutoHatchRelease());
 
