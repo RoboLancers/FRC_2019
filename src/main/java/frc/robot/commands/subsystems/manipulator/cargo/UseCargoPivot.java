@@ -16,5 +16,6 @@ public class UseCargoPivot extends InstantCommand {
     @Override
     protected void initialize() {
         CargoPivot.getInstance().set(cargoPivotState);
+        SmartDashboard.putString("This works", "Yes.");
     }
 }
