@@ -12,6 +12,7 @@ import frc.robot.RobotMap;
 import frc.robot.enums.climber.ClimberState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
 import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
+import org.ghrobotics.lib.mathematics.units.TimeUnitsKt;
 import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
 public class ClimberArm extends Subsystem {
@@ -24,10 +25,14 @@ public class ClimberArm extends Subsystem {
         climberArm.setNeutralMode(NeutralMode.Brake);
         climberArm.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
+        climberArm.setInverted(true);
+
         climberArm.setKF(Constants.CLIMBER.ARM_kF);
         climberArm.setKP(Constants.CLIMBER.ARM_kP);
         climberArm.setKI(Constants.CLIMBER.ARM_kI);
         climberArm.setKD(Constants.CLIMBER.ARM_kD);
+
+        climberArm.setOpenLoopRamp(TimeUnitsKt.getSecond(Constants.CLIMBER.RAMP_RATE));
 
         climberArm.configAllowableClosedloopError(Constants.CLIMBER.PID_SLOT_INDEX, Constants.CLIMBER.ALLOWABLE_ARM_ERROR);
 
