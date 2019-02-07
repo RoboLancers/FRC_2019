@@ -90,6 +90,8 @@ public class Constants {
         public static final double ARM_kI = 0.0;
         public static final double ARM_kD = 1.0;
 
+        public static final double RAMP_RATE = 0.25;
+
         public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
 
         public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(

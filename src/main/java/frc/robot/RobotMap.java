@@ -28,8 +28,8 @@ public class RobotMap {
         public static final int BLOCK_DOWN = 2;
         public static final int BLOCK_UP = 5;
 
-        public static final int PIVOT_UP = 3;
-        public static final int PIVOT_DOWN = 4;
+        public static final int PIVOT_UP = 4;
+        public static final int PIVOT_DOWN = 3;
     }
 
     public static final class CLIMBER {
@@ -37,8 +37,8 @@ public class RobotMap {
         public static final int ARM = 15;
 
         //Pneumatics
-        public static final int LIFTOFF_PISTON_UP = 7;
-        public static final int LIFTOFF_PISTON_DOWN = 0;
+        public static final int LIFTOFF_PISTON_UP = 0;
+        public static final int LIFTOFF_PISTON_DOWN = 7;
 
         //Sensors
         public static final int ARM_LIMIT_SWITCH = 3;
