@@ -26,17 +26,17 @@ public class OI {
 
             //.whileHeld(XboxController.Button.A, new AimLock())
 
-            .whenPressed(XboxController.Button.B, new UseClimberArmPower(0.5))
+            .whenPressed(XboxController.Button.B, new UseClimberArmPower(-0.5))
             .whenReleased(XboxController.Button.B, new UseClimberArmPower(0))
-            .whenPressed(XboxController.Button.X, new UseClimberArmPower(-0.5))
+            .whenPressed(XboxController.Button.X, new UseClimberArmPower(0.5))
             .whenReleased(XboxController.Button.X, new UseClimberArmPower(0));
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
             .whenReleased(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.BLOCK))
 
-            .whenPressed(FlightController.Trigger.Y_FORWARD, new UseCargoPivot(CargoPivotState.DOWN))
-            .whenPressed(FlightController.Trigger.Y_BACKWARD, new UseCargoPivot(CargoPivotState.UP))
+            .whileHeld(FlightController.Button.OUTER_MIDDLE, new UseCargoPivot(CargoPivotState.DOWN))
+            .whileHeld(FlightController.Button.INNER_MIDDLE, new UseCargoPivot(CargoPivotState.UP))
 
             .whenPressed(FlightController.Button.INNER_TOP, new UseClimberArm(ClimberState.DOWN))
             .whenPressed(FlightController.Button.OUTER_TOP, new UseClimberArm(ClimberState.UP))
