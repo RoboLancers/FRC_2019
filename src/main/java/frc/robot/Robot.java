@@ -23,6 +23,7 @@ import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
+import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.Sensors;
 
 public class Robot extends TimedRobot {
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
         ClimberArm.getInstance();
         LiftoffPiston.getInstance();
 
+        //Camera.getInstance();
         Sensors.getInstance();
         Pneumatic.getInstance();
         NetworkInterface.getInstance();
