@@ -32,8 +32,8 @@ public class OI {
             .whenReleased(XboxController.Button.B, new UseClimberArmPower(0))
             .whenPressed(XboxController.Button.X, new UseClimberArmPower(0.5))
             .whenReleased(XboxController.Button.X, new UseClimberArmPower(0))
-            .whenPressed(XboxController.Button.A, new UseLEDs(Blinkin.PatternType.RAINBOW_PARTY_PALETTE))
-            .whenPressed(XboxController.Button.Y, new UseLEDs(Blinkin.PatternType.RAINBOW_RAINBOW_PALETTE));
+            .whenPressed(XboxController.Button.A, new UseLEDs(Blinkin.PatternType.CONFETTI))
+            .whenPressed(XboxController.Button.Y, new UseLEDs(Blinkin.PatternType.OCEAN_TWINK));
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
