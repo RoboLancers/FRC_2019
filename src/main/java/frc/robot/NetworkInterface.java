@@ -4,9 +4,9 @@ import edu.wpi.cscore.VideoSource;
 import edu.wpi.cscore.VideoSource.Kind;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.shuffleboard.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
@@ -15,8 +15,6 @@ import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.Sensors;
 import org.opencv.videoio.VideoCapture;
-
-import java.util.Map;
 
 @SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class NetworkInterface {
@@ -50,8 +48,19 @@ public class NetworkInterface {
 
         robotAngleEntry = mainShuffleboardDisplay.add("Robot Angle", 0.0).withPosition(0, 5).withSize(2, 1).getEntry();
 
-        frontJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getFrontJeVois().getVisionCam()).withPosition(4, 0).withSize(2, 2);
-        //backJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getBackJeVois().getVisionCam()).withPosition(4, 2).withSize(2, 2);
+        /*frontJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getFrontJeVois().getVisionCam()).withPosition(4, 0).withSize(2, 2);
+        backJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getBackJeVois().getVisionCam()).withPosition(4, 2).withSize(2, 2);*/
+
+        /*CameraServer.getInstance().startAutomaticCapture(Camera.getInstance().getFrontJeVois().getVisionCam());
+        CameraServer.getInstance().startAutomaticCapture(Camera.getInstance().getBackJeVois().getVisionCam());*/
+
+        /*NetworkTableInstance.getDefault()
+                .getEntry("/CameraPublisher/FrontJeVois/streams")
+                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1180/?action=stream"});
+
+        NetworkTableInstance.getDefault()
+                .getEntry("/CameraPublisher/BackJeVois/streams")
+                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1181/?action=stream"});*/
 
         Shuffleboard.startRecording();
     }
