@@ -30,6 +30,9 @@ public class RobotMap {
 
         public static final int PIVOT_UP = 4;
         public static final int PIVOT_DOWN = 3;
+
+        //LEDs
+        public static final int LEDS = 6;
     }
 
     public static final class CLIMBER {
