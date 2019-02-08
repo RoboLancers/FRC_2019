@@ -46,6 +46,7 @@ public class Robot extends TimedRobot {
         Sensors.getInstance();
         Pneumatic.getInstance();
         NetworkInterface.getInstance();
+        LEDs.getInstance();
 
         //Trajectories.generateTrajectories();
     }
@@ -75,5 +76,7 @@ public class Robot extends TimedRobot {
 
         CargoPivot.getInstance().set(CargoPivotState.DOWN);
         CargoBlock.getInstance().set(CargoBlockState.BLOCK);
+
+        LEDs.getInstance().setPattern(Blinkin.PatternType.WAVE_PARTY);
     }
 }
