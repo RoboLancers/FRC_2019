@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 public class LEDs extends Subsystem {
-
     private Blinkin blinkin;
-    public static LEDs leds;
 
-   LEDs() {
+    private static LEDs leds;
+
+   private LEDs() {
        blinkin = new Blinkin(RobotMap.CARGO.LEDS);
    }
 

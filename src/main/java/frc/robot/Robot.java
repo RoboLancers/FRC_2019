@@ -8,6 +8,7 @@
 package frc.robot;
 
 import com.robolancers.lib.subsystems.misc.Pneumatic;
+import com.robolancers.lib.wrappers.Blinkin;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -24,6 +25,7 @@ import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 import frc.robot.subsystems.misc.Camera;
+import frc.robot.subsystems.misc.LEDs;
 import frc.robot.subsystems.misc.Sensors;
 
 public class Robot extends TimedRobot {
