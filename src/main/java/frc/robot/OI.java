@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.robolancers.lib.wrappers.Blinkin;
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.commands.subsystems.manipulator.cargo.UseCargoBlock;
@@ -8,6 +9,7 @@ import frc.robot.commands.subsystems.manipulator.climber.AutoClimb;
 import frc.robot.commands.subsystems.manipulator.climber.UseClimberArmPower;
 import frc.robot.commands.subsystems.manipulator.climber.UseClimberArm;
 import frc.robot.commands.subsystems.manipulator.climber.UseLiftoffPiston;
+import frc.robot.commands.subsystems.manipulator.misc.UseLEDs;
 import frc.robot.enums.cargo.CargoBlockState;
 import frc.robot.enums.cargo.CargoPivotState;
 import frc.robot.enums.climber.ClimberState;
@@ -29,7 +31,9 @@ public class OI {
             .whenPressed(XboxController.Button.B, new UseClimberArmPower(-0.5))
             .whenReleased(XboxController.Button.B, new UseClimberArmPower(0))
             .whenPressed(XboxController.Button.X, new UseClimberArmPower(0.5))
-            .whenReleased(XboxController.Button.X, new UseClimberArmPower(0));
+            .whenReleased(XboxController.Button.X, new UseClimberArmPower(0))
+            .whenPressed(XboxController.Button.A, new UseLEDs(Blinkin.PatternType.CONFETTI))
+            .whenPressed(XboxController.Button.Y, new UseLEDs(Blinkin.PatternType.OCEAN_TWINK));
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
