@@ -1,22 +1,16 @@
 package frc.robot;
 
-import edu.wpi.cscore.VideoSource;
-import edu.wpi.cscore.VideoSource.Kind;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
+import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
-import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.Sensors;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
-import org.opencv.videoio.VideoCapture;
 
 @SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class NetworkInterface {
@@ -28,39 +22,45 @@ public class NetworkInterface {
             leftEncoderCountEntry, rightEncoderCountEntry, leftVelocityEntry, rightVelocityEntry,
             armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry, armLimitSwitchVoltage,
             cargoBlockStateEntry, cargoPivotStateEntry,
-            hatchPivotEncoder,
-            robotAngleEntry;
+            hatchPivotEncoderCountEntry, hatchEjectorStateEntry,
+            robotXEntry, robotYEntry, robotHeadingEntry;
 
-    private ComplexWidget frontJeVoisWidget, backJeVoisWidget;
+    private ShuffleboardLayout drivetrainList, cargoList, climberList, hatchList, localizationList;
 
     private NetworkInterface(){
         mainShuffleboardDisplay = Shuffleboard.getTab("Main Display");
 
-        leftEncoderCountEntry = mainShuffleboardDisplay.add("Left Encoder Count", 0.0).withPosition(0,0).withSize(2, 1).getEntry();
-        rightEncoderCountEntry = mainShuffleboardDisplay.add("Right Encoder Count", 0.0).withPosition(2, 0).withSize(2, 1).getEntry();
+        drivetrainList = mainShuffleboardDisplay.getLayout("Drivetrain", BuiltInLayouts.kList).withPosition(0, 0).withSize(2, 4);
+        cargoList = mainShuffleboardDisplay.getLayout("Cargo", BuiltInLayouts.kList).withPosition(0, 4).withSize(2, 2);
 
-        leftVelocityEntry = mainShuffleboardDisplay.add("Left Velocity", 0.0).withPosition(0, 6).withSize(2, 1).getEntry();
-        rightVelocityEntry = mainShuffleboardDisplay.add("Right Velocity", 0.0).withPosition(2, 6).withSize(2, 1).getEntry();
+        climberList = mainShuffleboardDisplay.getLayout("Climber", BuiltInLayouts.kList).withPosition(2, 0).withSize(2, 5);
+        hatchList = mainShuffleboardDisplay.getLayout("Hatch", BuiltInLayouts.kList).withPosition(2, 5).withSize(2, 2);
 
-        armEncoderEntry = mainShuffleboardDisplay.add("Arm Encoder Count", 0.0).withPosition(0, 1).withSize(2, 1).getEntry();
-        armAngleEntry = mainShuffleboardDisplay.add("Arm Angle", 0.0).withPosition(2, 1).withSize(2, 1).getEntry();
-        armErrorEntry = mainShuffleboardDisplay.add("Arm Closed Loop Error", 0.0).withPosition(0, 2).withSize(2, 1).getEntry();
-        armLimitSwitchVoltage = mainShuffleboardDisplay.add("Arm Voltage", 0.0).withPosition(2, 2).withSize(2, 1).getEntry();
+        localizationList = mainShuffleboardDisplay.getLayout("Localization", BuiltInLayouts.kList).withPosition(4, 0).withSize(2, 3);
 
-        liftOffPistonStateEntry = mainShuffleboardDisplay.add("Liftoff Piston State", "").withPosition(0, 3).withSize(4, 1).getEntry();
+        leftEncoderCountEntry = drivetrainList.add("Left Encoder Count", 0.0).getEntry();
+        rightEncoderCountEntry = drivetrainList.add("Right Encoder Count", 0.0).getEntry();
 
-        cargoBlockStateEntry = mainShuffleboardDisplay.add("Cargo Block State", "").withPosition(0, 4).withSize(2, 1).getEntry();
-        cargoPivotStateEntry = mainShuffleboardDisplay.add("Cargo Pivot State", "").withPosition(2, 4).withSize(2, 1).getEntry();
+        leftVelocityEntry = drivetrainList.add("Left Velocity", 0.0).getEntry();
+        rightVelocityEntry = drivetrainList.add("Right Velocity", 0.0).getEntry();
 
-        robotAngleEntry = mainShuffleboardDisplay.add("Robot Angle", 0.0).withPosition(0, 5).withSize(2, 1).getEntry();
+        cargoBlockStateEntry = cargoList.add("Cargo Block State", "").getEntry();
+        cargoPivotStateEntry = cargoList.add("Cargo Pivot State", "").getEntry();
 
-        hatchPivotEncoder = mainShuffleboardDisplay.add("Hatch Pivot Encoder Count", 0.0).withPosition(0, 7).withSize(2, 1).getEntry();
+        armEncoderEntry = climberList.add("Arm Encoder Count", 0.0).getEntry();
+        armAngleEntry = climberList.add("Arm Angle", 0.0).getEntry();
 
-        /*frontJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getFrontJeVois().getVisionCam()).withPosition(4, 0).withSize(2, 2);
-        backJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getBackJeVois().getVisionCam()).withPosition(4, 2).withSize(2, 2);*/
+        armErrorEntry = climberList.add("Arm Closed Loop Error", 0.0).getEntry();
+        armLimitSwitchVoltage = climberList.add("Arm Voltage", 0.0).getEntry();
 
-        /*CameraServer.getInstance().startAutomaticCapture(Camera.getInstance().getFrontJeVois().getVisionCam());
-        CameraServer.getInstance().startAutomaticCapture(Camera.getInstance().getBackJeVois().getVisionCam());*/
+        liftOffPistonStateEntry = climberList.add("Liftoff Piston State", "").getEntry();
+
+        hatchPivotEncoderCountEntry = hatchList.add("Hatch Pivot Encoder Count", 0.0).getEntry();
+        hatchEjectorStateEntry = hatchList.add("Hatch Ejector State", "").getEntry();
+
+        robotXEntry = localizationList.add("Robot X", 0.0).getEntry();
+        robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
+        robotHeadingEntry = localizationList.add("Robot Angle", 0.0).getEntry();
 
         /*NetworkTableInstance.getDefault()
                 .getEntry("/CameraPublisher/FrontJeVois/streams")
@@ -80,6 +80,9 @@ public class NetworkInterface {
         leftVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftMotor().getVelocity()));
         rightVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightMotor().getVelocity()));
 
+        cargoBlockStateEntry.setString(CargoBlock.getInstance().get().toString());
+        cargoPivotStateEntry.setValue(CargoPivot.getInstance().get().toString());
+
         armEncoderEntry.setDouble(ClimberArm.getInstance().getPosition());
         armAngleEntry.setDouble(ClimberArm.getInstance().getAngle());
         armErrorEntry.setDouble(ClimberArm.getInstance().getClosedLoopError());
@@ -87,12 +90,12 @@ public class NetworkInterface {
 
         liftOffPistonStateEntry.setString(LiftoffPiston.getInstance().get().toString());
 
-        cargoBlockStateEntry.setString(CargoBlock.getInstance().get().toString());
-        cargoPivotStateEntry.setValue(CargoPivot.getInstance().get().toString());
+        hatchPivotEncoderCountEntry.setDouble(HatchPivot.getInstance().getMaster().getSelectedSensorPosition());
+        hatchEjectorStateEntry.setString(HatchEjector.getInstance().get().toString());
 
-        robotAngleEntry.setDouble(Sensors.getInstance().getAngle());
-
-        hatchPivotEncoder.setDouble(HatchPivot.getInstance().getPosition());
+        robotXEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getX().getFeet());
+        robotYEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getY().getFeet());
+        robotHeadingEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getRotation().getDegree());
     }
 
     public static synchronized NetworkInterface getInstance() {

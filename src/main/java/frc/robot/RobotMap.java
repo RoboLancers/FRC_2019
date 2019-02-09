@@ -20,10 +20,10 @@ public class RobotMap {
         public static final int EJECTOR = 6;
 
         // Sensors
-        public static final int LIMIT_SWITCH_PORT_ONE = 0;
-        public static final int LIMIT_SWITCH_PORT_TWO = 1;
-        public static final int LIMIT_SWITCH_PORT_THREE = 2;
-        public static final int LIMIT_SWITCH_PORT_FOUR = 3;
+        public static final int LIMIT_SWITCH_ONE = 0;
+        public static final int LIMIT_SWITCH_TWO = 1;
+        public static final int LIMIT_SWITCH_THREE = 2;
+        public static final int LIMIT_SWITCH_FOUR = 3;
     }
 
     public static final class CARGO {

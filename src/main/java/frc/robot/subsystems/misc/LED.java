@@ -7,7 +7,7 @@ import frc.robot.RobotMap;
 public class LED extends Subsystem {
     private Blinkin blinkin;
 
-    private static LED leds;
+    private static LED instance;
 
    private LED() {
        blinkin = new Blinkin(RobotMap.LED);
@@ -18,10 +18,10 @@ public class LED extends Subsystem {
    }
 
    public static LED getInstance() {
-       if (leds == null) {
-           leds = new LED();
+       if (instance == null) {
+           instance = new LED();
        }
-       return leds;
+       return instance;
    }
 
     @Override

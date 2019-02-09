@@ -1,6 +1,6 @@
 package frc.robot.subsystems.manipulators.hatch;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import com.robolancers.lib.wrappers.sensors.LinkedLimitSwitches;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -11,15 +11,12 @@ public class HatchEjector extends Subsystem {
 
     private Solenoid ejector;
 
-    private DigitalInput hatchDetector1, hatchDetector2, hatchDetector3, hatchDetector4;
+    private LinkedLimitSwitches hatchDetector;
 
     private HatchEjector() {
-        ejector = new Solenoid(RobotMap.HATCH.EJECTOR, RobotMap.HATCH.EJECTOR);
+        ejector = new Solenoid(RobotMap.HATCH.EJECTOR);
 
-        hatchDetector1 = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH_PORT_ONE);
-        hatchDetector2 = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH_PORT_TWO);
-        hatchDetector3 = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH_PORT_THREE);
-        hatchDetector4 = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH_PORT_FOUR);
+        hatchDetector = new LinkedLimitSwitches(RobotMap.HATCH.LIMIT_SWITCH_ONE, RobotMap.HATCH.LIMIT_SWITCH_TWO, RobotMap.HATCH.LIMIT_SWITCH_THREE, RobotMap.HATCH.LIMIT_SWITCH_FOUR);
     }
 
     public synchronized static HatchEjector getInstance() {
@@ -33,11 +30,12 @@ public class HatchEjector extends Subsystem {
         ejector.set(hatchEjectorState.getValue());
     }
 
+    public HatchEjectorState get(){
+        return ejector.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
+    }
+
     public boolean hasHatch() {
-        return  hatchDetector1.get() ||
-                hatchDetector2.get() ||
-                hatchDetector3.get() ||
-                hatchDetector4.get();
+        return hatchDetector.get();
     }
 
     @Override

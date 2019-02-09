@@ -7,7 +7,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.enums.climber.ClimberState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
@@ -17,6 +16,7 @@ import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
 public class ClimberArm extends Subsystem {
     private static ClimberArm instance;
+
     private FalconSRX<Rotation2d> climberArm;
     private AnalogInput armLimitSwitch;
 

@@ -9,6 +9,7 @@ import frc.robot.enums.cargo.CargoPivotState;
 @SuppressWarnings("unused")
 public class CargoPivot extends Subsystem {
     private static CargoPivot instance;
+
     private DoubleSolenoid cargoPivot;
 
     private CargoPivot() {
@@ -32,6 +33,6 @@ public class CargoPivot extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        //setDefaultCommand(new CargoAdjustment());
+        setDefaultCommand(new CargoAdjustment());
     }
 }

@@ -68,46 +68,8 @@ public class Robot extends TimedRobot {
 
         Drivetrain.getInstance().resetEncoders();
         ClimberArm.getInstance().resetEncoders();
-    }
 
-    private NetworkTableEntry autoSpeedEntry = NetworkTableInstance.getDefault().getEntry("/robot/autospeed");
-    private NetworkTableEntry telemetryEntry = NetworkTableInstance.getDefault().getEntry("/robot/telemetry");
-
-    private Number[] numberArray = new Number[9];
-    private double priorAutoSpeed;
-
-    @Override
-    public void autonomousPeriodic(){
-        double now = Timer.getFPGATimestamp();
-
-        double leftPosition = Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorPosition().getFeet();
-        double leftVelocity = VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorVelocity());
-
-        double rightPosition = Drivetrain.getInstance().getRightTransmission().getMaster().getSensorPosition().getFeet();
-        double rightVelocity = VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightTransmission().getMaster().getSensorVelocity());
-
-        double battery = RobotController.getBatteryVoltage();
-
-        double leftMotorVolts = Drivetrain.getInstance().getLeftTransmission().getMaster().getMotorOutputVoltage();
-        double rightMotorVolts = Drivetrain.getInstance().getRightTransmission().getMaster().getMotorOutputVoltage();
-
-        double autospeed = autoSpeedEntry.getDouble(0);
-        priorAutoSpeed = autospeed;
-
-        Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, autospeed);
-        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, autospeed);
-
-        numberArray[0] = now;
-        numberArray[1] = battery;
-        numberArray[2] = autospeed;
-        numberArray[3] = leftMotorVolts;
-        numberArray[4] = rightMotorVolts;
-        numberArray[5] = leftPosition;
-        numberArray[6] = rightPosition;
-        numberArray[7] = leftVelocity;
-        numberArray[8] = rightVelocity;
-
-        telemetryEntry.setNumberArray(numberArray);
+        new RobotCharacterization();
     }
 
     @Override
@@ -119,6 +81,6 @@ public class Robot extends TimedRobot {
         CargoPivot.getInstance().set(CargoPivotState.DOWN);
         CargoBlock.getInstance().set(CargoBlockState.BLOCK);
 
-        LED.getInstance().setPattern(Blinkin.PatternType.WAVE_PARTY);
+        LED.getInstance().setPattern(Blinkin.PatternType.CONFETTI);
     }
 }

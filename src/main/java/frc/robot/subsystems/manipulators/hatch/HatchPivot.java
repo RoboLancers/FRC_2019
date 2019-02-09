@@ -14,6 +14,7 @@ import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
 public class HatchPivot extends Subsystem {
     private static HatchPivot instance;
+
     private FalconSRX<Rotation2d> pivotMotor;
 
     private HatchPivot() {
@@ -36,15 +37,15 @@ public class HatchPivot extends Subsystem {
     }
 
     public void set(HatchPivotState hatchPivotState) {
-        pivotMotor.set(ControlMode.Position, hatchPivotState.getPosition());
+        set(ControlMode.Position, hatchPivotState.getPosition());
     }
 
-    public void setPower(double power){
-        pivotMotor.set(ControlMode.PercentOutput, power);
+    public void set(ControlMode mode, double value){
+        pivotMotor.set(mode, value);
     }
 
-    public double getPosition(){
-        return pivotMotor.getSelectedSensorPosition();
+    public FalconSRX getMaster(){
+        return pivotMotor;
     }
 
     @Override

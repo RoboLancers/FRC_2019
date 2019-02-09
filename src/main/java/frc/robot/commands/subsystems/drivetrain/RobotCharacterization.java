@@ -10,8 +10,8 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 public class RobotCharacterization extends Command {
-    private NetworkTableEntry autoSpeedEntry = NetworkTableInstance.getDefault().getEntry("Robot Autospeed");
-    private NetworkTableEntry telemetryEntry = NetworkTableInstance.getDefault().getEntry("Robot Telemetry");
+    private NetworkTableEntry autoSpeedEntry = NetworkTableInstance.getDefault().getEntry("/robot/autospeed");
+    private NetworkTableEntry telemetryEntry = NetworkTableInstance.getDefault().getEntry("/robot/telemetry");
 
     private Number[] numberArray = new Number[9];
     private double priorAutoSpeed;

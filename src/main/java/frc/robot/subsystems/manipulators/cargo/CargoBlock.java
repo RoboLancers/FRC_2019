@@ -8,6 +8,7 @@ import frc.robot.enums.cargo.CargoBlockState;
 @SuppressWarnings("unused")
 public class CargoBlock extends Subsystem {
     private static CargoBlock instance;
+
     private DoubleSolenoid cargoBlock;
 
     private CargoBlock() {

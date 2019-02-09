@@ -14,6 +14,5 @@ public class LevelOneLeftRocket extends CommandGroup {
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftLoadingStationToLeftRocketUTurn));
         addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.leftUTurnToLeftFarRocket));
         addSequential(new AutoHatchRelease());
-
     }
 }
