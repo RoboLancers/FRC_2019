@@ -2,19 +2,19 @@ package frc.robot.commands.subsystems.manipulator.misc;
 
 import com.robolancers.lib.wrappers.Blinkin;
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.subsystems.misc.LEDs;
+import frc.robot.subsystems.misc.LED;
 
-public class UseLEDs extends InstantCommand {
+public class UseLED extends InstantCommand {
 
     private Blinkin.PatternType patternType;
 
-    public UseLEDs(Blinkin.PatternType patternType) {
-        requires(LEDs.getInstance());
+    public UseLED(Blinkin.PatternType patternType) {
+        requires(LED.getInstance());
         this.patternType = patternType;
     }
 
     @Override
     protected void initialize() {
-        LEDs.getInstance().setPattern(patternType);
+        LED.getInstance().setPattern(patternType);
     }
 }

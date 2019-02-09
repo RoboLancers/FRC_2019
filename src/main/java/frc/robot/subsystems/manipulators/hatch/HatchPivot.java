@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.enums.hatch.HatchPivotState;
+import org.ghrobotics.lib.mathematics.units.LengthKt;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
 import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
@@ -36,6 +37,14 @@ public class HatchPivot extends Subsystem {
 
     public void set(HatchPivotState hatchPivotState) {
         pivotMotor.set(ControlMode.Position, hatchPivotState.getPosition());
+    }
+
+    public void setPower(double power){
+        pivotMotor.set(ControlMode.PercentOutput, power);
+    }
+
+    public double getPosition(){
+        return pivotMotor.getSelectedSensorPosition();
     }
 
     @Override

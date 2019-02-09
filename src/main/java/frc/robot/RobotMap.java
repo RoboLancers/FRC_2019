@@ -14,13 +14,16 @@ public class RobotMap {
 
     public static final class HATCH {
         // Motors
-        public static final int PIVOT = 7;
+        public static final int PIVOT = 11;
 
         // Pneumatics
         public static final int EJECTOR = 6;
 
         // Sensors
-        public static final int LIMIT_SWITCH_PORT = 0;
+        public static final int LIMIT_SWITCH_PORT_ONE = 0;
+        public static final int LIMIT_SWITCH_PORT_TWO = 1;
+        public static final int LIMIT_SWITCH_PORT_THREE = 2;
+        public static final int LIMIT_SWITCH_PORT_FOUR = 3;
     }
 
     public static final class CARGO {
@@ -30,9 +33,6 @@ public class RobotMap {
 
         public static final int PIVOT_UP = 4;
         public static final int PIVOT_DOWN = 3;
-
-        //LEDs
-        public static final int LEDS = 9;
     }
 
     public static final class CLIMBER {
@@ -46,4 +46,6 @@ public class RobotMap {
         //Sensors
         public static final int ARM_LIMIT_SWITCH = 3;
     }
+
+    public static final int LED = 9;
 }

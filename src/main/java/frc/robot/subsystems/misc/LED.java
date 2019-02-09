@@ -4,28 +4,26 @@ import com.robolancers.lib.wrappers.Blinkin;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
-public class LEDs extends Subsystem {
+public class LED extends Subsystem {
     private Blinkin blinkin;
 
-    private static LEDs leds;
+    private static LED leds;
 
-   private LEDs() {
-       blinkin = new Blinkin(RobotMap.CARGO.LEDS);
+   private LED() {
+       blinkin = new Blinkin(RobotMap.LED);
    }
 
    public void setPattern(Blinkin.PatternType pattern) {
        blinkin.setPattern(pattern);
    }
 
-   public static LEDs getInstance() {
+   public static LED getInstance() {
        if (leds == null) {
-           leds = new LEDs();
+           leds = new LED();
        }
        return leds;
    }
 
     @Override
-    protected void initDefaultCommand() {
-
-    }
+    protected void initDefaultCommand() {}
 }

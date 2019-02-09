@@ -12,8 +12,10 @@ import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
+import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.Sensors;
+import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 import org.opencv.videoio.VideoCapture;
 
 @SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
@@ -23,9 +25,10 @@ public class NetworkInterface {
     private ShuffleboardTab mainShuffleboardDisplay;
 
     private NetworkTableEntry
-            leftEncoderCountEntry, rightEncoderCountEntry,
+            leftEncoderCountEntry, rightEncoderCountEntry, leftVelocityEntry, rightVelocityEntry,
             armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry, armLimitSwitchVoltage,
             cargoBlockStateEntry, cargoPivotStateEntry,
+            hatchPivotEncoder,
             robotAngleEntry;
 
     private ComplexWidget frontJeVoisWidget, backJeVoisWidget;
@@ -35,6 +38,9 @@ public class NetworkInterface {
 
         leftEncoderCountEntry = mainShuffleboardDisplay.add("Left Encoder Count", 0.0).withPosition(0,0).withSize(2, 1).getEntry();
         rightEncoderCountEntry = mainShuffleboardDisplay.add("Right Encoder Count", 0.0).withPosition(2, 0).withSize(2, 1).getEntry();
+
+        leftVelocityEntry = mainShuffleboardDisplay.add("Left Velocity", 0.0).withPosition(0, 6).withSize(2, 1).getEntry();
+        rightVelocityEntry = mainShuffleboardDisplay.add("Right Velocity", 0.0).withPosition(2, 6).withSize(2, 1).getEntry();
 
         armEncoderEntry = mainShuffleboardDisplay.add("Arm Encoder Count", 0.0).withPosition(0, 1).withSize(2, 1).getEntry();
         armAngleEntry = mainShuffleboardDisplay.add("Arm Angle", 0.0).withPosition(2, 1).withSize(2, 1).getEntry();
@@ -47,6 +53,8 @@ public class NetworkInterface {
         cargoPivotStateEntry = mainShuffleboardDisplay.add("Cargo Pivot State", "").withPosition(2, 4).withSize(2, 1).getEntry();
 
         robotAngleEntry = mainShuffleboardDisplay.add("Robot Angle", 0.0).withPosition(0, 5).withSize(2, 1).getEntry();
+
+        hatchPivotEncoder = mainShuffleboardDisplay.add("Hatch Pivot Encoder Count", 0.0).withPosition(0, 7).withSize(2, 1).getEntry();
 
         /*frontJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getFrontJeVois().getVisionCam()).withPosition(4, 0).withSize(2, 2);
         backJeVoisWidget = mainShuffleboardDisplay.add(Camera.getInstance().getBackJeVois().getVisionCam()).withPosition(4, 2).withSize(2, 2);*/
@@ -69,6 +77,9 @@ public class NetworkInterface {
         leftEncoderCountEntry.setDouble(Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorPosition().getFeet());
         rightEncoderCountEntry.setDouble(Drivetrain.getInstance().getRightTransmission().getMaster().getSensorPosition().getFeet());
 
+        leftVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftMotor().getVelocity()));
+        rightVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightMotor().getVelocity()));
+
         armEncoderEntry.setDouble(ClimberArm.getInstance().getPosition());
         armAngleEntry.setDouble(ClimberArm.getInstance().getAngle());
         armErrorEntry.setDouble(ClimberArm.getInstance().getClosedLoopError());
@@ -80,6 +91,8 @@ public class NetworkInterface {
         cargoPivotStateEntry.setValue(CargoPivot.getInstance().get().toString());
 
         robotAngleEntry.setDouble(Sensors.getInstance().getAngle());
+
+        hatchPivotEncoder.setDouble(HatchPivot.getInstance().getPosition());
     }
 
     public static synchronized NetworkInterface getInstance() {
