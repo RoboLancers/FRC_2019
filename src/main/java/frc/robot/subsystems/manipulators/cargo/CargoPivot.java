@@ -3,8 +3,7 @@ package frc.robot.subsystems.manipulators.cargo;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.subsystems.manipulator.cargo.CargoAdjustment;
-import frc.robot.enums.cargo.CargoPivotState;
+import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 
 @SuppressWarnings("unused")
 public class CargoPivot extends Subsystem {
@@ -33,6 +32,6 @@ public class CargoPivot extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new CargoAdjustment());
+        //setDefaultCommand(new CargoAdjustment());
     }
 }

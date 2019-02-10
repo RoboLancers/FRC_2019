@@ -1,14 +1,13 @@
 package frc.robot.subsystems.manipulators.climber;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
-import frc.robot.enums.climber.ClimberState;
+import frc.robot.subsystems.manipulators.climber.enums.ClimberState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
 import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.mathematics.units.TimeUnitsKt;
@@ -25,6 +24,7 @@ public class ClimberArm extends Subsystem {
         climberArm.setNeutralMode(NeutralMode.Brake);
         climberArm.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
+        climberArm.setSensorPhase(true);
         climberArm.setInverted(true);
 
         climberArm.setKF(Constants.CLIMBER.ARM_kF);
@@ -47,7 +47,8 @@ public class ClimberArm extends Subsystem {
     }
 
     public void set(ClimberState climberState) {
-        climberArm.set(ControlMode.Position, climberState.getRotation2d(), DemandType.ArbitraryFeedForward, -Math.sin(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
+        //climberArm.set(ControlMode.Position, climberState.getRotation2d(), DemandType.ArbitraryFeedForward, -Math.sin(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
+        climberArm.set(ControlMode.Position, climberState.getRotation2d());
     }
 
     public void set(double power) {

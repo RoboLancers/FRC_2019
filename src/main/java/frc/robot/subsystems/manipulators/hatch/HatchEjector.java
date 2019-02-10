@@ -1,20 +1,20 @@
 package frc.robot.subsystems.manipulators.hatch;
 
 import com.robolancers.lib.wrappers.sensors.LinkedLimitSwitches;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.enums.hatch.HatchEjectorState;
+import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 
 public class HatchEjector extends Subsystem {
     private static HatchEjector instance;
 
-    private Solenoid ejector;
+    private DoubleSolenoid ejector;
 
     private LinkedLimitSwitches hatchDetector;
 
     private HatchEjector() {
-        ejector = new Solenoid(RobotMap.HATCH.EJECTOR);
+        ejector = new DoubleSolenoid(RobotMap.HATCH.EJECTOR_OUT, RobotMap.HATCH.EJECTOR_IN);
 
         hatchDetector = new LinkedLimitSwitches(RobotMap.HATCH.LIMIT_SWITCH_ONE, RobotMap.HATCH.LIMIT_SWITCH_TWO, RobotMap.HATCH.LIMIT_SWITCH_THREE, RobotMap.HATCH.LIMIT_SWITCH_FOUR);
     }
@@ -35,7 +35,7 @@ public class HatchEjector extends Subsystem {
     }
 
     public boolean hasHatch() {
-        return hatchDetector.get();
+        return !hatchDetector.get();
     }
 
     @Override

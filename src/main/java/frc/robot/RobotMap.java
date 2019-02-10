@@ -17,7 +17,8 @@ public class RobotMap {
         public static final int PIVOT = 11;
 
         // Pneumatics
-        public static final int EJECTOR = 6;
+        public static final int EJECTOR_IN = 6;
+        public static final int EJECTOR_OUT = 1;
 
         // Sensors
         public static final int LIMIT_SWITCH_ONE = 0;

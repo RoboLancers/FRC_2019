@@ -7,20 +7,17 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.robolancers.lib.subsystems.misc.Pneumatic;
 import com.robolancers.lib.wrappers.Blinkin;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.robot.commands.subsystems.drivetrain.RobotCharacterization;
-import frc.robot.enums.cargo.CargoBlockState;
-import frc.robot.enums.cargo.CargoPivotState;
-import frc.robot.enums.climber.LiftoffState;
+import frc.robot.autonomous.Trajectories;
+import frc.robot.autonomous.routines.LevelOneRightRocket;
+import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
+import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
+import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
+import frc.robot.subsystems.manipulators.hatch.enums.HatchPivotState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
@@ -30,7 +27,6 @@ import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 import frc.robot.subsystems.misc.LED;
 import frc.robot.subsystems.misc.Sensors;
-import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 public class Robot extends TimedRobot {
     @Override
@@ -52,7 +48,7 @@ public class Robot extends TimedRobot {
         NetworkInterface.getInstance();
         LED.getInstance();
 
-        //Trajectories.generateTrajectories();
+        Trajectories.generateTrajectories();
     }
 
     @Override
@@ -68,19 +64,26 @@ public class Robot extends TimedRobot {
 
         Drivetrain.getInstance().resetEncoders();
         ClimberArm.getInstance().resetEncoders();
+        HatchPivot.getInstance().resetEncoders();
 
-        new RobotCharacterization();
+       // HatchPivot.getInstance().set(HatchPivotState.SCORING);
+        new LevelOneRightRocket().start();
     }
 
     @Override
     public void teleopInit() {
-        ClimberArm.getInstance().resetEncoders();
-
         LiftoffPiston.getInstance().set(LiftoffState.UP);
 
-        CargoPivot.getInstance().set(CargoPivotState.DOWN);
+       // CargoPivot.getInstance().set(CargoPivotState.DOWN);
         CargoBlock.getInstance().set(CargoBlockState.BLOCK);
 
+        HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
+
         LED.getInstance().setPattern(Blinkin.PatternType.CONFETTI);
+    }
+
+    @Override
+    public void disabledInit(){
+        HatchPivot.getInstance().set(HatchPivotState.DEFENSE);
     }
 }

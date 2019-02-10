@@ -3,13 +3,12 @@ package frc.robot.subsystems.manipulators.hatch;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
-import frc.robot.enums.hatch.HatchPivotState;
-import org.ghrobotics.lib.mathematics.units.LengthKt;
+import frc.robot.subsystems.manipulators.hatch.enums.HatchPivotState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
+import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
 public class HatchPivot extends Subsystem {
@@ -42,6 +41,10 @@ public class HatchPivot extends Subsystem {
 
     public void set(ControlMode mode, double value){
         pivotMotor.set(mode, value);
+    }
+
+    public void resetEncoders() {
+        pivotMotor.setSensorPosition(Rotation2dKt.getDegree(0));
     }
 
     public FalconSRX getMaster(){

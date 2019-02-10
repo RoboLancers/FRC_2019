@@ -1,13 +1,12 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
-import com.team254.lib.physics.DCMotorTransmission;
 import com.team254.lib.physics.DifferentialDrive;
 import edu.wpi.first.wpilibj.Notifier;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
-import frc.robot.commands.subsystems.drivetrain.UseDrivetrain;
-import frc.robot.enums.drivetrain.TransmissionSide;
+import frc.robot.subsystems.drivetrain.commands.UseDrivetrain;
+import frc.robot.subsystems.drivetrain.enums.TransmissionSide;
 import frc.robot.subsystems.misc.Sensors;
 import org.ghrobotics.lib.debug.LiveDashboard;
 import org.ghrobotics.lib.localization.Localization;
@@ -46,20 +45,14 @@ public class Drivetrain extends TankDriveSubsystem {
             LiveDashboard.INSTANCE.setRobotHeading(localization.getRobotPosition().getRotation().getRadian());
         }).startPeriodic(0.01);
 
-        DCMotorTransmission dcMotorTransmission = new DCMotorTransmission(
-                1 / Constants.DRIVETRAIN.kV,
-                Math.pow(Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(), 2) * Constants.ROBOT.MASS / (2 * Constants.DRIVETRAIN.kA),
-                Constants.DRIVETRAIN.kStaticFrictionVoltage
-        );
-
         differentialDrive = new DifferentialDrive(
                 Constants.ROBOT.MASS,
-                Constants.ROBOT.MOMENT_OF_INTERTIA,
+                Constants.ROBOT.MOMENT_OF_INERTIA,
                 Constants.ROBOT.ANGULAR_DRAG,
                 Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(),
                 Constants.DRIVETRAIN.TRACK_WIDTH.getValue() / 2.0,
-                dcMotorTransmission,
-                dcMotorTransmission
+                left.getDcMotorTransmission(),
+                right.getDcMotorTransmission()
         );
 
         trajectoryTracker = new RamseteTracker(Constants.PATH_FOLLOWING.RAMSETE_BETA, Constants.PATH_FOLLOWING.RAMSETE_ZETA);

@@ -3,7 +3,7 @@ package frc.robot.subsystems.manipulators.cargo;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.enums.cargo.CargoBlockState;
+import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
 
 @SuppressWarnings("unused")
 public class CargoBlock extends Subsystem {

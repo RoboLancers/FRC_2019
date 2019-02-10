@@ -3,7 +3,7 @@ package frc.robot.subsystems.manipulators.climber;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.enums.climber.LiftoffState;
+import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 
 public class LiftoffPiston extends Subsystem {
     private static LiftoffPiston instance;

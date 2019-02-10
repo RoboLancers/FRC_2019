@@ -9,7 +9,6 @@ import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
-import frc.robot.subsystems.misc.Sensors;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 @SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
@@ -22,7 +21,7 @@ public class NetworkInterface {
             leftEncoderCountEntry, rightEncoderCountEntry, leftVelocityEntry, rightVelocityEntry,
             armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry, armLimitSwitchVoltage,
             cargoBlockStateEntry, cargoPivotStateEntry,
-            hatchPivotEncoderCountEntry, hatchEjectorStateEntry,
+            hatchPivotEncoderCountEntry, hatchEjectorStateEntry, hatchLimitSwitchEntry,
             robotXEntry, robotYEntry, robotHeadingEntry;
 
     private ShuffleboardLayout drivetrainList, cargoList, climberList, hatchList, localizationList;
@@ -30,13 +29,13 @@ public class NetworkInterface {
     private NetworkInterface(){
         mainShuffleboardDisplay = Shuffleboard.getTab("Main Display");
 
-        drivetrainList = mainShuffleboardDisplay.getLayout("Drivetrain", BuiltInLayouts.kList).withPosition(0, 0).withSize(2, 4);
-        cargoList = mainShuffleboardDisplay.getLayout("Cargo", BuiltInLayouts.kList).withPosition(0, 4).withSize(2, 2);
+        drivetrainList = mainShuffleboardDisplay.getLayout("Drivetrain", BuiltInLayouts.kList).withPosition(0, 0).withSize(2, 5);
+        cargoList = mainShuffleboardDisplay.getLayout("Cargo", BuiltInLayouts.kList).withPosition(2, 0).withSize(2, 3);
 
-        climberList = mainShuffleboardDisplay.getLayout("Climber", BuiltInLayouts.kList).withPosition(2, 0).withSize(2, 5);
-        hatchList = mainShuffleboardDisplay.getLayout("Hatch", BuiltInLayouts.kList).withPosition(2, 5).withSize(2, 2);
+        climberList = mainShuffleboardDisplay.getLayout("Climber", BuiltInLayouts.kList).withPosition(4, 0).withSize(2, 5);
+        hatchList = mainShuffleboardDisplay.getLayout("Hatch", BuiltInLayouts.kList).withPosition(6, 0).withSize(2, 3);
 
-        localizationList = mainShuffleboardDisplay.getLayout("Localization", BuiltInLayouts.kList).withPosition(4, 0).withSize(2, 3);
+        localizationList = mainShuffleboardDisplay.getLayout("Localization", BuiltInLayouts.kList).withPosition(8, 0).withSize(2, 4);
 
         leftEncoderCountEntry = drivetrainList.add("Left Encoder Count", 0.0).getEntry();
         rightEncoderCountEntry = drivetrainList.add("Right Encoder Count", 0.0).getEntry();
@@ -57,6 +56,7 @@ public class NetworkInterface {
 
         hatchPivotEncoderCountEntry = hatchList.add("Hatch Pivot Encoder Count", 0.0).getEntry();
         hatchEjectorStateEntry = hatchList.add("Hatch Ejector State", "").getEntry();
+        hatchLimitSwitchEntry = hatchList.add("Hatch Limit Switch", false).getEntry();
 
         robotXEntry = localizationList.add("Robot X", 0.0).getEntry();
         robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
@@ -92,6 +92,7 @@ public class NetworkInterface {
 
         hatchPivotEncoderCountEntry.setDouble(HatchPivot.getInstance().getMaster().getSelectedSensorPosition());
         hatchEjectorStateEntry.setString(HatchEjector.getInstance().get().toString());
+        hatchLimitSwitchEntry.setBoolean(HatchEjector.getInstance().hasHatch());
 
         robotXEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getX().getFeet());
         robotYEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getY().getFeet());
