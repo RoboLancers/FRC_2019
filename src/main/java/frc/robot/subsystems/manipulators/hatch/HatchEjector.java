@@ -30,10 +30,15 @@ public class HatchEjector extends Subsystem {
 
     public void set(HatchEjectorState hatchEjectorState) {
         ejector1.set(hatchEjectorState.getValue());
+        ejector2.set(hatchEjectorState.getValue());
     }
 
-    public HatchEjectorState get(){
+    public HatchEjectorState getEjector1(){
         return ejector1.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
+    }
+
+    public HatchEjectorState getEjector2() {
+        return ejector2.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
     }
 
     public boolean hasHatch() {
