@@ -16,6 +16,7 @@ import frc.robot.autonomous.Trajectories;
 import frc.robot.autonomous.routines.LevelOneRightRocket;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
+import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchPivotState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
