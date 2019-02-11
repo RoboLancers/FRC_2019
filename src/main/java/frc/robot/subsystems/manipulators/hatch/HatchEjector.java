@@ -9,12 +9,13 @@ import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 public class HatchEjector extends Subsystem {
     private static HatchEjector instance;
 
-    private DoubleSolenoid ejector;
+    private DoubleSolenoid ejector1, ejector2;
 
     private LinkedLimitSwitches hatchDetector;
 
     private HatchEjector() {
-        ejector = new DoubleSolenoid(RobotMap.HATCH.EJECTOR_OUT, RobotMap.HATCH.EJECTOR_IN);
+        ejector1 = new DoubleSolenoid(RobotMap.HATCH.EJECTOR1_OUT, RobotMap.HATCH.EJECTOR1_IN);
+        ejector2 = new DoubleSolenoid(RobotMap.HATCH.EJECTOR2_OUT, RobotMap.HATCH.EJECTOR2_OUT);
 
         hatchDetector = new LinkedLimitSwitches(RobotMap.HATCH.LIMIT_SWITCH_ONE, RobotMap.HATCH.LIMIT_SWITCH_TWO, RobotMap.HATCH.LIMIT_SWITCH_THREE, RobotMap.HATCH.LIMIT_SWITCH_FOUR);
     }
@@ -27,11 +28,11 @@ public class HatchEjector extends Subsystem {
     }
 
     public void set(HatchEjectorState hatchEjectorState) {
-        ejector.set(hatchEjectorState.getValue());
+        ejector1.set(hatchEjectorState.getValue());
     }
 
     public HatchEjectorState get(){
-        return ejector.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
+        return ejector1.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
     }
 
     public boolean hasHatch() {
