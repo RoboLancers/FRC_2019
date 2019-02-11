@@ -21,6 +21,8 @@ public class RobotMap {
         public static final int EJECTOR1_OUT = 1;
         public static final int EJECTOR2_IN = 7;
         public static final int EJECTOR2_OUT = 2;
+        public static final int HOLDER1_IN = 0;
+        public static final int HOLDER1_OUT = 8;
 
         // Sensors
         public static final int LIMIT_SWITCH_ONE = 0;
