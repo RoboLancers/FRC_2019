@@ -19,6 +19,8 @@ public class RobotMap {
         // Pneumatics
         public static final int EJECTOR1_IN = 6;
         public static final int EJECTOR1_OUT = 1;
+        public static final int EJECTOR2_IN = 7;
+        public static final int EJECTOR2_OUT = 2;
 
         // Sensors
         public static final int LIMIT_SWITCH_ONE = 0;

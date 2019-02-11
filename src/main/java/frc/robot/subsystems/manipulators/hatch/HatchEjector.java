@@ -15,7 +15,8 @@ public class HatchEjector extends Subsystem {
 
     private HatchEjector() {
         ejector1 = new DoubleSolenoid(RobotMap.HATCH.EJECTOR1_OUT, RobotMap.HATCH.EJECTOR1_IN);
-        ejector2 = new DoubleSolenoid(RobotMap.HATCH.EJECTOR2_OUT, RobotMap.HATCH.EJECTOR2_OUT);
+        ejector2 = new DoubleSolenoid(RobotMap.HATCH.EJECTOR2_OUT, RobotMap.HATCH.EJECTOR2_IN);
+
 
         hatchDetector = new LinkedLimitSwitches(RobotMap.HATCH.LIMIT_SWITCH_ONE, RobotMap.HATCH.LIMIT_SWITCH_TWO, RobotMap.HATCH.LIMIT_SWITCH_THREE, RobotMap.HATCH.LIMIT_SWITCH_FOUR);
     }
