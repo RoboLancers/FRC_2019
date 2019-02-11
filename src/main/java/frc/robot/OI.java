@@ -8,12 +8,14 @@ import frc.robot.subsystems.manipulators.climber.commands.UseClimberArm;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseLiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.commands.UseHatchEjector;
+import frc.robot.subsystems.manipulators.hatch.commands.UseHatchHolder;
 import frc.robot.subsystems.manipulators.hatch.commands.UseHatchPivotPower;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.climber.enums.ClimberState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
+import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 @SuppressWarnings("unused")
 public class OI {
@@ -24,8 +26,8 @@ public class OI {
             .whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchPivotPower(0.25))
             .whenReleased(XboxController.Button.LEFT_BUMPER, new UseHatchPivotPower(0))
 
-            .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.EJECT))
-            .whenReleased(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.RETRACT))
+            .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchHolder(HatchHolderState.HOLD))
+            .whenReleased(XboxController.Button.RIGHT_BUMPER, new UseHatchHolder(HatchHolderState.RELEASE))
 
             .whenPressed(XboxController.Button.START, new UseClimberArmPower(0.5))
             .whenReleased(XboxController.Button.START, new UseClimberArmPower(0))

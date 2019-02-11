@@ -36,7 +36,8 @@ public class Robot extends TimedRobot {
         CargoBlock.getInstance();
         CargoPivot.getInstance();
 
-        HatchEjector.getInstance();
+        //HatchEjector.getInstance();
+        HatchHolder.getInstance();
         HatchPivot.getInstance();
 
         ClimberArm.getInstance();
