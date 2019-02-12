@@ -7,32 +7,25 @@ import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 public class HatchHolder extends Subsystem {
     private static HatchHolder instance;
+    private DoubleSolenoid hatchHolder;
 
-    private DoubleSolenoid holder;
-
-    private HatchHolder() {
-       holder = new DoubleSolenoid(RobotMap.HATCH.HOLDER1_OUT, RobotMap.HATCH.HOLDER1_IN);
-
+    private HatchHolder(){
+        hatchHolder = new DoubleSolenoid(RobotMap.HATCH.MODULE, RobotMap.HATCH.HATCH_HOLDER_UP, RobotMap.HATCH.HATCH_HOLDER_DOWN);
     }
 
-    public synchronized static HatchHolder getInstance() {
-        if(instance == null) {
-            instance = new HatchHolder();
-        }
-        return instance;
+    public void set(HatchHolderState hatchHolderState){
+        hatchHolder.set(hatchHolderState.getValue());
     }
-
-    public void set(HatchHolderState hatchHolderState) {
-        holder.set(hatchHolderState.getValue());
-    }
-
-    public HatchHolderState get() {
-        return holder.get() == HatchHolderState.HOLD.getValue() ? HatchHolderState.HOLD : HatchHolderState.RELEASE;
-    }
-
 
     @Override
     protected void initDefaultCommand() {
 
+    }
+
+    public static HatchHolder getInstance(){
+        if(instance == null){
+            instance = new HatchHolder();
+        }
+        return instance;
     }
 }

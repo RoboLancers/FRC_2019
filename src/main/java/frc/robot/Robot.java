@@ -14,22 +14,20 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Trajectories;
 import frc.robot.autonomous.enums.StartingPosition;
-import frc.robot.autonomous.routines.LevelOneFrontCargoLeftStation;
 import frc.robot.autonomous.routines.LevelOneFrontCargoRightStation;
-import frc.robot.autonomous.routines.LevelOneRightRocket;
-import frc.robot.autonomous.routines.TestVelocity;
-import frc.robot.subsystems.drivetrain.commands.RobotCharacterization;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
+import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
+import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
+import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchPivotState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
-import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.LED;
@@ -43,14 +41,14 @@ public class Robot extends TimedRobot {
         CargoBlock.getInstance();
         CargoPivot.getInstance();
 
-        //HatchEjector.getInstance();
+        //HatchPivot.getInstance();
         HatchHolder.getInstance();
-        HatchPivot.getInstance();
+        HatchEjector.getInstance();
 
         ClimberArm.getInstance();
         LiftoffPiston.getInstance();
 
-        Camera.getInstance();
+        //Camera.getInstance();
         Sensors.getInstance();
         Pneumatic.getInstance();
         NetworkInterface.getInstance();
@@ -84,10 +82,11 @@ public class Robot extends TimedRobot {
     public void teleopInit() {
         LiftoffPiston.getInstance().set(LiftoffState.UP);
 
-       // CargoPivot.getInstance().set(CargoPivotState.DOWN);
+        CargoPivot.getInstance().set(CargoPivotState.DOWN);
         CargoBlock.getInstance().set(CargoBlockState.BLOCK);
 
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
+        HatchHolder.getInstance().set(HatchHolderState.HOLD);
 
         LED.getInstance().setPattern(Blinkin.PatternType.CONFETTI);
     }

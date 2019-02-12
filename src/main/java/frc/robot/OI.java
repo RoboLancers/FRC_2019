@@ -21,14 +21,11 @@ import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 @SuppressWarnings("unused")
 public class OI {
     public static XboxController xboxController = new XboxController(0)
-            .whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseHatchPivotPower(-0.25))
-            .whenReleased(XboxController.Trigger.LEFT_TRIGGER, new UseHatchPivotPower(0))
+            .whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseHatchHolder(HatchHolderState.HOLD))
+            .whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchHolder(HatchHolderState.RELEASE))
 
-            .whenPressed(XboxController.Button.LEFT_BUMPER, new UseHatchPivotPower(0.25))
-            .whenReleased(XboxController.Button.LEFT_BUMPER, new UseHatchPivotPower(0))
-
-            .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchHolder(HatchHolderState.HOLD))
-            .whenReleased(XboxController.Button.RIGHT_BUMPER, new UseHatchHolder(HatchHolderState.RELEASE))
+            .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.EJECT))
+            .whenReleased(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.RETRACT))
 
             .whenPressed(XboxController.Button.Y, new Turning(-90))
 

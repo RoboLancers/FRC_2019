@@ -17,18 +17,16 @@ public class RobotMap {
         public static final int PIVOT = 11;
 
         // Pneumatics
-        public static final int EJECTOR1_IN = 6;
-        public static final int EJECTOR1_OUT = 1;
-        public static final int EJECTOR2_IN = 7;
-        public static final int EJECTOR2_OUT = 2;
-        public static final int HOLDER1_IN = 0;
-        public static final int HOLDER1_OUT = 8;
+        public static final int EJECTOR_IN = 6;
+        public static final int EJECTOR_OUT = 1;
+
+        public static final int HATCH_HOLDER_UP = 0;
+        public static final int HATCH_HOLDER_DOWN = 7;
 
         // Sensors
         public static final int LIMIT_SWITCH_ONE = 0;
-        public static final int LIMIT_SWITCH_TWO = 1;
-        public static final int LIMIT_SWITCH_THREE = 2;
-        public static final int LIMIT_SWITCH_FOUR = 3;
+
+        public static final int MODULE = 1;
     }
 
     public static final class CARGO {

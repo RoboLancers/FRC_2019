@@ -63,13 +63,13 @@ public class NetworkInterface {
         robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
         robotHeadingEntry = localizationList.add("Robot Angle", 0.0).getEntry();
 
-        NetworkTableInstance.getDefault()
-                .getEntry("/CameraPublisher/FrontJeVois/streams")
-                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1180/?action=stream"});
-
-        NetworkTableInstance.getDefault()
-                .getEntry("/CameraPublisher/BackJeVois/streams")
-                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1181/?action=stream"});
+//        NetworkTableInstance.getDefault()
+//                .getEntry("/CameraPublisher/FrontJeVois/streams")
+//                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1180/?action=stream"});
+//
+//        NetworkTableInstance.getDefault()
+//                .getEntry("/CameraPublisher/BackJeVois/streams")
+//                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1181/?action=stream"});
 
         Shuffleboard.startRecording();
     }
