@@ -1,5 +1,6 @@
 package frc.robot.subsystems.drivetrain;
 
+import com.robolancers.lib.auto.LancerPID;
 import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
 import com.team254.lib.physics.DifferentialDrive;
 import edu.wpi.first.wpilibj.Notifier;
@@ -27,6 +28,8 @@ public class Drivetrain extends TankDriveSubsystem {
     private DifferentialDrive differentialDrive;
 
     private TrajectoryTracker trajectoryTracker;
+
+    private LancerPID turningPID;
 
     private Drivetrain() {
         left = new Transmission(TransmissionSide.LEFT, RobotMap.DRIVETRAIN.MASTER_LEFT, RobotMap.DRIVETRAIN.LEFT_SLAVE_1, RobotMap.DRIVETRAIN.LEFT_SLAVE_2);
@@ -56,6 +59,8 @@ public class Drivetrain extends TankDriveSubsystem {
         );
 
         trajectoryTracker = new RamseteTracker(Constants.PATH_FOLLOWING.RAMSETE_BETA, Constants.PATH_FOLLOWING.RAMSETE_ZETA);
+
+        turningPID = new LancerPID(Constants.DRIVETRAIN.TURNING_kP, Constants.DRIVETRAIN.TURNING_kI, Constants.DRIVETRAIN.TURNING_kD);
     }
 
     public static synchronized Drivetrain getInstance() {
@@ -106,6 +111,10 @@ public class Drivetrain extends TankDriveSubsystem {
     public void resetEncoders(){
         left.getMaster().setSelectedSensorPosition(0);
         right.getMaster().setSelectedSensorPosition(0);
+    }
+
+    public LancerPID getTurningPID(){
+        return turningPID;
     }
 
     @Override

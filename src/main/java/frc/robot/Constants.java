@@ -73,6 +73,9 @@ public class Constants {
         public static final double TALON_kD = 2.0;
 
         public static final double TURNING_kP = 0.01;
+        public static final double TURNING_kI = 0.0;
+        public static final double TURNING_kD = 0.01;
+
         public static final double ALLOWABLE_ERROR = 5;
 
         public static final double LEFT_MAX_VELOCITY = 14.1;

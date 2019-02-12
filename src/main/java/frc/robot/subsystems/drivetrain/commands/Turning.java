@@ -1,33 +1,39 @@
 package frc.robot.subsystems.drivetrain.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
+import com.robolancers.lib.auto.LancerPID;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Sensors;
 
 public class Turning extends Command {
-    private double angle, targetAngle, error;
+    private double angle, output;
+    private LancerPID lancerPID;
 
     public Turning(double angle) {
         requires(Drivetrain.getInstance());
+
         this.angle = angle;
+        lancerPID = Drivetrain.getInstance().getTurningPID();
     }
 
     @Override
     protected void initialize() {
-        targetAngle = Sensors.getInstance().getAngle() + angle;
-        error = targetAngle;
+        lancerPID.reset();
+        lancerPID.setSetpoint(Sensors.getInstance().getAngle() + angle);
     }
 
     @Override
     protected void execute() {
-        error = Sensors.getInstance().getAngle() - targetAngle;
-        Drivetrain.getInstance().getLeftMotor().setPercentOutput(error * Constants.DRIVETRAIN.TURNING_kP + Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
-        Drivetrain.getInstance().getRightMotor().setPercentOutput(-error * Constants.DRIVETRAIN.TURNING_kP + Constants.DRIVETRAIN.kStaticFrictionPercentRight);
+        output = lancerPID.getOutput(Sensors.getInstance().getAngle());
+        Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, output, DemandType.ArbitraryFeedForward, Math.signum(output) * Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
+        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, -output, DemandType.ArbitraryFeedForward, Math.signum(-output) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
     }
 
     @Override
     protected boolean isFinished() {
-        return Math.abs(error) < Constants.DRIVETRAIN.ALLOWABLE_ERROR;
+        return Math.abs(lancerPID.getError()) < Constants.DRIVETRAIN.ALLOWABLE_ERROR;
     }
 }
