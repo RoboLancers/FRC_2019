@@ -9,8 +9,8 @@ public class Camera {
     private JeVois frontJeVois, backJeVois;
 
     private Camera(){
-        frontJeVois = new JeVois(true, SerialPort.Port.kUSB1);
-        backJeVois = new JeVois(true, SerialPort.Port.kUSB2);
+        frontJeVois = new JeVois(SerialPort.Port.kUSB1);
+        backJeVois = new JeVois(SerialPort.Port.kUSB2);
     }
 
     public static synchronized Camera getInstance() {
