@@ -24,7 +24,7 @@ public class Constants {
 
         public static List<TimingConstraint<Pose2dWithCurvature>> CONSTRAINTS = Arrays.asList(
                 new CentripetalAccelerationConstraint(AccelerationKt.getAcceleration(LengthKt.getFeet(10))),
-                new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(1)))
+                new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(3)))
         );
 
         public static final double RAMSETE_BETA = 2;
@@ -65,10 +65,10 @@ public class Constants {
 
         public static final double RAMP_RATE = 0.25;
 
-        public static final double LEFT_kF = 1.0757;
-        public static final double RIGHT_KF = 1.2222;
+        public static final double LEFT_kF = 1.021;
+        public static final double RIGHT_KF = 1.026;
 
-        public static final double TALON_kP = 1.7;
+        public static final double TALON_kP = 1;
         public static final double TALON_kI = 0.0;
         public static final double TALON_kD = 2.0;
 
@@ -78,12 +78,15 @@ public class Constants {
         public static final double LEFT_MAX_VELOCITY = 14.1;
         public static final double RIGHT_MAX_VELOCITY = 12.2;
 
-        public static final double kStaticFrictionVoltageLeft = 1.6;
-        public static final double kStaticFrictionVoltageRight = 1.6;
+        public static final double kStaticFrictionVoltageLeft = 1.7;
+        public static final double kStaticFrictionVoltageRight = 1.7;
+
+        public static final double kStaticFrictionPercentLeft = 0.14;
+        public static final double kStaticFrictionPercentRight = 0.14;
 
         // Half theoretical, half empirical
-        public static final double kVLeft = 0.41;
-        public static final double kVRight = 0.43;
+        public static final double kVLeft = 0.2127;
+        public static final double kVRight = 0.2459;
 
         // Theoretical
         public static final double kALeft = 0.108;

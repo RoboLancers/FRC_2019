@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
@@ -62,13 +63,13 @@ public class NetworkInterface {
         robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
         robotHeadingEntry = localizationList.add("Robot Angle", 0.0).getEntry();
 
-        /*NetworkTableInstance.getDefault()
+        NetworkTableInstance.getDefault()
                 .getEntry("/CameraPublisher/FrontJeVois/streams")
                 .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1180/?action=stream"});
 
         NetworkTableInstance.getDefault()
                 .getEntry("/CameraPublisher/BackJeVois/streams")
-                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1181/?action=stream"});*/
+                .setStringArray(new String[]{"mjpeg:http://roborio-321-frc.local:1181/?action=stream"});
 
         Shuffleboard.startRecording();
     }
@@ -79,6 +80,9 @@ public class NetworkInterface {
 
         leftVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftMotor().getVelocity()));
         rightVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightMotor().getVelocity()));
+
+//        leftVelocityEntry.setDouble(Drivetrain.getInstance().getLeftTransmission().getMaster().getSelectedSensorVelocity());
+//        rightVelocityEntry.setDouble(Drivetrain.getInstance().getRightTransmission().getMaster().getSelectedSensorVelocity());
 
         cargoBlockStateEntry.setString(CargoBlock.getInstance().get().toString());
         cargoPivotStateEntry.setValue(CargoPivot.getInstance().get().toString());
@@ -91,7 +95,6 @@ public class NetworkInterface {
         liftOffPistonStateEntry.setString(LiftoffPiston.getInstance().get().toString());
 
         hatchPivotEncoderCountEntry.setDouble(HatchPivot.getInstance().getMaster().getSelectedSensorPosition());
-        hatchEjectorStateEntry.setString(HatchEjector.getInstance().get().toString());
         hatchLimitSwitchEntry.setBoolean(HatchEjector.getInstance().hasHatch());
 
         robotXEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getX().getFeet());

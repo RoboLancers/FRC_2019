@@ -2,6 +2,7 @@ package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
+import frc.robot.subsystems.drivetrain.commands.Turning;
 import frc.robot.subsystems.manipulators.cargo.commands.UseCargoBlock;
 import frc.robot.subsystems.manipulators.cargo.commands.UseCargoPivot;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArm;
@@ -28,6 +29,8 @@ public class OI {
 
             .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchHolder(HatchHolderState.HOLD))
             .whenReleased(XboxController.Button.RIGHT_BUMPER, new UseHatchHolder(HatchHolderState.RELEASE))
+
+            .whenPressed(XboxController.Button.Y, new Turning(-90))
 
             .whenPressed(XboxController.Button.START, new UseClimberArmPower(0.5))
             .whenReleased(XboxController.Button.START, new UseClimberArmPower(0))

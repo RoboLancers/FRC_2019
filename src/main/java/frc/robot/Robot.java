@@ -13,7 +13,12 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Trajectories;
+import frc.robot.autonomous.enums.StartingPosition;
+import frc.robot.autonomous.routines.LevelOneFrontCargoLeftStation;
+import frc.robot.autonomous.routines.LevelOneFrontCargoRightStation;
 import frc.robot.autonomous.routines.LevelOneRightRocket;
+import frc.robot.autonomous.routines.TestVelocity;
+import frc.robot.subsystems.drivetrain.commands.RobotCharacterization;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
@@ -26,6 +31,7 @@ import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchPivot;
+import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.LED;
 import frc.robot.subsystems.misc.Sensors;
 
@@ -44,7 +50,7 @@ public class Robot extends TimedRobot {
         ClimberArm.getInstance();
         LiftoffPiston.getInstance();
 
-        //Camera.getInstance();
+        Camera.getInstance();
         Sensors.getInstance();
         Pneumatic.getInstance();
         NetworkInterface.getInstance();
@@ -68,8 +74,10 @@ public class Robot extends TimedRobot {
         ClimberArm.getInstance().resetEncoders();
         HatchPivot.getInstance().resetEncoders();
 
-       // HatchPivot.getInstance().set(HatchPivotState.SCORING);
-        new LevelOneRightRocket().start();
+        // HatchPivot.getInstance().set(HatchPivotState.SCORING);
+        new LevelOneFrontCargoRightStation(StartingPosition.LEVEL_1_LEFT).start();
+        //new RobotCharacterization().start();
+        //new TestVelocity().start();
     }
 
     @Override

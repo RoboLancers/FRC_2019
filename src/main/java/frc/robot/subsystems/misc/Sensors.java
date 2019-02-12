@@ -9,7 +9,7 @@ public class Sensors {
     private static Sensors instance;
 
     private Sensors() {
-        navX = new AHRS(SerialPort.Port.kUSB);
+        navX = new AHRS(SerialPort.Port.kMXP);
     }
 
     public synchronized static Sensors getInstance() {

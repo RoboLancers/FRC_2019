@@ -21,9 +21,9 @@ public class Turning extends Command {
 
     @Override
     protected void execute() {
-        error = targetAngle - Sensors.getInstance().getAngle();
-        Drivetrain.getInstance().getLeftMotor().setPercentOutput(error * Constants.DRIVETRAIN.TURNING_kP);
-        Drivetrain.getInstance().getRightMotor().setPercentOutput(-error * Constants.DRIVETRAIN.TURNING_kP);
+        error = Sensors.getInstance().getAngle() - targetAngle;
+        Drivetrain.getInstance().getLeftMotor().setPercentOutput(error * Constants.DRIVETRAIN.TURNING_kP + Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
+        Drivetrain.getInstance().getRightMotor().setPercentOutput(-error * Constants.DRIVETRAIN.TURNING_kP + Constants.DRIVETRAIN.kStaticFrictionPercentRight);
     }
 
     @Override
