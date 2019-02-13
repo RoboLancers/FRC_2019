@@ -12,11 +12,7 @@ public class ToggleCargoPivot extends Command {
 
     @Override
     protected void execute(){
-        if(CargoPivot.getInstance().get().getValue().equals(CargoPivotState.UP)){
-            CargoPivot.getInstance().set(CargoPivotState.DOWN);
-        }else {
-            CargoPivot.getInstance().set(CargoPivotState.UP);
-        }
+        CargoPivot.getInstance().set(CargoPivotState.UP.getValue().equals(CargoPivotState.DOWN) ? CargoPivotState.UP: CargoPivotState.DOWN);
     }
 
     @Override
