@@ -3,6 +3,7 @@ package frc.robot;
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.subsystems.drivetrain.commands.Turning;
+import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
 import frc.robot.subsystems.manipulators.cargo.commands.UseCargoBlock;
 import frc.robot.subsystems.manipulators.cargo.commands.UseCargoPivot;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArm;
@@ -39,8 +40,7 @@ public class OI {
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
             .whenReleased(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.BLOCK))
 
-            .whenPressed(FlightController.Button.BOTTOM_LEFT, new UseCargoPivot(CargoPivotState.DOWN))
-            .whenPressed(FlightController.Button.TOP_LEFT, new UseCargoPivot(CargoPivotState.UP))
+            .whenPressed(FlightController.Button.THUMB, new ToggleCargoPivot())
 
             .whenPressed(FlightController.Button.INNER_TOP, new UseClimberArm(ClimberState.DOWN))
             .whenPressed(FlightController.Button.OUTER_TOP, new UseClimberArm(ClimberState.UP))
