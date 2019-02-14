@@ -81,9 +81,11 @@ public class Constants {
         public static final double LEFT_MAX_VELOCITY = 14.1;
         public static final double RIGHT_MAX_VELOCITY = 12.2;
 
+        public static final double kStaticFrictionVoltage = 1.7;
         public static final double kStaticFrictionVoltageLeft = 1.7;
         public static final double kStaticFrictionVoltageRight = 1.7;
 
+        public static final double kStaticFrictionPercent = 0.14;
         public static final double kStaticFrictionPercentLeft = 0.14;
         public static final double kStaticFrictionPercentRight = 0.14;
 

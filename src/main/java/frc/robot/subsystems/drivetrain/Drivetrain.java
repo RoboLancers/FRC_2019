@@ -61,6 +61,8 @@ public class Drivetrain extends TankDriveSubsystem {
         trajectoryTracker = new RamseteTracker(Constants.PATH_FOLLOWING.RAMSETE_BETA, Constants.PATH_FOLLOWING.RAMSETE_ZETA);
 
         turningPID = new LancerPID(Constants.DRIVETRAIN.TURNING_kP, Constants.DRIVETRAIN.TURNING_kI, Constants.DRIVETRAIN.TURNING_kD);
+
+        setkStatic(Constants.DRIVETRAIN.kStaticFrictionPercent);
     }
 
     public static synchronized Drivetrain getInstance() {
