@@ -3,6 +3,7 @@ package frc.robot.subsystems.misc;
 import com.robolancers.lib.wrappers.Blinkin;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.misc.commands.LEDAdjustment;
 
 public class LED extends Subsystem {
     private Blinkin blinkin;
@@ -25,5 +26,7 @@ public class LED extends Subsystem {
    }
 
     @Override
-    protected void initDefaultCommand() {}
+    protected void initDefaultCommand() {
+       setDefaultCommand(new LEDAdjustment());
+    }
 }

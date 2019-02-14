@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.subsystems.misc.LED;
 
 public class UseLED extends InstantCommand {
-
     private Blinkin.PatternType patternType;
 
     public UseLED(Blinkin.PatternType patternType) {
