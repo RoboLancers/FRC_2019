@@ -22,7 +22,7 @@ public class Turning extends Command {
     @Override
     protected void initialize() {
         lancerPID.reset();
-        lancerPID.setSetpoint(Sensors.getInstance().getAngle() + angle);
+        lancerPID.setTarget(Sensors.getInstance().getAngle() + angle);
     }
 
     @Override

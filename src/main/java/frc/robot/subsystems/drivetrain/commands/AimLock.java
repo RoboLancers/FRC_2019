@@ -1,11 +1,15 @@
 package frc.robot.subsystems.drivetrain.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Camera;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class AimLock extends InstantCommand {
-    private double forward = 0.25;
+    private double forward = 0.25, leftPower, rightPower;
 
     public AimLock() {
         requires(Drivetrain.getInstance());
@@ -15,19 +19,20 @@ public class AimLock extends InstantCommand {
     protected void initialize(){
         double error;
 
-        if(Camera.getInstance().getFrontJeVois().isTargetVisible()){
-            error = Camera.getInstance().getFrontJeVois().getTargetAngle();
-            forward *= 1;
+        if(Camera.getInstance().isTargetVisible()){
+            if(Camera.getInstance().getFrontJeVois().isTargetVisible()){
+                error = Camera.getInstance().getFrontJeVois().getTargetAngle() * Constants.DRIVETRAIN.TURNING_kP;
+                leftPower = forward + error;
+                rightPower = forward - error;
+            }else if(Camera.getInstance().getBackJeVois().isTargetVisible()){
+                error = Camera.getInstance().getBackJeVois().getTargetAngle() * Constants.DRIVETRAIN.TURNING_kP;
+                leftPower = -forward - error;
+                rightPower = -forward + error;
+            }
 
-            Drivetrain.getInstance().getLeftMotor().setPercentOutput(forward + error);
-            Drivetrain.getInstance().getRightMotor().setPercentOutput(forward - error);
-        }else if(Camera.getInstance().getBackJeVois().isTargetVisible()){
-            error = Camera.getInstance().getBackJeVois().getTargetAngle();
-            forward *= -1;
-
-            Drivetrain.getInstance().getLeftMotor().setPercentOutput(forward - error);
-            Drivetrain.getInstance().getRightMotor().setPercentOutput(forward + error);
-        }else{
+            Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, leftPower, DemandType.ArbitraryFeedForward, Math.signum(leftPower) * Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
+            Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, rightPower, DemandType.ArbitraryFeedForward, Math.signum(rightPower) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
+        } else{
             Drivetrain.getInstance().zeroOutputs();
         }
     }
