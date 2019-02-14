@@ -81,7 +81,5 @@ public class Robot extends TimedRobot {
 
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
         HatchHolder.getInstance().set(HatchHolderState.HOLD);
-
-        LED.getInstance().setPattern(Blinkin.PatternType.CONFETTI);
     }
 }
