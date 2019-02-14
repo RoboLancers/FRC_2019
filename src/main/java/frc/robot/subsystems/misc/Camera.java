@@ -28,4 +28,8 @@ public class Camera {
     public JeVois getBackJeVois() {
         return backJeVois;
     }
+
+    public boolean isTargetVisible(){
+        return frontJeVois.isTargetVisible() || backJeVois.isTargetVisible();
+    }
 }
