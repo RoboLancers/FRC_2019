@@ -13,14 +13,16 @@ public class HatchHolder extends Subsystem {
         hatchHolder = new DoubleSolenoid(RobotMap.HATCH.MODULE, RobotMap.HATCH.HATCH_HOLDER_UP, RobotMap.HATCH.HATCH_HOLDER_DOWN);
     }
 
+    public HatchHolderState get(){
+        return hatchHolder.get() == HatchHolderState.HOLD.getValue() ? HatchHolderState.HOLD : HatchHolderState.RELEASE;
+    }
+
     public void set(HatchHolderState hatchHolderState){
         hatchHolder.set(hatchHolderState.getValue());
     }
 
     @Override
-    protected void initDefaultCommand() {
-
-    }
+    protected void initDefaultCommand() {}
 
     public static HatchHolder getInstance(){
         if(instance == null){

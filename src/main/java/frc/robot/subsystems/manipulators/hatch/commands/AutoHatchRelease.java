@@ -1,26 +1,16 @@
 package frc.robot.subsystems.manipulators.hatch.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
-import frc.robot.subsystems.manipulators.hatch.HatchEjector;
+import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
-public class AutoHatchRelease extends Command {
+public class AutoHatchRelease extends CommandGroup {
     public AutoHatchRelease() {
-        requires(HatchEjector.getInstance());
-    }
-
-    @Override
-    protected void execute() {
-            HatchEjector.getInstance().set(HatchEjectorState.EJECT);
-    }
-
-    @Override
-    protected void end(){
-        HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
-    }
-
-    @Override
-    protected boolean isFinished() {
-        return !HatchEjector.getInstance().hasHatch();
+        addSequential(new UseHatchHolder(HatchHolderState.RELEASE));
+        addSequential(new WaitCommand(0.1));
+        addSequential(new UseHatchEjector(HatchEjectorState.EJECT));
+        addSequential(new WaitCommand(0.25));
+        addSequential(new UseHatchEjector(HatchEjectorState.RETRACT));
     }
 }

@@ -29,7 +29,7 @@ public class HatchEjector extends Subsystem {
         ejector.set(hatchEjectorState.getValue());
     }
 
-    public HatchEjectorState getEjector(){
+    public HatchEjectorState get(){
         return ejector.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
     }
 
