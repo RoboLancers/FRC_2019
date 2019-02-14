@@ -107,9 +107,6 @@ public class Constants {
 
     @SuppressWarnings("WeakerAccess")
     public static final class CLIMBER {
-        public static final Volt MINIMUM_VOLTAGE = VoltKt.getVolt(1);
-        public static final double MINIMUM_PERCENT_OUT = MINIMUM_VOLTAGE.getValue() / 12.0;
-
         public static final int PID_SLOT_INDEX = 0;
         public static final int ALLOWABLE_ARM_ERROR = 10;
 
