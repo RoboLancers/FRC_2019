@@ -47,7 +47,6 @@ public class ClimberArm extends Subsystem {
     }
 
     public void set(ClimberState climberState) {
-        //climberArm.set(ControlMode.Position, climberState.getRotation2d(), DemandType.ArbitraryFeedForward, -Math.sin(getAngle()) * Constants.CLIMBER.MINIMUM_PERCENT_OUT);
         climberArm.set(ControlMode.Position, climberState.getRotation2d());
     }
 
