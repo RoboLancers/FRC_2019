@@ -65,10 +65,10 @@ public class Transmission {
             motor.configPeakCurrentLimit(Constants.DRIVETRAIN.PEAK_CURRENT_LIMIT);
             motor.configContinuousCurrentLimit(Constants.DRIVETRAIN.CONTINUOUS_CURRENT_LIMIT);
             motor.configPeakCurrentDuration(Constants.DRIVETRAIN.PEAK_CURRENT_DURATION);
+            motor.enableCurrentLimit(true);
 
             motor.configVoltageCompSaturation(Constants.DRIVETRAIN.VOLTAGE_COMPENSATION);
             motor.configVoltageMeasurementFilter(Constants.DRIVETRAIN.VOLTAGE_MEASUREMENT_FILTER);
-
             motor.enableVoltageCompensation(true);
         }
 
