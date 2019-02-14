@@ -4,6 +4,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.autonomous.enums.Objective;
 import frc.robot.autonomous.enums.StartingPosition;
 import frc.robot.autonomous.routines.LevelOneFrontCargoLeftStation;
 import frc.robot.subsystems.drivetrain.Drivetrain;
@@ -30,15 +31,24 @@ public class NetworkInterface {
     private ShuffleboardLayout drivetrainList, cargoList, climberList, hatchList, localizationList;
 
     private SendableChooser<StartingPosition> startingPositionChooser;
+    private SendableChooser<Objective> objectiveChooser;
 
     private NetworkInterface(){
         mainDisplay = Shuffleboard.getTab("Main Display");
 
         startingPositionChooser = new SendableChooser<>();
+        objectiveChooser = new SendableChooser<>();
 
         for(StartingPosition startingPosition : StartingPosition.values()){
             startingPositionChooser.addOption(startingPosition.name(), startingPosition);
         }
+
+        for(Objective objective : Objective.values()){
+            objectiveChooser.addOption(objective.name(), objective);
+        }
+
+        mainDisplay.add(startingPositionChooser).withPosition(0, 0).withSize(2, 1);
+        mainDisplay.add(objectiveChooser).withPosition(0, 1).withSize(2, 1);
 
         debugDisplay = Shuffleboard.getTab("Debug Display");
 
