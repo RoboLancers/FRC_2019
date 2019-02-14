@@ -20,8 +20,8 @@ public class RobotMap {
         public static final int EJECTOR_IN = 6;
         public static final int EJECTOR_OUT = 1;
 
-        public static final int HATCH_HOLDER_UP = 0;
-        public static final int HATCH_HOLDER_DOWN = 7;
+        public static final int HATCH_HOLDER_UP = 7;
+        public static final int HATCH_HOLDER_DOWN = 0;
 
         // Sensors
         public static final int LIMIT_SWITCH_ONE = 0;
@@ -31,8 +31,8 @@ public class RobotMap {
 
     public static final class CARGO {
         // Pneumatics
-        public static final int BLOCK_DOWN = 2;
-        public static final int BLOCK_UP = 5;
+        public static final int BLOCK_DOWN = 5;
+        public static final int BLOCK_UP = 2;
 
         public static final int PIVOT_UP = 4;
         public static final int PIVOT_DOWN = 3;

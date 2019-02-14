@@ -20,15 +20,14 @@ import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
+import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchRelease;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
-import frc.robot.subsystems.manipulators.hatch.enums.HatchPivotState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
-import frc.robot.subsystems.manipulators.hatch.HatchPivot;
 import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.LED;
 import frc.robot.subsystems.misc.Sensors;
@@ -41,19 +40,19 @@ public class Robot extends TimedRobot {
         CargoBlock.getInstance();
         CargoPivot.getInstance();
 
-        //HatchPivot.getInstance();
         HatchHolder.getInstance();
         HatchEjector.getInstance();
 
         ClimberArm.getInstance();
         LiftoffPiston.getInstance();
 
-        //Camera.getInstance();
+        Camera.getInstance();
         Sensors.getInstance();
         Pneumatic.getInstance();
         NetworkInterface.getInstance();
         LED.getInstance();
 
+        Shuffleboard.startRecording();
         Trajectories.generateTrajectories();
     }
 
@@ -61,7 +60,6 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         NetworkInterface.getInstance().updateShuffleboard();
         Scheduler.getInstance().run();
-        Shuffleboard.startRecording();
     }
 
     @Override
@@ -70,12 +68,8 @@ public class Robot extends TimedRobot {
 
         Drivetrain.getInstance().resetEncoders();
         ClimberArm.getInstance().resetEncoders();
-        HatchPivot.getInstance().resetEncoders();
 
-        // HatchPivot.getInstance().set(HatchPivotState.SCORING);
-        new LevelOneFrontCargoRightStation(StartingPosition.LEVEL_1_LEFT).start();
-        //new RobotCharacterization().start();
-        //new TestVelocity().start();
+        new AutoHatchRelease().start();
     }
 
     @Override
@@ -89,10 +83,5 @@ public class Robot extends TimedRobot {
         HatchHolder.getInstance().set(HatchHolderState.HOLD);
 
         LED.getInstance().setPattern(Blinkin.PatternType.CONFETTI);
-    }
-
-    @Override
-    public void disabledInit(){
-        HatchPivot.getInstance().set(HatchPivotState.DEFENSE);
     }
 }
