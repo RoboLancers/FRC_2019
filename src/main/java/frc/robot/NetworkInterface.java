@@ -78,7 +78,7 @@ public class NetworkInterface {
         liftOffPistonStateEntry = climberList.add("Liftoff Piston State", "").getEntry();
 
         hatchEjectorStateEntry = hatchList.add("Hatch Ejector State", "").getEntry();
-        hatchLimitSwitchEntry = hatchList.add("Hatch Limit Switch", false).getEntry();
+        hatchLimitSwitchEntry = hatchList.add("Hatch Limit Switch", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
 
         robotXEntry = localizationList.add("Robot X", 0.0).getEntry();
         robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
