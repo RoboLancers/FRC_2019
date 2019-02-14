@@ -8,19 +8,16 @@
 package frc.robot;
 
 import com.robolancers.lib.subsystems.misc.Pneumatic;
-import com.robolancers.lib.wrappers.Blinkin;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
-import frc.robot.autonomous.enums.StartingPosition;
-import frc.robot.autonomous.routines.LevelOneFrontCargoRightStation;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
-import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchRelease;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
@@ -63,17 +60,28 @@ public class Robot extends TimedRobot {
     }
 
     @Override
+    public void disabledPeriodic(){
+        Autonomous.getInstance().update();
+    }
+
+    @Override
     public void autonomousInit() {
         Sensors.getInstance().resetNavX();
 
         Drivetrain.getInstance().resetEncoders();
         ClimberArm.getInstance().resetEncoders();
 
-        new AutoHatchRelease().start();
+        if(Autonomous.getInstance().getAutonomousCommand() != null){
+            Autonomous.getInstance().getAutonomousCommand().start();
+        }
     }
 
     @Override
     public void teleopInit() {
+        if(Autonomous.getInstance().getAutonomousCommand() != null){
+            Autonomous.getInstance().getAutonomousCommand().cancel();
+        }
+
         LiftoffPiston.getInstance().set(LiftoffState.UP);
 
         CargoPivot.getInstance().set(CargoPivotState.DOWN);

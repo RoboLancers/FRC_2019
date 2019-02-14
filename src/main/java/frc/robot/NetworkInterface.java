@@ -1,12 +1,10 @@
 package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.autonomous.enums.Objective;
 import frc.robot.autonomous.enums.StartingPosition;
-import frc.robot.autonomous.routines.LevelOneFrontCargoLeftStation;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoBlock;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
@@ -110,6 +108,14 @@ public class NetworkInterface {
         robotXEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getX().getFeet());
         robotYEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getY().getFeet());
         robotHeadingEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getRotation().getDegree());
+    }
+
+    public SendableChooser<StartingPosition> getStartingPositionChooser(){
+        return startingPositionChooser;
+    }
+
+    public SendableChooser<Objective> getObjectiveChooser(){
+        return objectiveChooser;
     }
 
     public static synchronized NetworkInterface getInstance() {
