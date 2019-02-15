@@ -18,6 +18,6 @@ public class AutoLiftOffPiston extends Command {
 
     @Override
     protected boolean isFinished() {
-        return Math.abs(Sensors.getInstance().getRoll()) < 5;
+        return Math.abs(Sensors.getInstance().getPitch()) < 5;
     }
 }

@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        Sensors.getInstance().resetNavX();
+        Sensors.getInstance().resetHeading();
 
         Drivetrain.getInstance().resetEncoders();
         ClimberArm.getInstance().resetEncoders();

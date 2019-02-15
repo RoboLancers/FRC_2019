@@ -11,7 +11,7 @@ public class LED extends Subsystem {
     private static LED instance;
 
    private LED() {
-       blinkin = new Blinkin(RobotMap.LED);
+       blinkin = new Blinkin(RobotMap.MISC.LED);
    }
 
    public void setPattern(Blinkin.PatternType pattern) {

@@ -13,9 +13,6 @@ public class RobotMap {
     }
 
     public static final class HATCH {
-        // Motors
-        public static final int PIVOT = 11;
-
         // Pneumatics
         public static final int EJECTOR_IN = 6;
         public static final int EJECTOR_OUT = 1;
@@ -24,7 +21,7 @@ public class RobotMap {
         public static final int HATCH_HOLDER_DOWN = 0;
 
         // Sensors
-        public static final int LIMIT_SWITCH_ONE = 0;
+        public static final int LIMIT_SWITCH = 0;
 
         public static final int MODULE = 1;
     }
@@ -50,5 +47,8 @@ public class RobotMap {
         public static final int ARM_LIMIT_SWITCH = 3;
     }
 
-    public static final int LED = 9;
+    public static final class MISC {
+        public static final int LED = 9;
+        public static final int PIGEON_TALON = 13;
+    }
 }

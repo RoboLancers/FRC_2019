@@ -13,7 +13,7 @@ import org.ghrobotics.lib.mathematics.units.nativeunits.*;
 import java.util.Arrays;
 import java.util.List;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class Constants {
     public static final double EPSILON = 1E-9;
     public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
@@ -107,7 +107,6 @@ public class Constants {
         );
     }
 
-    @SuppressWarnings("WeakerAccess")
     public static final class CLIMBER {
         public static final int PID_SLOT_INDEX = 0;
         public static final int ALLOWABLE_ARM_ERROR = 10;
@@ -126,20 +125,6 @@ public class Constants {
         );
     }
 
-    public static final class HATCH {
-        public static final double PIVOT_kF = 0.0;
-        public static final double PIVOT_kP = 1.5;
-        public static final double PIVOT_kI = 0.0;
-        public static final double PIVOT_kD = 0.25;
-
-        public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(4096);
-
-        public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(
-                SENSOR_UNIT_PER_ROTATION
-        );
-    }
-
-    @SuppressWarnings("WeakerAccess")
     public static final class AREAS {
         public static final Length CARGOSHIP_BOX_X = LengthKt.getFeet(16.0);
         public static final Length CARGOSHIP_BOX_Y = LengthKt.getFeet(9.5);

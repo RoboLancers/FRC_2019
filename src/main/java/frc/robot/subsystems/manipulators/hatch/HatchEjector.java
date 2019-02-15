@@ -1,6 +1,5 @@
 package frc.robot.subsystems.manipulators.hatch;
 
-import com.robolancers.lib.wrappers.sensors.LinkedLimitSwitches;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,7 +14,7 @@ public class HatchEjector extends Subsystem {
     private HatchEjector() {
         ejector = new DoubleSolenoid(RobotMap.HATCH.MODULE, RobotMap.HATCH.EJECTOR_IN, RobotMap.HATCH.EJECTOR_OUT);
 
-        hatchDetector = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH_ONE);
+        hatchDetector = new DigitalInput(RobotMap.HATCH.LIMIT_SWITCH);
     }
 
     public synchronized static HatchEjector getInstance() {
