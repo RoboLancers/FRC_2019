@@ -8,7 +8,7 @@ import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 public class AutoHatchRelease extends CommandGroup {
     public AutoHatchRelease() {
         addSequential(new UseHatchHolder(HatchHolderState.RELEASE));
-        addSequential(new WaitCommand(0.1));
+        addSequential(new WaitCommand(0.2));
         addSequential(new UseHatchEjector(HatchEjectorState.EJECT));
         addSequential(new WaitCommand(0.25));
         addSequential(new UseHatchEjector(HatchEjectorState.RETRACT));
