@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
 
         LiftoffPiston.getInstance().set(LiftoffState.UP);
 
-        CargoPivot.getInstance().set(CargoPivotState.DOWN);
+        CargoPivot.getInstance().set(CargoPivotState.UP);
         CargoBlock.getInstance().set(CargoBlockState.BLOCK);
 
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
