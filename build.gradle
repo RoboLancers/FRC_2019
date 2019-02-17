@@ -2,7 +2,7 @@ import edu.wpi.first.gradlerio.GradleRIOPlugin
 
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2019.2.1"
+    id "edu.wpi.first.GradleRIO" version "2019.3.2"
 }
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
@@ -61,7 +61,7 @@ dependencies {
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
     testCompile 'junit:junit:4.12'
 
-    compile('com.github.5190GreenHopeRobotics:FalconLibrary:2d15ac2aa5')
+    compile('com.github.5190GreenHopeRobotics:FalconLibrary:88d44a33f5')
     compile('com.github.RoboLancers:LancerLibrary:c0ca1232b7')
 }
 

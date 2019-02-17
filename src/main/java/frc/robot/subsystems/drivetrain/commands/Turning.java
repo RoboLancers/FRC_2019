@@ -31,7 +31,6 @@ public class Turning extends Command {
         output = lancerPID.getOutput(Sensors.getInstance().angle);
         Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, -output, DemandType.ArbitraryFeedForward, Math.signum(-output) * Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
         Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, output, DemandType.ArbitraryFeedForward, Math.signum(output) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
-        SmartDashboard.putNumber("Turn Error", lancerPID.getError());
     }
 
     @Override

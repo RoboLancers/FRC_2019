@@ -4,7 +4,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.SerialPort;
 
-@SuppressWarnings("WeakerAccess")
 public class Sensors{
     private AHRS gyro;
     public volatile double angle;
