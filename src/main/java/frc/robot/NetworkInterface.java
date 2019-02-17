@@ -26,7 +26,7 @@ public class NetworkInterface {
             cargoBlockStateEntry, cargoPivotStateEntry,
             hatchEjectorStateEntry, hatchLimitSwitchEntry,
             robotXEntry, robotYEntry, robotHeadingEntry,
-            navXAngle;
+            gyroHeading;
 
     private ShuffleboardLayout drivetrainList, cargoList, climberList, hatchList, localizationList;
 
@@ -84,7 +84,7 @@ public class NetworkInterface {
         robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
         robotHeadingEntry = localizationList.add("Robot Angle", 0.0).getEntry();
 
-        navXAngle = localizationList.add("NavX Angle", 0.0).getEntry();
+        gyroHeading = localizationList.add("Gyro Heading", 0.0).getEntry();
 
         Shuffleboard.startRecording();
     }
@@ -113,7 +113,7 @@ public class NetworkInterface {
         robotYEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getY().getFeet());
         robotHeadingEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getRotation().getDegree());
 
-        navXAngle.setDouble(Sensors.getInstance().angle);
+        gyroHeading.setDouble(Sensors.getInstance().getFusedHeading());
     }
 
     public SendableChooser<StartingPosition> getStartingPositionChooser(){

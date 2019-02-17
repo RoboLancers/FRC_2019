@@ -30,8 +30,8 @@ public class AimLock extends InstantCommand {
                 rightPower = -forward + error;
             }
 
-            Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, leftPower, DemandType.ArbitraryFeedForward, Math.signum(leftPower) * Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
-            Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, rightPower, DemandType.ArbitraryFeedForward, Math.signum(rightPower) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
+            Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, leftPower);
+            Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, rightPower);
         } else{
             Drivetrain.getInstance().zeroOutputs();
         }

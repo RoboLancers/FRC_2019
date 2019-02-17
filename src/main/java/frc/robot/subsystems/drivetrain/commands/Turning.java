@@ -23,14 +23,14 @@ public class Turning extends Command {
     @Override
     protected void initialize() {
         lancerPID.reset();
-        lancerPID.setTarget(Sensors.getInstance().angle + angle);
+        lancerPID.setTarget(Sensors.getInstance().getFusedHeading() + angle);
     }
 
     @Override
     protected void execute() {
-        output = lancerPID.getOutput(Sensors.getInstance().angle);
-        Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, -output, DemandType.ArbitraryFeedForward, Math.signum(-output) * Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
-        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, output, DemandType.ArbitraryFeedForward, Math.signum(output) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
+        output = lancerPID.getOutput(Sensors.getInstance().getFusedHeading());
+        Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, -output);
+        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, output);
     }
 
     @Override

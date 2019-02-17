@@ -36,7 +36,7 @@ public class Drivetrain extends TankDriveSubsystem {
         right = new Transmission(TransmissionSide.RIGHT, RobotMap.DRIVETRAIN.MASTER_RIGHT, RobotMap.DRIVETRAIN.RIGHT_SLAVE_1, RobotMap.DRIVETRAIN.RIGHT_SLAVE_2);
 
         localization = new TankEncoderLocalization(
-                () -> Rotation2dKt.getDegree(Sensors.getInstance().angle),
+                () -> Rotation2dKt.getDegree(Sensors.getInstance().getFusedHeading()),
                 () -> left.getMaster().getSensorPosition(),
                 () -> right.getMaster().getSensorPosition()
         );
