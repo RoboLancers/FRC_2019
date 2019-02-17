@@ -1,19 +1,21 @@
 package frc.robot.subsystems.misc;
 
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.Notifier;
-import edu.wpi.first.wpilibj.SerialPort;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.sensors.PigeonIMU;
+import frc.robot.RobotMap;
 
+@SuppressWarnings("unused")
 public class Sensors{
-    private AHRS gyro;
-    public volatile double angle;
-
     private static Sensors instance;
 
-    private Sensors() {
-        gyro = new AHRS(SerialPort.Port.kMXP);
+    private PigeonIMU pigeonIMU;
+    private double[] yawPitchRoll;
 
-        new Notifier(() -> angle = -gyro.getAngle()).startPeriodic(0.01);
+    private Sensors() {
+        TalonSRX pigeonTalon = new TalonSRX(RobotMap.MISC.PIGEON_TALON);
+        pigeonIMU = new PigeonIMU(pigeonTalon);
+
+        yawPitchRoll = new double[3];
     }
 
     public synchronized static Sensors getInstance() {
@@ -23,15 +25,30 @@ public class Sensors{
         return instance;
     }
 
+    private void updateYawPitchRoll(){
+        pigeonIMU.getYawPitchRoll(yawPitchRoll);
+    }
+
+    public double getFusedHeading(){
+        return pigeonIMU.getFusedHeading();
+    }
+
+    public double getYaw() {
+        updateYawPitchRoll();
+        return yawPitchRoll[0];
+    }
+
     public double getPitch() {
-        return gyro.getPitch();
+        updateYawPitchRoll();
+        return yawPitchRoll[1];
     }
 
     public double getRoll() {
-        return gyro.getRoll();
+        updateYawPitchRoll();
+        return yawPitchRoll[2];
     }
 
     public void resetHeading() {
-        gyro.reset();
+        pigeonIMU.setFusedHeading(0);
     }
 }
