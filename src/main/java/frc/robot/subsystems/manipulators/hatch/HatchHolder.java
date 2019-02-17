@@ -3,6 +3,7 @@ package frc.robot.subsystems.manipulators.hatch;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchClamp;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 public class HatchHolder extends Subsystem {
@@ -22,7 +23,9 @@ public class HatchHolder extends Subsystem {
     }
 
     @Override
-    protected void initDefaultCommand() {}
+    protected void initDefaultCommand() {
+        setDefaultCommand(new AutoHatchClamp());
+    }
 
     public static HatchHolder getInstance(){
         if(instance == null){

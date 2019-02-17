@@ -1,16 +1,20 @@
 package frc.robot.subsystems.misc;
 
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.SerialPort;
 
 @SuppressWarnings("WeakerAccess")
 public class Sensors{
     private AHRS gyro;
+    public volatile double angle;
 
     private static Sensors instance;
 
     private Sensors() {
         gyro = new AHRS(SerialPort.Port.kMXP);
+
+        new Notifier(() -> angle = -gyro.getAngle()).startPeriodic(0.01);
     }
 
     public synchronized static Sensors getInstance() {
@@ -18,10 +22,6 @@ public class Sensors{
             instance = new Sensors();
         }
         return instance;
-    }
-
-    public synchronized double getAngle() {
-        return gyro.getAngle();
     }
 
     public double getPitch() {

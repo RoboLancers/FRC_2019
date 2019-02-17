@@ -11,6 +11,7 @@ import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
+import frc.robot.subsystems.misc.Sensors;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 @SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
@@ -24,7 +25,8 @@ public class NetworkInterface {
             armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry, armLimitSwitchVoltage,
             cargoBlockStateEntry, cargoPivotStateEntry,
             hatchEjectorStateEntry, hatchLimitSwitchEntry,
-            robotXEntry, robotYEntry, robotHeadingEntry;
+            robotXEntry, robotYEntry, robotHeadingEntry,
+            navXAngle;
 
     private ShuffleboardLayout drivetrainList, cargoList, climberList, hatchList, localizationList;
 
@@ -45,8 +47,8 @@ public class NetworkInterface {
             objectiveChooser.addOption(objective.name(), objective);
         }
 
-        mainDisplay.add(startingPositionChooser).withPosition(0, 0).withSize(2, 1);
-        mainDisplay.add(objectiveChooser).withPosition(0, 1).withSize(2, 1);
+        mainDisplay.add("Starting Position Chooser", startingPositionChooser).withPosition(12, 0).withSize(4, 2);
+        mainDisplay.add("Objective Chooser", objectiveChooser).withPosition(12, 2).withSize(4, 2);
 
         debugDisplay = Shuffleboard.getTab("Debug Display");
 
@@ -82,6 +84,8 @@ public class NetworkInterface {
         robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
         robotHeadingEntry = localizationList.add("Robot Angle", 0.0).getEntry();
 
+        navXAngle = localizationList.add("NavX Angle", 0.0).getEntry();
+
         Shuffleboard.startRecording();
     }
 
@@ -108,6 +112,8 @@ public class NetworkInterface {
         robotXEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getX().getFeet());
         robotYEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation().getY().getFeet());
         robotHeadingEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getRotation().getDegree());
+
+        navXAngle.setDouble(Sensors.getInstance().angle);
     }
 
     public SendableChooser<StartingPosition> getStartingPositionChooser(){

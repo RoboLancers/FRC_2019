@@ -8,6 +8,7 @@ import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 
 public class HatchEjector extends Subsystem {
     private static HatchEjector instance;
+
     private DoubleSolenoid ejector;
     private DigitalInput hatchDetector;
 
@@ -33,7 +34,7 @@ public class HatchEjector extends Subsystem {
     }
 
     public boolean hasHatch() {
-        return hatchDetector.get();
+        return !hatchDetector.get();
     }
 
     @Override

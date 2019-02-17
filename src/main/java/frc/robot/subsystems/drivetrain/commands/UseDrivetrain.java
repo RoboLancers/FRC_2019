@@ -13,7 +13,7 @@ public class UseDrivetrain extends Command {
     @Override
     protected void execute() {
         double throttle = OI.xboxController.getAxisValue(XboxController.Axis.LEFT_Y);
-        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X) * 0.35;
+        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X) * 0.3;
 
         Drivetrain.getInstance().curvatureDrive(throttle, turn, true);
     }

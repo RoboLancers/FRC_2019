@@ -56,8 +56,8 @@ public class Constants {
     }
 
     public static final class DRIVETRAIN {
-        public static final int PEAK_CURRENT_LIMIT = 40;
-        public static final int CONTINUOUS_CURRENT_LIMIT = 36;
+        public static final int PEAK_CURRENT_LIMIT = 30;
+        public static final int CONTINUOUS_CURRENT_LIMIT = 25;
         public static final int PEAK_CURRENT_DURATION = 10;
 
         public static final int VOLTAGE_COMPENSATION = 12;
@@ -72,11 +72,11 @@ public class Constants {
         public static final double TALON_kI = 0.0;
         public static final double TALON_kD = 2.0;
 
-        public static final double TURNING_kP = 0.01;
+        public static final double TURNING_kP = 0.001;
         public static final double TURNING_kI = 0.0;
-        public static final double TURNING_kD = 0.01;
+        public static final double TURNING_kD = 0.0;
 
-        public static final double ALLOWABLE_ERROR = 5;
+        public static final double ALLOWABLE_ERROR = 1;
 
         public static final double LEFT_MAX_VELOCITY = 14.1;
         public static final double RIGHT_MAX_VELOCITY = 12.2;

@@ -10,31 +10,23 @@ import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseLiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchRelease;
 import frc.robot.subsystems.manipulators.hatch.commands.ToggleHatchHolder;
-import frc.robot.subsystems.manipulators.hatch.commands.UseHatchEjector;
-import frc.robot.subsystems.manipulators.hatch.commands.UseHatchHolder;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
 import frc.robot.subsystems.manipulators.climber.enums.ClimberState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
-import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
-import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 @SuppressWarnings("unused")
 public class OI {
     public static XboxController xboxController = new XboxController(0)
             .whenPressed(XboxController.Button.LEFT_BUMPER, new ToggleHatchHolder())
-
-            .whenPressed(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.EJECT))
-            .whenReleased(XboxController.Button.RIGHT_BUMPER, new UseHatchEjector(HatchEjectorState.RETRACT))
-
-            .whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new AutoHatchRelease())
+            .whenPressed(XboxController.Button.RIGHT_BUMPER, new AutoHatchRelease())
 
             .whenPressed(XboxController.Button.Y, new Turning(-90))
 
-            .whenPressed(XboxController.Button.START, new UseClimberArmPower(0.5))
-            .whenReleased(XboxController.Button.START, new UseClimberArmPower(0))
+            .whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseClimberArmPower(0.5))
+            .whenReleased(XboxController.Trigger.LEFT_TRIGGER, new UseClimberArmPower(0))
 
-            .whenPressed(XboxController.Button.SELECT, new UseClimberArmPower(-0.5))
-            .whenReleased(XboxController.Button.SELECT, new UseClimberArmPower(0));
+            .whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(-0.5))
+            .whenReleased(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(0));
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
@@ -42,8 +34,11 @@ public class OI {
 
             .whenPressed(FlightController.Button.THUMB, new ToggleCargoPivot())
 
-            .whenPressed(FlightController.Button.INNER_TOP, new UseClimberArm(ClimberState.DOWN))
-            .whenPressed(FlightController.Button.OUTER_TOP, new UseClimberArm(ClimberState.UP))
+            .whenPressed(FlightController.Button.INNER_TOP, new UseClimberArmPower(-0.5))
+            .whenReleased(FlightController.Button.INNER_TOP, new UseClimberArmPower(0.0))
+
+            .whenPressed(FlightController.Button.OUTER_TOP, new UseClimberArmPower(0.5))
+            .whenReleased(FlightController.Button.OUTER_TOP, new UseClimberArmPower(0.0))
 
             .whenPressed(FlightController.Button.INNER_BOTTOM, new UseLiftoffPiston(LiftoffState.UP))
             .whenPressed(FlightController.Button.OUTER_BOTTOM, new UseLiftoffPiston(LiftoffState.DOWN));
