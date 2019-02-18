@@ -2,7 +2,6 @@ package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
-import com.team254.lib.physics.DCMotorTransmission;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.enums.TransmissionSide;
 import org.ghrobotics.lib.mathematics.units.Length;
@@ -12,12 +11,9 @@ import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 import java.util.Arrays;
 import java.util.List;
 
-@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class Transmission {
     private FalconSRX<Length> master;
     private List<FalconSRX<Length>> allMotors;
-
-    private DCMotorTransmission dcMotorTransmission;
 
     Transmission(TransmissionSide side, int masterPort, int slave1Port, int slave2Port) {
         master = new FalconSRX<>(masterPort, Constants.DRIVETRAIN.NATIVE_UNIT_MODEL, Constants.TIMEOUT);
@@ -28,20 +24,6 @@ public class Transmission {
 
         slave1.follow(master);
         slave2.follow(master);
-
-        if(side == TransmissionSide.RIGHT) {
-            dcMotorTransmission = new DCMotorTransmission(
-                    1 / Constants.DRIVETRAIN.kVRight,
-                    Math.pow(Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(), 2) * Constants.ROBOT.MASS / (2 * Constants.DRIVETRAIN.kARight),
-                    Constants.DRIVETRAIN.kStaticFrictionVoltageRight
-            );
-        }else{
-            dcMotorTransmission = new DCMotorTransmission(
-                    1 / Constants.DRIVETRAIN.kVLeft,
-                    Math.pow(Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(), 2) * Constants.ROBOT.MASS / (2 * Constants.DRIVETRAIN.kALeft),
-                    Constants.DRIVETRAIN.kStaticFrictionVoltageLeft
-            );
-        }
 
         allMotors = Arrays.asList(master, slave1, slave2);
 
@@ -78,9 +60,5 @@ public class Transmission {
 
     public FalconSRX<Length> getMaster() {
         return master;
-    }
-
-    public DCMotorTransmission getDcMotorTransmission(){
-        return dcMotorTransmission;
     }
 }

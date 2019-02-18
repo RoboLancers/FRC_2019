@@ -25,7 +25,6 @@ public class Drivetrain extends TankDriveSubsystem {
     private Transmission left, right;
 
     private Localization localization;
-    private DifferentialDrive differentialDrive;
 
     private TrajectoryTracker trajectoryTracker;
 
@@ -47,16 +46,6 @@ public class Drivetrain extends TankDriveSubsystem {
             LiveDashboard.INSTANCE.setRobotY(localization.getRobotPosition().getTranslation().getY().getFeet());
             LiveDashboard.INSTANCE.setRobotHeading(localization.getRobotPosition().getRotation().getRadian());
         }).startPeriodic(0.01);
-
-        differentialDrive = new DifferentialDrive(
-                Constants.ROBOT.MASS,
-                Constants.ROBOT.MOMENT_OF_INERTIA,
-                Constants.ROBOT.ANGULAR_DRAG,
-                Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(),
-                Constants.DRIVETRAIN.TRACK_WIDTH.getValue() / 2.0,
-                left.getDcMotorTransmission(),
-                right.getDcMotorTransmission()
-        );
 
         trajectoryTracker = new RamseteTracker(Constants.PATH_FOLLOWING.RAMSETE_BETA, Constants.PATH_FOLLOWING.RAMSETE_ZETA);
 
@@ -81,7 +70,7 @@ public class Drivetrain extends TankDriveSubsystem {
     @NotNull
     @Override
     public DifferentialDrive getDifferentialDrive() {
-        return differentialDrive;
+        return Constants.DRIVETRAIN.DIFFERENTIAL_DRIVE;
     }
 
     @NotNull

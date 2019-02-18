@@ -1,9 +1,12 @@
 package frc.robot;
 
+import com.team254.lib.physics.DCMotorTransmission;
+import com.team254.lib.physics.DifferentialDrive;
 import org.ghrobotics.lib.mathematics.twodim.geometry.Pose2d;
 import org.ghrobotics.lib.mathematics.twodim.geometry.Pose2dWithCurvature;
 import org.ghrobotics.lib.mathematics.twodim.geometry.Rectangle2d;
 import org.ghrobotics.lib.mathematics.twodim.trajectory.constraints.CentripetalAccelerationConstraint;
+import org.ghrobotics.lib.mathematics.twodim.trajectory.constraints.DifferentialDriveDynamicsConstraint;
 import org.ghrobotics.lib.mathematics.twodim.trajectory.constraints.TimingConstraint;
 import org.ghrobotics.lib.mathematics.twodim.trajectory.constraints.VelocityLimitRegionConstraint;
 import org.ghrobotics.lib.mathematics.units.*;
@@ -21,8 +24,10 @@ public class Constants {
     public static final class PATH_FOLLOWING {
         public static final Velocity<Length> MAX_VELOCITY = VelocityKt.getVelocity(LengthKt.getFeet(6));
         public static final Acceleration<Length> MAX_ACCELERATION = AccelerationKt.getAcceleration(LengthKt.getFeet(3));
+        public static final Volt MAX_VOLTAGE = VoltKt.getVolt(10);
 
         public static List<TimingConstraint<Pose2dWithCurvature>> CONSTRAINTS = Arrays.asList(
+                new DifferentialDriveDynamicsConstraint(DRIVETRAIN.DIFFERENTIAL_DRIVE, MAX_VOLTAGE),
                 new CentripetalAccelerationConstraint(AccelerationKt.getAcceleration(LengthKt.getFeet(10))),
                 new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(3)))
         );
@@ -44,15 +49,15 @@ public class Constants {
         public static final Length MIDDLE_OF_ROBOT_Y = ROBOT_WIDTH.div(2.0).plus(BUMPER_THICKNESS);
 
         public static final Length LEVEL_1_START_X = LengthKt.getFeet(4);
-        public static final Length ROBOT_START_X_LEVEL_1 = LEVEL_1_START_X.plus(MIDDLE_OF_ROBOT_X);
+        public static final Length ROBOT_LEVEL_1_START_X = LEVEL_1_START_X.plus(MIDDLE_OF_ROBOT_X);
 
         public static final Length LEFT_LEVEL_1_START_Y = LengthKt.getFeet(18.8).minus(MIDDLE_OF_ROBOT_Y);
         public static final Length CENTER_LEVEL_1_START_Y = LengthKt.getFeet(15.5).minus(MIDDLE_OF_ROBOT_Y);
         public static final Length RIGHT_LEVEL_1_START_Y = LengthKt.getFeet(11.5).minus(MIDDLE_OF_ROBOT_Y);
 
-        public static final Pose2d LEVEL_1_LEFT_START = new Pose2d(ROBOT_START_X_LEVEL_1, LEFT_LEVEL_1_START_Y, Rotation2dKt.getDegree(0));
-        public static final Pose2d LEVEL_1_CENTER_START = new Pose2d(ROBOT_START_X_LEVEL_1, CENTER_LEVEL_1_START_Y, Rotation2dKt.getDegree(0));
-        public static final Pose2d LEVEL_1_RIGHT_START = new Pose2d(ROBOT_START_X_LEVEL_1, RIGHT_LEVEL_1_START_Y, Rotation2dKt.getDegree(0));
+        public static final Pose2d LEVEL_1_LEFT_START = new Pose2d(ROBOT_LEVEL_1_START_X, LEFT_LEVEL_1_START_Y, Rotation2dKt.getDegree(0));
+        public static final Pose2d LEVEL_1_CENTER_START = new Pose2d(ROBOT_LEVEL_1_START_X, CENTER_LEVEL_1_START_Y, Rotation2dKt.getDegree(0));
+        public static final Pose2d LEVEL_1_RIGHT_START = new Pose2d(ROBOT_LEVEL_1_START_X, RIGHT_LEVEL_1_START_Y, Rotation2dKt.getDegree(0));
     }
 
     public static final class DRIVETRAIN {
@@ -76,7 +81,7 @@ public class Constants {
         public static final double TURNING_kI = 0.0;
         public static final double TURNING_kD = 0.0;
 
-        public static final double ALLOWABLE_ERROR = 1;
+        public static final double ALLOWABLE_ERROR = 0.5;
 
         public static final double LEFT_MAX_VELOCITY = 14.1;
         public static final double RIGHT_MAX_VELOCITY = 12.2;
@@ -101,9 +106,31 @@ public class Constants {
         public static final Length WHEEL_RADIUS = LengthKt.getInch(3);
         public static final Length TRACK_WIDTH = LengthKt.getMeter(0.59055);
 
-        public static NativeUnitModel<Length> NATIVE_UNIT_MODEL = new NativeUnitLengthModel(
+        public static final NativeUnitModel<Length> NATIVE_UNIT_MODEL = new NativeUnitLengthModel(
                 SENSOR_UNIT_PER_ROTATION,
                 WHEEL_RADIUS
+        );
+
+        public static final DCMotorTransmission leftDCMotorTransmission = new DCMotorTransmission(
+                1 / Constants.DRIVETRAIN.kVLeft,
+                Math.pow(Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(), 2) * Constants.ROBOT.MASS / (2 * Constants.DRIVETRAIN.kALeft),
+                Constants.DRIVETRAIN.kStaticFrictionVoltageLeft
+        );
+
+        public static final DCMotorTransmission rightDCMotorTransmission = new DCMotorTransmission(
+                1 / DRIVETRAIN.kVRight,
+                Math.pow(Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(), 2) * Constants.ROBOT.MASS / (2 * DRIVETRAIN.kARight),
+                DRIVETRAIN.kStaticFrictionVoltageRight
+        );
+
+        public static final DifferentialDrive DIFFERENTIAL_DRIVE = new DifferentialDrive(
+                Constants.ROBOT.MASS,
+                Constants.ROBOT.MOMENT_OF_INERTIA,
+                Constants.ROBOT.ANGULAR_DRAG,
+                Constants.DRIVETRAIN.WHEEL_RADIUS.getValue(),
+                Constants.DRIVETRAIN.TRACK_WIDTH.getValue() / 2.0,
+                leftDCMotorTransmission,
+                rightDCMotorTransmission
         );
     }
 

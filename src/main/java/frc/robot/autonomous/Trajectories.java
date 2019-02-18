@@ -51,7 +51,7 @@ public class Trajectories {
                     LEFT_CARGOSHIP_TURN_FACING_DOWN
             ), true);
 
-            // 90 degree turn here
+            // -90 degree turn here
 
             public static TimedTrajectory<Pose2dWithCurvature> leftTurnToLeftLoadingStation = generateTrajectory(Arrays.asList(
                     LEFT_CARGOSHIP_TURN_FACING_LEFT,
@@ -63,7 +63,7 @@ public class Trajectories {
                     LEFT_CARGOSHIP_TURN_FACING_LEFT
             ), true);
 
-            // 90 degree turn here too
+            // 90 degree turn here
 
             public static TimedTrajectory<Pose2dWithCurvature> leftTurnToFrontRightCargo = generateTrajectory(Arrays.asList(
                     LEFT_CARGOSHIP_TURN_FACING_LEFT,
