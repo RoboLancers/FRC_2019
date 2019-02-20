@@ -5,13 +5,11 @@ import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.subsystems.drivetrain.commands.Turning;
 import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
 import frc.robot.subsystems.manipulators.cargo.commands.UseCargoBlock;
-import frc.robot.subsystems.manipulators.climber.commands.UseClimberArm;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseLiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchRelease;
 import frc.robot.subsystems.manipulators.hatch.commands.ToggleHatchHolder;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
-import frc.robot.subsystems.manipulators.climber.enums.ClimberState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 
 @SuppressWarnings("unused")

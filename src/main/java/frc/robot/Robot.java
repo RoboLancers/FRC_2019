@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
+import frc.robot.autonomous.routines.TestVelocity;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
@@ -45,7 +46,6 @@ public class Robot extends TimedRobot {
 
         Camera.getInstance();
         Sensors.getInstance();
-        Pneumatic.getInstance();
         NetworkInterface.getInstance();
         LED.getInstance();
 

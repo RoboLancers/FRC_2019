@@ -18,22 +18,21 @@ import java.util.List;
 
 @SuppressWarnings("WeakerAccess")
 public class Constants {
-    public static final double EPSILON = 1E-9;
     public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
 
     public static final class PATH_FOLLOWING {
-        public static final Velocity<Length> MAX_VELOCITY = VelocityKt.getVelocity(LengthKt.getFeet(6));
-        public static final Acceleration<Length> MAX_ACCELERATION = AccelerationKt.getAcceleration(LengthKt.getFeet(3));
+        public static final Velocity<Length> MAX_VELOCITY = VelocityKt.getVelocity(LengthKt.getFeet(8));
+        public static final Acceleration<Length> MAX_ACCELERATION = AccelerationKt.getAcceleration(LengthKt.getFeet(4));
         public static final Volt MAX_VOLTAGE = VoltKt.getVolt(10);
 
         public static List<TimingConstraint<Pose2dWithCurvature>> CONSTRAINTS = Arrays.asList(
                 new DifferentialDriveDynamicsConstraint(DRIVETRAIN.DIFFERENTIAL_DRIVE, MAX_VOLTAGE),
                 new CentripetalAccelerationConstraint(AccelerationKt.getAcceleration(LengthKt.getFeet(10))),
-                new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(3)))
+                new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(2)))
         );
 
-        public static final double RAMSETE_BETA = 2;
-        public static final double RAMSETE_ZETA = 0.95;
+        public static final double RAMSETE_BETA = 1.7;
+        public static final double RAMSETE_ZETA = 0.8;
     }
 
     public static final class ROBOT {
@@ -65,45 +64,55 @@ public class Constants {
         public static final int CONTINUOUS_CURRENT_LIMIT = 25;
         public static final int PEAK_CURRENT_DURATION = 10;
 
-        public static final int VOLTAGE_COMPENSATION = 12;
+        public static final int VOLTAGE_COMPENSATION = 10;
         public static final int VOLTAGE_MEASUREMENT_FILTER = 32;
 
-        public static final double RAMP_RATE = 0.25;
+        public static final double RAMP_RATE = 0.15;
 
-        public static final double LEFT_kF = 1.021;
-        public static final double RIGHT_KF = 1.026;
+        public static final double LEFT_KF = 1.08;
+        public static final double RIGHT_KF = 1.26;
 
-        public static final double TALON_kP = 1;
+        //public static final double LEFT_KF = 0;
+        //public static final double RIGHT_KF = 0;
+
+        public static final double TALON_kP = 1.7;
         public static final double TALON_kI = 0.0;
-        public static final double TALON_kD = 2.0;
+        public static final double TALON_kD = 0.0;
 
-        public static final double TURNING_kP = 0.001;
+        public static final double TURNING_kP = 0.0035;
         public static final double TURNING_kI = 0.0;
         public static final double TURNING_kD = 0.0;
 
-        public static final double ALLOWABLE_ERROR = 0.5;
+        public static final double ALLOWABLE_ERROR = 2.5;
 
-        public static final double LEFT_MAX_VELOCITY = 14.1;
-        public static final double RIGHT_MAX_VELOCITY = 12.2;
+        public static final double LEFT_MAX_VELOCITY = 14;
+        public static final double RIGHT_MAX_VELOCITY = 12;
 
-        public static final double kStaticFrictionVoltage = 1.7;
-        public static final double kStaticFrictionVoltageLeft = 1.7;
-        public static final double kStaticFrictionVoltageRight = 1.7;
+        public static final double kStaticFrictionVoltage = 1.8;
+        public static final double kStaticFrictionVoltageLeft = 1.8;
+        public static final double kStaticFrictionVoltageRight = 1.8;
 
-        public static final double kStaticFrictionPercent = 0.14;
-        public static final double kStaticFrictionPercentLeft = 0.14;
-        public static final double kStaticFrictionPercentRight = 0.14;
+        public static final double kStaticFrictionPercent = 0.15;
+        public static final double kStaticFrictionPercentLeft = 0.15;
+        public static final double kStaticFrictionPercentRight = 0.15;
 
         // Half theoretical, half empirical
-        public static final double kVLeft = 0.2127;
-        public static final double kVRight = 0.2459;
+        //public static final double kVLeft = 0.2127;
+        //public static final double kVRight = 0.2459;
+
+        public static final double kVLeft = 0.11;
+        public static final double kVRight = 0.12;
 
         // Theoretical
-        public static final double kALeft = 0.108;
-        public static final double kARight = 0.108;
+        //public static final double kALeft = 0.108;
+        //public static final double kARight = 0.108;
+
+        public static final double kALeft = 0.08;
+        public static final double kARight = 0.06;
 
         public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
         public static final Length WHEEL_RADIUS = LengthKt.getInch(3);
+
         public static final Length TRACK_WIDTH = LengthKt.getMeter(0.59055);
 
         public static final NativeUnitModel<Length> NATIVE_UNIT_MODEL = new NativeUnitLengthModel(

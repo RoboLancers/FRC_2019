@@ -6,7 +6,7 @@ import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 public class AutoHatchClamp extends Command {
-    private static boolean previousState = false;
+    private boolean previousState = false;
     private boolean currentState;
 
     public AutoHatchClamp() {

@@ -11,30 +11,29 @@ import frc.robot.subsystems.misc.Sensors;
 
 public class Turning extends Command {
     private double angle, output;
-    private LancerPID lancerPID;
+    private double target, error;
 
     public Turning(double angle) {
         requires(Drivetrain.getInstance());
 
         this.angle = angle;
-        lancerPID = Drivetrain.getInstance().getTurningPID();
     }
 
     @Override
     protected void initialize() {
-        lancerPID.reset();
-        lancerPID.setTarget(Sensors.getInstance().getFusedHeading() + angle);
+        target = Sensors.getInstance().getFusedHeading() + angle;
     }
 
     @Override
     protected void execute() {
-        output = lancerPID.getOutput(Sensors.getInstance().getFusedHeading());
-        Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, -output);
-        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, output);
+        error = target - Sensors.getInstance().getFusedHeading();
+        output = error * Constants.DRIVETRAIN.TURNING_kP;
+        Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, -output, DemandType.ArbitraryFeedForward, Math.signum(-output) * Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
+        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput,output, DemandType.ArbitraryFeedForward, Math.signum(output) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
     }
 
     @Override
     protected boolean isFinished() {
-        return Math.abs(lancerPID.getError()) < Constants.DRIVETRAIN.ALLOWABLE_ERROR;
+        return Math.abs(error) < Constants.DRIVETRAIN.ALLOWABLE_ERROR;
     }
 }

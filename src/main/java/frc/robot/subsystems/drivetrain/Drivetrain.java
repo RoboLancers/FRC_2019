@@ -51,7 +51,7 @@ public class Drivetrain extends TankDriveSubsystem {
 
         turningPID = new LancerPID(Constants.DRIVETRAIN.TURNING_kP, Constants.DRIVETRAIN.TURNING_kI, Constants.DRIVETRAIN.TURNING_kD);
 
-        setkStatic(Constants.DRIVETRAIN.kStaticFrictionPercent);
+        setkStatic(0);
     }
 
     public static synchronized Drivetrain getInstance() {

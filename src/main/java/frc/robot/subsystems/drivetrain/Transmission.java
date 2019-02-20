@@ -35,7 +35,7 @@ public class Transmission {
             }else{
                 motor.setSensorPhase(true);
 
-                motor.setKF(Constants.DRIVETRAIN.LEFT_kF);
+                motor.setKF(Constants.DRIVETRAIN.LEFT_KF);
             }
 
             motor.setOpenLoopRamp(TimeUnitsKt.getSecond(Constants.DRIVETRAIN.RAMP_RATE));

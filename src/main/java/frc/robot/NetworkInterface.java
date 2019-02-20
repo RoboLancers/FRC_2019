@@ -21,7 +21,7 @@ public class NetworkInterface {
     private ShuffleboardTab debugDisplay, mainDisplay;
 
     private NetworkTableEntry
-            leftEncoderCountEntry, rightEncoderCountEntry, leftVelocityEntry, rightVelocityEntry,
+            leftEncoderCountEntry, rightEncoderCountEntry, leftVelocityEntry, rightVelocityEntry, leftVelocityGraphEntry, rightVelocityGraphEntry,
             armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry, armLimitSwitchVoltage,
             cargoBlockStateEntry, cargoPivotStateEntry,
             hatchEjectorStateEntry, hatchLimitSwitchEntry,
@@ -63,8 +63,11 @@ public class NetworkInterface {
         leftEncoderCountEntry = drivetrainList.add("Left Encoder Count", 0.0).getEntry();
         rightEncoderCountEntry = drivetrainList.add("Right Encoder Count", 0.0).getEntry();
 
-        leftVelocityEntry = drivetrainList.add("Left Velocity", 0.0).getEntry();
-        rightVelocityEntry = drivetrainList.add("Right Velocity", 0.0).getEntry();
+        leftVelocityEntry = drivetrainList.add("Left Velocity Native", 0.0).getEntry();
+        rightVelocityEntry = drivetrainList.add("Right Velocity Native", 0.0).getEntry();
+
+        leftVelocityGraphEntry = drivetrainList.add("Left Velocity Imperial", 0.0).withWidget(BuiltInWidgets.kGraph).getEntry();
+        rightVelocityGraphEntry = drivetrainList.add("Right Velocity Imperial", 0.0).withWidget(BuiltInWidgets.kGraph).getEntry();
 
         cargoBlockStateEntry = cargoList.add("Cargo Block State", "").getEntry();
         cargoPivotStateEntry = cargoList.add("Cargo Pivot State", "").getEntry();
@@ -93,8 +96,11 @@ public class NetworkInterface {
         leftEncoderCountEntry.setDouble(Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorPosition().getFeet());
         rightEncoderCountEntry.setDouble(Drivetrain.getInstance().getRightTransmission().getMaster().getSensorPosition().getFeet());
 
-        leftVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftMotor().getVelocity()));
-        rightVelocityEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightMotor().getVelocity()));
+        leftVelocityEntry.setDouble(Drivetrain.getInstance().getLeftTransmission().getMaster().getSelectedSensorVelocity());
+        rightVelocityEntry.setDouble(Drivetrain.getInstance().getRightTransmission().getMaster().getSelectedSensorVelocity());
+
+        leftVelocityGraphEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftMotor().getVelocity()));
+        rightVelocityGraphEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightMotor().getVelocity()));
 
         cargoBlockStateEntry.setString(CargoBlock.getInstance().get().toString());
         cargoPivotStateEntry.setValue(CargoPivot.getInstance().get().toString());

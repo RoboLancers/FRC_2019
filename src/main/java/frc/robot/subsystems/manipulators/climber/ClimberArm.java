@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmJoystick;
+import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.enums.ClimberState;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
 import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
@@ -75,5 +77,7 @@ public class ClimberArm extends Subsystem {
     }
 
     @Override
-    protected void initDefaultCommand() { }
+    protected void initDefaultCommand() {
+        setDefaultCommand(new UseClimberArmJoystick());
+    }
 }
