@@ -11,6 +11,7 @@ import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
+import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.Sensors;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
@@ -18,7 +19,7 @@ import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 public class NetworkInterface {
     private static NetworkInterface instance;
 
-    private ShuffleboardTab debugDisplay, mainDisplay;
+    private ShuffleboardTab competitionTab, drivetrainTab, cargoTab, hatchTab, climberTab, localizationTab;
 
     private NetworkTableEntry
             leftEncoderCountEntry, rightEncoderCountEntry, leftVelocityNativeEntry, rightVelocityNativeEntry, leftVelocityImperialEntry, rightVelocityImperialEntry,
@@ -28,13 +29,14 @@ public class NetworkInterface {
             robotXEntry, robotYEntry, robotHeadingEntry,
             gyroHeading;
 
-    private ShuffleboardLayout drivetrainList, cargoList, climberList, hatchList, localizationList;
-
     private SendableChooser<StartingPosition> startingPositionChooser;
     private SendableChooser<Objective> objectiveChooser;
 
     private NetworkInterface(){
-        mainDisplay = Shuffleboard.getTab("Main Display");
+        competitionTab = Shuffleboard.getTab("Main Display");
+
+        competitionTab.add("Front JeVois", Camera.getInstance().getFrontJeVois().getVisionCam()).withWidget(BuiltInWidgets.kCameraStream);
+        competitionTab.add("Back JeVois", Camera.getInstance().getBackJeVois().getVisionCam()).withWidget(BuiltInWidgets.kCameraStream);
 
         startingPositionChooser = new SendableChooser<>();
         objectiveChooser = new SendableChooser<>();
@@ -47,47 +49,43 @@ public class NetworkInterface {
             objectiveChooser.addOption(objective.name(), objective);
         }
 
-        mainDisplay.add("Starting Position Chooser", startingPositionChooser).withPosition(12, 0).withSize(4, 2);
-        mainDisplay.add("Objective Chooser", objectiveChooser).withPosition(12, 2).withSize(4, 2);
+        competitionTab.add("Starting Position Chooser", startingPositionChooser);
+        competitionTab.add("Objective Chooser", objectiveChooser);
 
-        debugDisplay = Shuffleboard.getTab("Debug Display");
+        drivetrainTab = Shuffleboard.getTab("Drivetrain");
+        cargoTab = Shuffleboard.getTab("Cargo");
+        climberTab = Shuffleboard.getTab("Climber");
+        hatchTab = Shuffleboard.getTab("Hatch");
+        localizationTab = Shuffleboard.getTab("Localization");
 
-        drivetrainList = debugDisplay.getLayout("Drivetrain", BuiltInLayouts.kList).withPosition(0, 0).withSize(2, 5);
-        cargoList = debugDisplay.getLayout("Cargo", BuiltInLayouts.kList).withPosition(2, 0).withSize(2, 3);
+        leftEncoderCountEntry = drivetrainTab.add("Left Encoder Count", 0.0).getEntry();
+        rightEncoderCountEntry = drivetrainTab.add("Right Encoder Count", 0.0).getEntry();
 
-        climberList = debugDisplay.getLayout("Climber", BuiltInLayouts.kList).withPosition(4, 0).withSize(2, 5);
-        hatchList = debugDisplay.getLayout("Hatch", BuiltInLayouts.kList).withPosition(6, 0).withSize(2, 3);
+        leftVelocityNativeEntry = drivetrainTab.add("Left Velocity Native", 0.0).getEntry();
+        rightVelocityNativeEntry = drivetrainTab.add("Right Velocity Native", 0.0).getEntry();
 
-        localizationList = debugDisplay.getLayout("Localization", BuiltInLayouts.kList).withPosition(8, 0).withSize(2, 4);
+        leftVelocityImperialEntry = drivetrainTab.add("Left Velocity Imperial", 0.0).getEntry();
+        rightVelocityImperialEntry = drivetrainTab.add("Right Velocity Imperial", 0.0).getEntry();
 
-        leftEncoderCountEntry = drivetrainList.add("Left Encoder Count", 0.0).getEntry();
-        rightEncoderCountEntry = drivetrainList.add("Right Encoder Count", 0.0).getEntry();
+        cargoBlockStateEntry = cargoTab.add("Cargo Block State", "").getEntry();
+        cargoPivotStateEntry = cargoTab.add("Cargo Pivot State", "").getEntry();
 
-        leftVelocityNativeEntry = drivetrainList.add("Left Velocity Native", 0.0).getEntry();
-        rightVelocityNativeEntry = drivetrainList.add("Right Velocity Native", 0.0).getEntry();
+        hatchEjectorStateEntry = hatchTab.add("Hatch Ejector State", "").getEntry();
+        hatchLimitSwitchEntry = hatchTab.add("Hatch Limit Switch", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
 
-        leftVelocityImperialEntry = drivetrainList.add("Left Velocity Imperial", 0.0).getEntry();
-        rightVelocityImperialEntry = drivetrainList.add("Right Velocity Imperial", 0.0).getEntry();
+        armEncoderEntry = climberTab.add("Arm Encoder Count", 0.0).getEntry();
+        armAngleEntry = climberTab.add("Arm Angle", 0.0).getEntry();
 
-        cargoBlockStateEntry = cargoList.add("Cargo Block State", "").getEntry();
-        cargoPivotStateEntry = cargoList.add("Cargo Pivot State", "").getEntry();
+        armErrorEntry = climberTab.add("Arm Closed Loop Error", 0.0).getEntry();
+        armLimitSwitchVoltage = climberTab.add("Arm Voltage", 0.0).getEntry();
 
-        armEncoderEntry = climberList.add("Arm Encoder Count", 0.0).getEntry();
-        armAngleEntry = climberList.add("Arm Angle", 0.0).getEntry();
+        liftOffPistonStateEntry = climberTab.add("Liftoff Piston State", "").getEntry();
 
-        armErrorEntry = climberList.add("Arm Closed Loop Error", 0.0).getEntry();
-        armLimitSwitchVoltage = climberList.add("Arm Voltage", 0.0).getEntry();
+        robotXEntry = localizationTab.add("Robot X", 0.0).getEntry();
+        robotYEntry = localizationTab.add("Robot Y", 0.0).getEntry();
+        robotHeadingEntry = localizationTab.add("Robot Angle", 0.0).getEntry();
 
-        liftOffPistonStateEntry = climberList.add("Liftoff Piston State", "").getEntry();
-
-        hatchEjectorStateEntry = hatchList.add("Hatch Ejector State", "").getEntry();
-        hatchLimitSwitchEntry = hatchList.add("Hatch Limit Switch", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
-
-        robotXEntry = localizationList.add("Robot X", 0.0).getEntry();
-        robotYEntry = localizationList.add("Robot Y", 0.0).getEntry();
-        robotHeadingEntry = localizationList.add("Robot Angle", 0.0).getEntry();
-
-        gyroHeading = localizationList.add("Gyro Heading", 0.0).getEntry();
+        gyroHeading = localizationTab.add("Gyro Heading", 0.0).getEntry();
 
         Shuffleboard.startRecording();
     }
