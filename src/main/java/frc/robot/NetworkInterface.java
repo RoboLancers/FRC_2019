@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.EntryNotification;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -21,6 +23,7 @@ public class NetworkInterface {
 
     private ShuffleboardTab competitionTab, drivetrainTab, cargoTab, hatchTab, climberTab, localizationTab;
 
+    //Getters
     private NetworkTableEntry
             leftEncoderCountEntry, rightEncoderCountEntry, leftVelocityNativeEntry, rightVelocityNativeEntry, leftVelocityImperialEntry, rightVelocityImperialEntry,
             armEncoderEntry, armAngleEntry, armErrorEntry, liftOffPistonStateEntry, armLimitSwitchVoltage,
@@ -28,6 +31,10 @@ public class NetworkInterface {
             hatchEjectorStateEntry, hatchLimitSwitchEntry,
             robotXEntry, robotYEntry, robotHeadingEntry,
             gyroHeading;
+
+    //Setters
+    private NetworkTableEntry
+            drivetrainVelocityLeftF, drivetrainVelocityRightF, drivetrainVelocityP, drivetrainVelocityI, drivetrainVelocityD;
 
     private SendableChooser<StartingPosition> startingPositionChooser;
     private SendableChooser<Objective> objectiveChooser;
@@ -66,6 +73,31 @@ public class NetworkInterface {
 
         leftVelocityImperialEntry = drivetrainTab.add("Left Velocity Imperial", 0.0).getEntry();
         rightVelocityImperialEntry = drivetrainTab.add("Right Velocity Imperial", 0.0).getEntry();
+
+        drivetrainVelocityLeftF = drivetrainTab.add("Drivetrain Velocity Left F", Constants.DRIVETRAIN.LEFT_KF).getEntry();
+        drivetrainVelocityRightF = drivetrainTab.add("Drivetrain Velocity Right F", Constants.DRIVETRAIN.RIGHT_KF).getEntry();
+
+        drivetrainVelocityP = drivetrainTab.add("Drivetrain Talon P", Constants.DRIVETRAIN.TALON_kP).getEntry();
+        drivetrainVelocityI = drivetrainTab.add("Drivetrain Talon I", Constants.DRIVETRAIN.TALON_kI).getEntry();
+        drivetrainVelocityD = drivetrainTab.add("Drivetrain Talon D", Constants.DRIVETRAIN.TALON_kD).getEntry();
+
+        drivetrainVelocityLeftF.addListener(entryNotification -> Drivetrain.getInstance().getLeftTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKF(entryNotification.value.getDouble())), EntryListenerFlags.kUpdate);
+        drivetrainVelocityRightF.addListener(entryNotification -> Drivetrain.getInstance().getRightTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKF(entryNotification.value.getDouble())), EntryListenerFlags.kUpdate);
+
+        drivetrainVelocityP.addListener(entryNotification -> {
+            Drivetrain.getInstance().getLeftTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKP(entryNotification.value.getDouble()));
+            Drivetrain.getInstance().getRightTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKP(entryNotification.value.getDouble()));
+        }, EntryListenerFlags.kUpdate);
+
+        drivetrainVelocityI.addListener(entryNotification -> {
+            Drivetrain.getInstance().getLeftTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKI(entryNotification.value.getDouble()));
+            Drivetrain.getInstance().getRightTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKI(entryNotification.value.getDouble()));
+        }, EntryListenerFlags.kUpdate);
+
+        drivetrainVelocityD.addListener(entryNotification -> {
+            Drivetrain.getInstance().getLeftTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKD(entryNotification.value.getDouble()));
+            Drivetrain.getInstance().getRightTransmission().getAllMotors().forEach(falconSRX -> falconSRX.setKD(entryNotification.value.getDouble()));
+        }, EntryListenerFlags.kUpdate);
 
         cargoBlockStateEntry = cargoTab.add("Cargo Block State", "").getEntry();
         cargoPivotStateEntry = cargoTab.add("Cargo Pivot State", "").getEntry();

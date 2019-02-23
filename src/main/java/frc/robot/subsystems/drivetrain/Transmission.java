@@ -61,4 +61,8 @@ public class Transmission {
     public FalconSRX<Length> getMaster() {
         return master;
     }
+
+    public List<FalconSRX<Length>> getAllMotors() {
+        return allMotors;
+    }
 }
