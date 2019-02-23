@@ -25,8 +25,7 @@ public class Trajectories {
         private static final Pose2d CARGOSHIP_FRONT_RIGHT_SCORING = new Pose2d(LengthKt.getFeet(18.5).minus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(12.6), Rotation2dKt.getDegree(0));
 
         public static final class LEFT {
-            private static final Pose2d LEFT_CARGOSHIP_TURN_FACING_DOWN = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(22), Rotation2dKt.getDegree(-90));
-            private static final Pose2d LEFT_CARGOSHIP_TURN_FACING_LEFT = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(22), Rotation2dKt.getDegree(180));
+            private static final Pose2d LEFT_CARGOSHIP_TURN_FACING_DOWN = new Pose2d(LengthKt.getFeet(14), LengthKt.getFeet(23), Rotation2dKt.getDegree(-135));
 
             public static TimedTrajectory<Pose2dWithCurvature> leftStartToFrontLeftCargo = generateTrajectory(Arrays.asList(
                     Constants.ROBOT.LEVEL_1_LEFT_START,
@@ -51,29 +50,24 @@ public class Trajectories {
                     LEFT_CARGOSHIP_TURN_FACING_DOWN
             ), true);
 
-            // -90 degree turn here
-
             public static TimedTrajectory<Pose2dWithCurvature> leftTurnToLeftLoadingStation = generateTrajectory(Arrays.asList(
-                    LEFT_CARGOSHIP_TURN_FACING_LEFT,
+                    LEFT_CARGOSHIP_TURN_FACING_DOWN,
                     LOADING_STATION_LEFT_PICKUP
             ));
 
             public static TimedTrajectory<Pose2dWithCurvature> leftLoadingStationToLeftTurn = generateTrajectory(Arrays.asList(
                     LOADING_STATION_LEFT_PICKUP,
-                    LEFT_CARGOSHIP_TURN_FACING_LEFT
+                    LEFT_CARGOSHIP_TURN_FACING_DOWN
             ), true);
 
-            // 90 degree turn here
-
             public static TimedTrajectory<Pose2dWithCurvature> leftTurnToFrontRightCargo = generateTrajectory(Arrays.asList(
-                    LEFT_CARGOSHIP_TURN_FACING_LEFT,
+                    LEFT_CARGOSHIP_TURN_FACING_DOWN,
                     CARGOSHIP_FRONT_RIGHT_SCORING
             ));
         }
 
         public static final class RIGHT {
-            private static final Pose2d RIGHT_CARGOSHIP_TURN_FACING_UP = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(5), Rotation2dKt.getDegree(90));
-            private static final Pose2d RIGHT_CARGOSHIP_TURN_FACING_LEFT = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(5), Rotation2dKt.getDegree(180));
+            private static final Pose2d RIGHT_CARGOSHIP_TURN_FACING_UP = new Pose2d(LengthKt.getFeet(14), LengthKt.getFeet(4), Rotation2dKt.getDegree(135));
 
             public static TimedTrajectory<Pose2dWithCurvature> leftStartToFrontRightCargo = generateTrajectory(Arrays.asList(
                     Constants.ROBOT.LEVEL_1_LEFT_START,
@@ -98,19 +92,15 @@ public class Trajectories {
                     RIGHT_CARGOSHIP_TURN_FACING_UP
             ), true);
 
-            // 90 degree turn here
-
             public static TimedTrajectory<Pose2dWithCurvature> rightTurnToRightLoadingStation = generateTrajectory(Arrays.asList(
-                    RIGHT_CARGOSHIP_TURN_FACING_LEFT,
+                    RIGHT_CARGOSHIP_TURN_FACING_UP,
                     LOADING_STATION_RIGHT_PICKUP
             ));
 
             public static TimedTrajectory<Pose2dWithCurvature> rightLoadingStationToRightTurn = generateTrajectory(Arrays.asList(
                     LOADING_STATION_RIGHT_PICKUP,
-                    RIGHT_CARGOSHIP_TURN_FACING_LEFT
+                    RIGHT_CARGOSHIP_TURN_FACING_UP
             ), true);
-
-            // 90 degree turn here
 
             public static TimedTrajectory<Pose2dWithCurvature> rightTurnToFrontLeftCargo = generateTrajectory(Arrays.asList(
                     RIGHT_CARGOSHIP_TURN_FACING_UP,
