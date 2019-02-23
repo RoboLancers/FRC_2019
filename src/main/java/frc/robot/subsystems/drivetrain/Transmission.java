@@ -1,6 +1,7 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.enums.TransmissionSide;
@@ -39,6 +40,8 @@ public class Transmission {
             }
 
             motor.setOpenLoopRamp(TimeUnitsKt.getSecond(Constants.DRIVETRAIN.RAMP_RATE));
+
+            motor.setNeutralMode(NeutralMode.Brake);
 
             motor.setKP(Constants.DRIVETRAIN.TALON_kP);
             motor.setKI(Constants.DRIVETRAIN.TALON_kI);
