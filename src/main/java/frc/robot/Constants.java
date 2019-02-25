@@ -144,6 +144,8 @@ public class Constants {
     }
 
     public static final class CLIMBER {
+        public static final int CLIMBING_ANGLE = 45;
+
         public static final int PID_SLOT_INDEX = 0;
         public static final int ALLOWABLE_ARM_ERROR = 10;
 

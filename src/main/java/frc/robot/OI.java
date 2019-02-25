@@ -5,6 +5,7 @@ import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.subsystems.drivetrain.commands.Turning;
 import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
 import frc.robot.subsystems.manipulators.cargo.commands.UseCargoBlock;
+import frc.robot.subsystems.manipulators.climber.commands.UseAutoClimb;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseLiftoffPiston;
 import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchRelease;
@@ -39,5 +40,6 @@ public class OI {
             .whenReleased(FlightController.Button.OUTER_TOP, new UseClimberArmPower(0.0))
 
             .whenPressed(FlightController.Button.INNER_BOTTOM, new UseLiftoffPiston(LiftoffState.UP))
-            .whenPressed(FlightController.Button.OUTER_BOTTOM, new UseLiftoffPiston(LiftoffState.DOWN));
+            .whenPressed(FlightController.Button.OUTER_BOTTOM, new UseLiftoffPiston(LiftoffState.DOWN))
+            .whenPressed(FlightController.Button.INNER_MIDDLE, new UseAutoClimb());
 }
