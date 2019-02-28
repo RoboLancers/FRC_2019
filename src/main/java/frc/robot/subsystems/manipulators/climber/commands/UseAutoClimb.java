@@ -8,8 +8,8 @@ import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 public class UseAutoClimb extends CommandGroup {
     public UseAutoClimb() {
         addSequential(new UseClimberArm(ClimberState.DOWN));
-        addSequential(new UseLiftoffPiston(LiftoffState.DOWN));
-        addParallel(new UseClimbDrive());
+        addParallel(new UseLiftoffPiston(LiftoffState.DOWN));
+        addSequential(new UseClimbDrive());
         addSequential(new UseLiftoffPiston(LiftoffState.UP));
         addSequential(new UseClimberArm(ClimberState.UP));
     }
