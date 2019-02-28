@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.robolancers.lib.wrappers.hid.FlightController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -71,6 +72,14 @@ public class Robot extends TimedRobot {
 
         if(Autonomous.getInstance().getAutonomousCommand() != null){
             Autonomous.getInstance().getAutonomousCommand().start();
+        }
+
+    }
+
+    @Override
+    public void autonomousPeriodic(){
+        if(OI.flightController.getState(FlightController.Button.INNER_MIDDLE)){
+            Autonomous.getInstance().getAutonomousCommand().cancel();
         }
     }
 
