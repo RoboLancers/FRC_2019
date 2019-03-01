@@ -46,6 +46,7 @@ public class Robot extends TimedRobot {
         Camera.getInstance();
         Sensors.getInstance();
         NetworkInterface.getInstance();
+        BadLoge.getInstance();
         LED.getInstance();
 
         Shuffleboard.startRecording();
@@ -56,6 +57,7 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         NetworkInterface.getInstance().updateShuffleboard();
         Scheduler.getInstance().run();
+        BadLoge.getInstance().updateBadlog();
     }
 
     @Override
