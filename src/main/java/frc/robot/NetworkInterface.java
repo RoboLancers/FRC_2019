@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.EntryNotification;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.autonomous.enums.Objective;
 import frc.robot.autonomous.enums.StartingPosition;
 import frc.robot.subsystems.drivetrain.Drivetrain;
@@ -126,9 +127,6 @@ public class NetworkInterface {
         leftEncoderCountEntry.setDouble(Drivetrain.getInstance().getLeftTransmission().getMaster().getSensorPosition().getFeet());
         rightEncoderCountEntry.setDouble(Drivetrain.getInstance().getRightTransmission().getMaster().getSensorPosition().getFeet());
 
-        leftVelocityNativeEntry.setDouble(Drivetrain.getInstance().getLeftTransmission().getMaster().getSelectedSensorVelocity());
-        rightVelocityNativeEntry.setDouble(Drivetrain.getInstance().getRightTransmission().getMaster().getSelectedSensorVelocity());
-
         leftVelocityImperialEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getLeftMotor().getVelocity()));
         rightVelocityImperialEntry.setDouble(VelocityKt.getFeetPerSecond(Drivetrain.getInstance().getRightMotor().getVelocity()));
 
@@ -150,6 +148,8 @@ public class NetworkInterface {
         robotHeadingEntry.setDouble(Drivetrain.getInstance().getLocalization().getRobotPosition().getRotation().getDegree());
 
         gyroHeading.setDouble(Sensors.getInstance().getFusedHeading());
+
+        SmartDashboard.putNumber("Number of Lines", Camera.getInstance().getPixy().getLine().getVectors().length);
     }
 
     public SendableChooser<StartingPosition> getStartingPositionChooser(){
