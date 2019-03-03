@@ -45,6 +45,7 @@ def includeDesktopSupport = false
 // Maven central needed for JUnit
 repositories {
     mavenCentral()
+    maven { url 'https://nexus.otake.pw/repository/maven-public/' }
     maven { setUrl("https://jitpack.io") }
 }
 
@@ -64,6 +65,7 @@ dependencies {
     compile('com.github.5190GreenHopeRobotics:FalconLibrary:1e985e3f7f')
     compile('com.github.RoboLancers:LancerLibrary:5065a86d0a')
     compile('com.github.Oblarg:Oblog:d689b7831e')
+    compile('pw.otake.pseudoresonance:pixy2-java-api:1.3.3')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
