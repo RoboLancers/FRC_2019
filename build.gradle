@@ -61,10 +61,9 @@ dependencies {
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
     testCompile 'junit:junit:4.12'
 
-    compile('com.github.5190GreenHopeRobotics:FalconLibrary:88d44a33f5')
-    compile('com.github.RoboLancers:LancerLibrary:2f4192a3b8')
+    compile('com.github.5190GreenHopeRobotics:FalconLibrary:1e985e3f7f')
+    compile('com.github.RoboLancers:LancerLibrary:5065a86d0a')
     compile('com.github.Oblarg:Oblog:d689b7831e')
-    compile('com.github.dominikWin:badlog:316a7682bc')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
