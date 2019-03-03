@@ -8,6 +8,7 @@
 package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -50,6 +51,8 @@ public class Robot extends TimedRobot {
 
         Shuffleboard.startRecording();
         Trajectories.generateTrajectories();
+
+        Shuffleboard.setRecordingFileNameFormat(DriverStation.getInstance().getEventName() + " " + DriverStation.getInstance().getMatchType() + ":" + DriverStation.getInstance().getMatchNumber() + "-{date}");
     }
 
     @Override
