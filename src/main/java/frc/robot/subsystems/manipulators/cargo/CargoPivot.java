@@ -5,9 +5,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.cargo.commands.CargoAdjustment;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Log;
 
 @SuppressWarnings("unused")
-public class CargoPivot extends Subsystem {
+public class CargoPivot extends Subsystem implements Loggable {
     private static CargoPivot instance;
 
     private DoubleSolenoid cargoPivot;
@@ -27,6 +29,7 @@ public class CargoPivot extends Subsystem {
         cargoPivot.set(cargoPivotState.getValue());
     }
 
+    @Log.ToString(name = "Cargo Pivot State")
     public CargoPivotState get() {
         return cargoPivot.get() == CargoPivotState.UP.getValue() ? CargoPivotState.UP : CargoPivotState.DOWN;
     }
@@ -34,5 +37,10 @@ public class CargoPivot extends Subsystem {
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new CargoAdjustment());
+    }
+
+    @Override
+    public String configureLogName(){
+        return "Cargo";
     }
 }

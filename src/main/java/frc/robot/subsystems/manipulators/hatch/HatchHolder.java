@@ -5,15 +5,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchClamp;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Log;
 
-public class HatchHolder extends Subsystem {
+public class HatchHolder extends Subsystem implements Loggable {
     private static HatchHolder instance;
+
     private DoubleSolenoid hatchHolder;
 
     private HatchHolder(){
         hatchHolder = new DoubleSolenoid(RobotMap.HATCH.MODULE, RobotMap.HATCH.HATCH_HOLDER_UP, RobotMap.HATCH.HATCH_HOLDER_DOWN);
     }
 
+    @Log.ToString(name = "Hatch Holder State")
     public HatchHolderState get(){
         return hatchHolder.get() == HatchHolderState.HOLD.getValue() ? HatchHolderState.HOLD : HatchHolderState.RELEASE;
     }
@@ -32,5 +36,10 @@ public class HatchHolder extends Subsystem {
             instance = new HatchHolder();
         }
         return instance;
+    }
+
+    @Override
+    public String configureLogName(){
+        return "Hatch";
     }
 }

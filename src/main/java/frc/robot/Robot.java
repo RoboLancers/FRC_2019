@@ -28,36 +28,41 @@ import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.LED;
+import frc.robot.subsystems.misc.Localization;
 import frc.robot.subsystems.misc.Sensors;
+import io.github.oblarg.oblog.Logger;
 
+@SuppressWarnings("unused")
 public class Robot extends TimedRobot {
+    private Drivetrain drivetrain = Drivetrain.getInstance();
+
+    private CargoBlock cargoBlock = CargoBlock.getInstance();
+    private CargoPivot cargoPivot = CargoPivot.getInstance();
+
+    private HatchHolder hatchHolder = HatchHolder.getInstance();
+    private HatchEjector hatchEjector = HatchEjector.getInstance();
+
+    private ClimberArm climberArm = ClimberArm.getInstance();
+    private LiftoffPiston liftoffPiston = LiftoffPiston.getInstance();
+
+    private Camera camera = Camera.getInstance();
+    private Localization localization = Localization.getInstance();
+    private Sensors sensors = Sensors.getInstance();
+    private LED led = LED.getInstance();
+
     @Override
     public void robotInit() {
-        Drivetrain.getInstance();
-
-        CargoBlock.getInstance();
-        CargoPivot.getInstance();
-
-        HatchHolder.getInstance();
-        HatchEjector.getInstance();
-
-        ClimberArm.getInstance();
-        LiftoffPiston.getInstance();
-
-        Camera.getInstance();
-        Sensors.getInstance();
-        NetworkInterface.getInstance();
-        LED.getInstance();
-
         Shuffleboard.startRecording();
         Trajectories.generateTrajectories();
 
         Shuffleboard.setRecordingFileNameFormat(DriverStation.getInstance().getEventName() + " " + DriverStation.getInstance().getMatchType() + ":" + DriverStation.getInstance().getMatchNumber() + "-{date}");
+
+        Logger.configureLoggingAndConfig(this, false);
     }
 
     @Override
     public void robotPeriodic() {
-        NetworkInterface.getInstance().updateShuffleboard();
+        Logger.updateEntries();
         Scheduler.getInstance().run();
     }
 

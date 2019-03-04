@@ -3,9 +3,11 @@ package frc.robot.subsystems.misc;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.robot.RobotMap;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Log;
 
 @SuppressWarnings("unused")
-public class Sensors{
+public class Sensors implements Loggable {
     private static Sensors instance;
 
     private PigeonIMU pigeonIMU;
@@ -29,20 +31,24 @@ public class Sensors{
         pigeonIMU.getYawPitchRoll(yawPitchRoll);
     }
 
+    @Log(name = "Fused Heading")
     public double getFusedHeading(){
         return pigeonIMU.getFusedHeading();
     }
 
+    @Log(name = "Yaw")
     public double getYaw() {
         updateYawPitchRoll();
         return yawPitchRoll[0];
     }
 
+    @Log(name = "Pitch")
     public double getPitch() {
         updateYawPitchRoll();
         return yawPitchRoll[1];
     }
 
+    @Log(name = "Roll")
     public double getRoll() {
         updateYawPitchRoll();
         return yawPitchRoll[2];

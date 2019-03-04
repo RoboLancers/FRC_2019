@@ -10,12 +10,16 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmJoystick;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.enums.ClimberState;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Config;
+import io.github.oblarg.oblog.annotations.Log;
 import org.ghrobotics.lib.mathematics.units.Rotation2d;
 import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.mathematics.units.TimeUnitsKt;
 import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 
-public class ClimberArm extends Subsystem {
+@SuppressWarnings({"DefaultAnnotationParam", "unused"})
+public class ClimberArm extends Subsystem implements Loggable {
     private static ClimberArm instance;
 
     private FalconSRX<Rotation2d> climberArm;
@@ -56,14 +60,37 @@ public class ClimberArm extends Subsystem {
         climberArm.set(ControlMode.PercentOutput, power);
     }
 
+    @Config(name = "Arm P", defaultValueNumeric = Constants.CLIMBER.ARM_kP)
+    public void setP(double p){
+        climberArm.setKP(p);
+    }
+
+    @Config(name = "Arm I", defaultValueNumeric = Constants.CLIMBER.ARM_kI)
+    public void setI(double i){
+        climberArm.setKI(i);
+    }
+
+    @Config(name = "Arm D", defaultValueNumeric = Constants.CLIMBER.ARM_kD)
+    public void setD(double d){
+        climberArm.setKD(d);
+    }
+
+    @Config(name = "Arm F", defaultValueNumeric = Constants.CLIMBER.ARM_kF)
+    public void setF(double f){
+        climberArm.setKF(f);
+    }
+
+    @Log(name = "Arm Position")
     public double getPosition() {
         return climberArm.getSelectedSensorPosition();
     }
 
+    @Log(name = "Arm Angle")
     public double getAngle() {
         return climberArm.getSensorPosition().getDegree();
     }
 
+    @Log(name = "Arm Closed Loop Error")
     public double getClosedLoopError() {
         return climberArm.getClosedLoopError();
     }
@@ -79,5 +106,10 @@ public class ClimberArm extends Subsystem {
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new UseClimberArmJoystick());
+    }
+
+    @Override
+    public String configureLogName(){
+        return "Climber";
     }
 }

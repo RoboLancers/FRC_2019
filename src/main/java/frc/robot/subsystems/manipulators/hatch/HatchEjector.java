@@ -5,8 +5,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Log;
 
-public class HatchEjector extends Subsystem {
+public class HatchEjector extends Subsystem implements Loggable {
     private static HatchEjector instance;
 
     private DoubleSolenoid ejector;
@@ -29,14 +31,21 @@ public class HatchEjector extends Subsystem {
         ejector.set(hatchEjectorState.getValue());
     }
 
+    @Log.ToString(name = "Hatch Ejector State")
     public HatchEjectorState get(){
         return ejector.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
     }
 
+    @Log.BooleanBox(name = "Hatch Detected")
     public boolean hasHatch() {
         return !hatchDetector.get();
     }
 
     @Override
     protected void initDefaultCommand() { }
+
+    @Override
+    public String configureLogName(){
+        return "Hatch";
+    }
 }

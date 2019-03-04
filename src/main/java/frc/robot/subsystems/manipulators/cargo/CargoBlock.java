@@ -4,9 +4,12 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Config;
+import io.github.oblarg.oblog.annotations.Log;
 
 @SuppressWarnings("unused")
-public class CargoBlock extends Subsystem {
+public class CargoBlock extends Subsystem implements Loggable {
     private static CargoBlock instance;
 
     private DoubleSolenoid cargoBlock;
@@ -26,10 +29,16 @@ public class CargoBlock extends Subsystem {
         cargoBlock.set(cargoBlockState.getValue());
     }
 
+    @Log.ToString(name = "Cargo Block State")
     public CargoBlockState get() {
         return cargoBlock.get() == CargoBlockState.BLOCK.getValue() ? CargoBlockState.BLOCK : CargoBlockState.UNBLOCK;
     }
 
     @Override
     protected void initDefaultCommand() { }
+
+    @Override
+    public String configureLogName(){
+        return "Cargo";
+    }
 }
