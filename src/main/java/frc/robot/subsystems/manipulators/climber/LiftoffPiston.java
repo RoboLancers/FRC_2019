@@ -27,7 +27,7 @@ public class LiftoffPiston extends Subsystem implements Loggable {
         liftOff.set(liftoffState.getValue());
     }
 
-    @Log.ToString(name = "Liftoff State")
+    @Log.ToString(name = "Liftoff State", rowIndex = 0, columnIndex = 6, width = 2, height = 1)
     public LiftoffState get(){
         return liftOff.get() == LiftoffState.UP.getValue() ? LiftoffState.UP : LiftoffState.DOWN;
     }

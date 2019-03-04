@@ -17,7 +17,7 @@ public class HatchHolder extends Subsystem implements Loggable {
         hatchHolder = new DoubleSolenoid(RobotMap.HATCH.MODULE, RobotMap.HATCH.HATCH_HOLDER_UP, RobotMap.HATCH.HATCH_HOLDER_DOWN);
     }
 
-    @Log.ToString(name = "Hatch Holder State")
+    @Log.ToString(name = "Hatch Holder State", rowIndex = 0, columnIndex = 2, width = 2, height = 1)
     public HatchHolderState get(){
         return hatchHolder.get() == HatchHolderState.HOLD.getValue() ? HatchHolderState.HOLD : HatchHolderState.RELEASE;
     }

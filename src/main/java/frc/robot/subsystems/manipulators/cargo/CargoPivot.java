@@ -29,7 +29,7 @@ public class CargoPivot extends Subsystem implements Loggable {
         cargoPivot.set(cargoPivotState.getValue());
     }
 
-    @Log.ToString(name = "Cargo Pivot State")
+    @Log.ToString(name = "Cargo Pivot State", rowIndex = 0, columnIndex = 2, width = 2, height = 1)
     public CargoPivotState get() {
         return cargoPivot.get() == CargoPivotState.UP.getValue() ? CargoPivotState.UP : CargoPivotState.DOWN;
     }

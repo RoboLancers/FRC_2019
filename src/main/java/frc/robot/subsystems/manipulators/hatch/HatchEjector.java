@@ -31,12 +31,12 @@ public class HatchEjector extends Subsystem implements Loggable {
         ejector.set(hatchEjectorState.getValue());
     }
 
-    @Log.ToString(name = "Hatch Ejector State")
+    @Log.ToString(name = "Hatch Ejector State", rowIndex = 0, columnIndex = 0, width = 2, height = 1)
     public HatchEjectorState get(){
         return ejector.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
     }
 
-    @Log.BooleanBox(name = "Hatch Detected")
+    @Log.BooleanBox(name = "Hatch Detected", rowIndex = 1, columnIndex = 0, width = 1, height = 1)
     public boolean hasHatch() {
         return !hatchDetector.get();
     }

@@ -29,7 +29,7 @@ public class CargoBlock extends Subsystem implements Loggable {
         cargoBlock.set(cargoBlockState.getValue());
     }
 
-    @Log.ToString(name = "Cargo Block State")
+    @Log.ToString(name = "Cargo Block State", rowIndex = 0, columnIndex = 0, width = 2, height = 1)
     public CargoBlockState get() {
         return cargoBlock.get() == CargoBlockState.BLOCK.getValue() ? CargoBlockState.BLOCK : CargoBlockState.UNBLOCK;
     }

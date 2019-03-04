@@ -12,6 +12,7 @@ import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 import io.github.pseudoresonance.pixy2api.Pixy2;
 
+@SuppressWarnings("unused")
 public class Camera implements Loggable {
     private static Camera instance;
 
@@ -42,17 +43,17 @@ public class Camera implements Loggable {
         return frontJeVois;
     }
 
-    @Log.CameraStream(name = "Front JeVois")
+    @Log.CameraStream(name = "Front JeVois", rowIndex = 1, columnIndex = 0, width = 4, height = 4)
     public VideoSource getFrontJeVoisVideoSource() {
         return frontJeVois.getVisionCam() == null ? defaultCamera : frontJeVois.getVisionCam();
     }
 
-    @Log.BooleanBox(name = "Front Target Detected")
+    @Log.BooleanBox(name = "Front Target Detected", rowIndex = 0, columnIndex = 0, width = 2, height = 1)
     public boolean isFrontTargetDetected(){
         return frontJeVois.isTargetVisible();
     }
 
-    @Log(name = "Front Target Distance")
+    @Log(name = "Front Target Distance", rowIndex = 0, columnIndex = 2, width = 2, height = 1)
     public double getFrontTargetDistance(){
         return frontJeVois.getTargetDistance();
     }
@@ -61,17 +62,17 @@ public class Camera implements Loggable {
         return backJeVois;
     }
 
-    @Log.CameraStream(name = "Back JeVois")
+    @Log.CameraStream(name = "Back JeVois", rowIndex = 1, columnIndex = 4, width = 4, height = 4)
     public VideoSource getBackJeVoisVideoSource(){
         return backJeVois.getVisionCam() == null ? defaultCamera : backJeVois.getVisionCam();
     }
 
-    @Log.BooleanBox(name = "Back Target Detected")
+    @Log.BooleanBox(name = "Back Target Detected", rowIndex = 0, columnIndex = 4, width = 2, height = 1)
     public boolean isBackTargetDetected(){
         return backJeVois.isTargetVisible();
     }
 
-    @Log(name = "Back Target Distance")
+    @Log(name = "Back Target Distance", rowIndex = 0, columnIndex = 6, width = 2, height = 1)
     public double backTargetDistance(){
         return backJeVois.getTargetDistance();
     }
