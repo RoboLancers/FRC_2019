@@ -17,7 +17,7 @@ public class Camera implements Loggable {
     private static Camera instance;
 
     private JeVois frontJeVois, backJeVois;
-    private Pixy2 pixy;
+    private Pixy2 pixy2;
 
     private CvSource defaultCamera;
 
@@ -25,11 +25,38 @@ public class Camera implements Loggable {
         frontJeVois = new JeVois(SerialPort.Port.kUSB1);
         backJeVois = new JeVois(SerialPort.Port.kUSB2);
 
-        pixy = Pixy2.createInstance(Pixy2.LinkType.SPI);
-        pixy.init();
+        pixy2 = Pixy2.createInstance(Pixy2.LinkType.SPI);
+        pixy2.init();
 
         defaultCamera = new CvSource("", new VideoMode(VideoMode.PixelFormat.kUnknown, 0, 0, 0));
     }
+
+    public Pixy2 getPixy2() {
+        return pixy2;
+    }
+
+    public boolean hasLine() {
+        return pixy2.getLine().getVectors()[0] != null;
+    }
+
+    public int getLine() {
+        int maximum = 0;
+        for(int i = 0; i < pixy2.getLine().getVectors().length; i++) {
+            if(pixy2.getLine().getVectors()[i].getY1() - pixy2.getLine().getVectors()[i].getY0() > (pixy2.getLine().getVectors()[maximum].getY1() - pixy2.getLine().getVectors()[maximum].getY0())) {
+                maximum = i;
+            }
+        }
+        return maximum;
+    }
+
+    public int getX(int index) {
+        return (pixy2.getLine().getVectors()[index].getX1() - pixy2.getLine().getVectors()[index].getX0()) / 2;
+    }
+
+    public int getY(int index) {
+        return (pixy2.getLine().getVectors()[index].getY1() - pixy2.getLine().getVectors()[index].getY0()) / 2;
+    }
+
 
     public static synchronized Camera getInstance() {
         if (instance == null) {
@@ -78,7 +105,7 @@ public class Camera implements Loggable {
     }
 
     public Pixy2 getPixy() {
-        return pixy;
+        return pixy2;
     }
 
     public boolean isTargetVisible(){
