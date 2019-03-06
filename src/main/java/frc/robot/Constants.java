@@ -183,4 +183,10 @@ public class Constants {
         public static final Rectangle2d TOP_ROCKET_BOX = new Rectangle2d(TOP_ROCKET_BOX_X, TOP_ROCKET_BOX_Y, ROCKET_BOX_WIDTH, ROCKET_BOX_HEIGHT);
         public static final Rectangle2d BOTTOM_ROCKET_BOX = new Rectangle2d(BOTTOM_ROCKET_BOX_X, BOTTOM_ROCKET_BOX_Y, ROCKET_BOX_WIDTH, ROCKET_BOX_HEIGHT);
     }
+
+    public static final class CAMERA{
+        public static final int MAX_X = 78;
+        public static final int MAX_Y = 51;
+        public static final double TURNING_kP = 0.0035;
+    }
 }
