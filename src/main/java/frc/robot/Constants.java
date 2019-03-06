@@ -188,5 +188,6 @@ public class Constants {
         public static final int MAX_X = 78;
         public static final int MAX_Y = 51;
         public static final double TURNING_kP = 0.0035;
+        public static final double forward = 0.25;
     }
 }
