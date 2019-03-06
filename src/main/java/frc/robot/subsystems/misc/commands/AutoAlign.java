@@ -5,17 +5,16 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Camera;
 
 public class AutoAlign extends Command {
-    Camera camera;
+    double error, leftPower, rightPower;
+
     public AutoAlign() {
-        camera = Camera.getInstance();
+        requires(Drivetrain.getInstance());
     }
 
     @Override
     public void execute() {
         if(Camera.getInstance().hasLine()){
-            Drivetrain.getInstance().
-                    //turn towards line, must adjust for power to turn, must translate power into turn values which come from x
-             //if x is too far left, turn left, if too far right, turn right ezpz, based on middle pixel
+
         }
     }
 
