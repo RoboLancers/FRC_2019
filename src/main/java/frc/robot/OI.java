@@ -2,6 +2,7 @@ package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
+import frc.robot.subsystems.drivetrain.commands.AutoAlign;
 import frc.robot.subsystems.drivetrain.commands.Turning;
 import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
 import frc.robot.subsystems.manipulators.cargo.commands.UseCargoBlock;
@@ -25,7 +26,9 @@ public class OI {
             .whenReleased(XboxController.Trigger.LEFT_TRIGGER, new UseClimberArmPower(0))
 
             .whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(-0.5))
-            .whenReleased(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(0));
+            .whenReleased(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(0))
+
+            .whileHeld(XboxController.Button.B, new AutoAlign());
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
