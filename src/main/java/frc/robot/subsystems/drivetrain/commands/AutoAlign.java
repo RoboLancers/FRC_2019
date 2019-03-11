@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Camera;
+import io.github.pseudoresonance.pixy2api.Pixy2Line;
 
-public class AutoAlign extends Command{
+public class AutoAlign extends Command {
     private double error, leftPower, rightPower;
 
     public AutoAlign() {
@@ -14,16 +15,18 @@ public class AutoAlign extends Command{
     }
 
     @Override
-    protected void execute(){
-            if(Camera.getInstance().hasLine()){
-                error = (Constants.CAMERA.MAX_X / 2.0) - Camera.getInstance().getX(Camera.getInstance().getLine());
-                leftPower = (error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.forward;
-                rightPower = (-error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.forward;
+    protected void execute() {
+        Pixy2Line.Vector vector = Camera.getInstance().getLancerPixy().getVector();
 
-                Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, leftPower);
-                Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, rightPower);
-            }
+        if (vector != null) {
+            error = (Constants.CAMERA.MAX_X / 2.0) - Camera.getInstance().getLancerPixy().getAverageX(vector);
+            leftPower = (error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
+            rightPower = (-error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
+
+            Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, leftPower);
+            Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, rightPower);
         }
+    }
 
     @Override
     protected boolean isFinished() {

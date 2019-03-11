@@ -11,6 +11,7 @@ import com.robolancers.lib.wrappers.hid.FlightController;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
@@ -31,6 +32,10 @@ import frc.robot.subsystems.misc.LED;
 import frc.robot.subsystems.misc.Localization;
 import frc.robot.subsystems.misc.Sensors;
 import io.github.oblarg.oblog.Logger;
+import org.ghrobotics.lib.debug.LiveDashboard;
+import org.ghrobotics.lib.mathematics.twodim.geometry.Pose2d;
+import org.ghrobotics.lib.mathematics.units.LengthKt;
+import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 
 @SuppressWarnings("unused")
 public class Robot extends TimedRobot {
@@ -58,10 +63,12 @@ public class Robot extends TimedRobot {
         Shuffleboard.setRecordingFileNameFormat(DriverStation.getInstance().getEventName() + " " + DriverStation.getInstance().getMatchType() + ":" + DriverStation.getInstance().getMatchNumber() + "-{date}");
 
         Logger.configureLoggingAndConfig(this, false);
+        LiveWindow.disableAllTelemetry();
     }
 
     @Override
     public void robotPeriodic() {
+        Camera.getInstance().getLancerPixy().update();
         Logger.updateEntries();
         Scheduler.getInstance().run();
     }
@@ -78,6 +85,9 @@ public class Robot extends TimedRobot {
         Drivetrain.getInstance().resetEncoders();
         ClimberArm.getInstance().resetEncoders();
 
+        HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
+        HatchHolder.getInstance().set(HatchHolderState.HOLD);
+
         if(Autonomous.getInstance().getAutonomousCommand() != null){
             Autonomous.getInstance().getAutonomousCommand().start();
         }
@@ -89,6 +99,8 @@ public class Robot extends TimedRobot {
         if(OI.flightController.getState(FlightController.Button.INNER_MIDDLE)){
             Autonomous.getInstance().getAutonomousCommand().cancel();
         }
+
+        Drivetrain.getInstance().getLocalization().reset(new Pose2d(LengthKt.getFeet(LiveDashboard.INSTANCE.getPathX()), LengthKt.getFeet(LiveDashboard.INSTANCE.getPathY()), Rotation2dKt.getRadian(LiveDashboard.INSTANCE.getPathHeading())));
     }
 
     @Override

@@ -60,8 +60,8 @@ public class Constants {
     }
 
     public static final class DRIVETRAIN {
-        public static final int PEAK_CURRENT_LIMIT = 30;
-        public static final int CONTINUOUS_CURRENT_LIMIT = 25;
+        public static final int PEAK_CURRENT_LIMIT = 25;
+        public static final int CONTINUOUS_CURRENT_LIMIT = 20;
         public static final int PEAK_CURRENT_DURATION = 10;
 
         public static final int VOLTAGE_COMPENSATION = 10;
@@ -187,7 +187,8 @@ public class Constants {
     public static final class CAMERA{
         public static final int MAX_X = 78;
         public static final int MAX_Y = 51;
+
         public static final double TURNING_kP = 0.0035;
-        public static final double forward = 0.25;
+        public static final double FORWARD = 0.25;
     }
 }

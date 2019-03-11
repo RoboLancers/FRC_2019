@@ -28,8 +28,8 @@ public class NetworkInterface {
             objectiveChooser.addOption(objective.name(), objective);
         }
 
-        competitionTab.add("Starting Position Chooser", startingPositionChooser);
-        competitionTab.add("Objective Chooser", objectiveChooser);
+        competitionTab.add("Starting Position Chooser", startingPositionChooser).withPosition(0, 0).withSize(2, 1);
+        competitionTab.add("Objective Chooser", objectiveChooser).withPosition(2, 0).withSize(2, 1);
     }
 
     public SendableChooser<StartingPosition> getStartingPositionChooser(){

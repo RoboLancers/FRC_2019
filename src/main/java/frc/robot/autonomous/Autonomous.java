@@ -7,6 +7,7 @@ import frc.robot.autonomous.enums.StartingPosition;
 import frc.robot.autonomous.routines.LevelOneFrontCargo;
 import frc.robot.autonomous.routines.LevelOneRocket;
 import frc.robot.autonomous.routines.LevelOneSideCargo;
+import frc.robot.autonomous.routines.ConfigureStartingPosition;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class Autonomous {
@@ -25,8 +26,10 @@ public class Autonomous {
             autonomousCommand = new LevelOneFrontCargo(selectedStartingPosition, selectedObjective);
         }else if(selectedObjective == Objective.SIDE_CARGO_FRONT || selectedObjective == Objective.SIDE_CARGO_MIDDLE || selectedObjective == Objective.SIDE_CARGO_BACK){
             autonomousCommand = new LevelOneSideCargo(selectedStartingPosition, selectedObjective);
-        }else if(selectedObjective == Objective.LEFT_ROCKET){
-            autonomousCommand = new LevelOneRocket(selectedStartingPosition, selectedObjective);
+        }else if(selectedObjective == Objective.LEFT_ROCKET || selectedObjective == Objective.RIGHT_ROCKET){
+            autonomousCommand = new LevelOneRocket(selectedStartingPosition);
+        }else if(selectedObjective == Objective.MANUAL){
+            autonomousCommand = new ConfigureStartingPosition(selectedStartingPosition);
         }
     }
 

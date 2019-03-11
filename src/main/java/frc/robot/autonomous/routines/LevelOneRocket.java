@@ -11,15 +11,15 @@ import frc.robot.subsystems.manipulators.hatch.commands.UseHatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 public class LevelOneRocket extends CommandGroup {
-    public LevelOneRocket(StartingPosition startingPosition, Objective objective){
-        if(startingPosition == StartingPosition.LEVEL_1_LEFT && objective == Objective.LEFT_ROCKET){
+    public LevelOneRocket(StartingPosition startingPosition){
+        if(startingPosition == StartingPosition.LEVEL_1_LEFT){
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.ROCKET.LEFT.leftStartToLeftNearRocket, true));
             addSequential(new AutoHatchRelease());
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.ROCKET.LEFT.leftNearRocketToLeftTurn));
             addSequential(new Turning(180));
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.ROCKET.LEFT.leftTurnToLeftLoadingStation));
             addSequential(new UseHatchHolder(HatchHolderState.HOLD));
-        }else if(startingPosition == StartingPosition.LEVEL_1_RIGHT && objective == Objective.RIGHT_ROCKET){
+        }else if(startingPosition == StartingPosition.LEVEL_1_RIGHT){
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.ROCKET.RIGHT.rightStartToRightNearRocket, true));
             addSequential(new AutoHatchRelease());
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.ROCKET.RIGHT.rightNearRocketToRightTurn));

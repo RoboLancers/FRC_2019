@@ -2,7 +2,7 @@ import edu.wpi.first.gradlerio.GradleRIOPlugin
 
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2019.3.2"
+    id "edu.wpi.first.GradleRIO" version "2019.4.1"
 }
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
@@ -64,10 +64,9 @@ dependencies {
 
     simulation "edu.wpi.first.halsim:halsim_ds_socket:${wpi.wpilibVersion}:${wpi.platforms.desktop}@zip"
 
-    compile('com.github.5190GreenHopeRobotics:FalconLibrary:1e985e3f7f')
-    compile('com.github.RoboLancers:LancerLibrary:5065a86d0a')
+    compile('com.github.5190GreenHopeRobotics:FalconLibrary:b4feb6c543')
+    compile('com.github.RoboLancers:LancerLibrary:96d6aaa803')
     compile('com.github.bchen290:Oblog:b5e40640aa')
-    compile('pw.otake.pseudoresonance:pixy2-java-api:1.3.3')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

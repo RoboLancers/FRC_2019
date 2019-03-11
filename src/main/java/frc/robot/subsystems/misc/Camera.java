@@ -2,61 +2,29 @@ package frc.robot.subsystems.misc;
 
 import com.robolancers.lib.wrappers.vision.JeVois;
 import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.cscore.VideoSource;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
-import io.github.pseudoresonance.pixy2api.Pixy2;
 
 @SuppressWarnings("unused")
 public class Camera implements Loggable {
     private static Camera instance;
 
     private JeVois frontJeVois, backJeVois;
-    private Pixy2 pixy2;
-
     private CvSource defaultCamera;
+
+    private LancerPixy lancerPixy;
 
     private Camera(){
         frontJeVois = new JeVois(SerialPort.Port.kUSB1);
         backJeVois = new JeVois(SerialPort.Port.kUSB2);
 
-        pixy2 = Pixy2.createInstance(Pixy2.LinkType.SPI);
-        pixy2.init();
-
         defaultCamera = new CvSource("", new VideoMode(VideoMode.PixelFormat.kUnknown, 0, 0, 0));
-    }
 
-    public Pixy2 getPixy2() {
-        return pixy2;
+        lancerPixy = new LancerPixy();
     }
-
-    public boolean hasLine() {
-        return pixy2.getLine().getVectors()[0] != null;
-    }
-
-    public int getLine() {
-        int maximum = 0;
-        for(int i = 0; i < pixy2.getLine().getVectors().length; i++) {
-            if(pixy2.getLine().getVectors()[i].getY1() - pixy2.getLine().getVectors()[i].getY0() > (pixy2.getLine().getVectors()[maximum].getY1() - pixy2.getLine().getVectors()[maximum].getY0())) {
-                maximum = i;
-            }
-        }
-        return maximum;
-    }
-
-    public int getX(int index) {
-        return (pixy2.getLine().getVectors()[index].getX1() - pixy2.getLine().getVectors()[index].getX0()) / 2;
-    }
-
-    public int getY(int index) {
-        return (pixy2.getLine().getVectors()[index].getY1() - pixy2.getLine().getVectors()[index].getY0()) / 2;
-    }
-
 
     public static synchronized Camera getInstance() {
         if (instance == null) {
@@ -104,11 +72,16 @@ public class Camera implements Loggable {
         return backJeVois.getTargetDistance();
     }
 
-    public Pixy2 getPixy() {
-        return pixy2;
-    }
-
     public boolean isTargetVisible(){
         return frontJeVois.isTargetVisible() || backJeVois.isTargetVisible();
+    }
+
+    public LancerPixy getLancerPixy() {
+        return lancerPixy;
+    }
+
+    @Log.BooleanBox(name = "Line Detected", rowIndex = 0, columnIndex = 8, width = 2, height = 1)
+    public boolean hasLine(){
+        return lancerPixy.hasLine();
     }
 }
