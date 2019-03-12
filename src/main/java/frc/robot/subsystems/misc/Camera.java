@@ -12,16 +12,16 @@ import io.github.oblarg.oblog.annotations.Log;
 public class Camera implements Loggable {
     private static Camera instance;
 
-    private JeVois frontJeVois, backJeVois;
-    private CvSource defaultCamera;
+    //private JeVois frontJeVois, backJeVois;
+    //private CvSource defaultCamera;
 
     private LancerPixy lancerPixy;
 
     private Camera(){
-        frontJeVois = new JeVois(SerialPort.Port.kUSB1);
-        backJeVois = new JeVois(SerialPort.Port.kUSB2);
+        //frontJeVois = new JeVois(SerialPort.Port.kUSB1);
+        //backJeVois = new JeVois(SerialPort.Port.kUSB2);
 
-        defaultCamera = new CvSource("", new VideoMode(VideoMode.PixelFormat.kUnknown, 0, 0, 0));
+        //defaultCamera = new CvSource("", new VideoMode(VideoMode.PixelFormat.kUnknown, 0, 0, 0));
 
         lancerPixy = new LancerPixy();
     }
@@ -34,6 +34,7 @@ public class Camera implements Loggable {
         return instance;
     }
 
+    /*
     public JeVois getFrontJeVois() {
         return frontJeVois;
     }
@@ -74,7 +75,7 @@ public class Camera implements Loggable {
 
     public boolean isTargetVisible(){
         return frontJeVois.isTargetVisible() || backJeVois.isTargetVisible();
-    }
+    }*/
 
     public LancerPixy getLancerPixy() {
         return lancerPixy;

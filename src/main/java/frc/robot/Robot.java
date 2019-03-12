@@ -8,6 +8,7 @@
 package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
-import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
+import frc.robot.subsystems.manipulators.cargo.enums.FlyWheelPower;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
@@ -23,7 +24,7 @@ import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.manipulators.cargo.CargoBlock;
+import frc.robot.subsystems.manipulators.cargo.FlyWheel;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
@@ -41,7 +42,7 @@ import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 public class Robot extends TimedRobot {
     private Drivetrain drivetrain = Drivetrain.getInstance();
 
-    private CargoBlock cargoBlock = CargoBlock.getInstance();
+    private FlyWheel flyWheel = FlyWheel.getInstance();
     private CargoPivot cargoPivot = CargoPivot.getInstance();
 
     private HatchHolder hatchHolder = HatchHolder.getInstance();
@@ -64,11 +65,13 @@ public class Robot extends TimedRobot {
 
         Logger.configureLoggingAndConfig(this, false);
         LiveWindow.disableAllTelemetry();
+
+        CameraServer.getInstance().startAutomaticCapture();
     }
 
     @Override
     public void robotPeriodic() {
-        Camera.getInstance().getLancerPixy().update();
+        //Camera.getInstance().getLancerPixy().update();
         Logger.updateEntries();
         Scheduler.getInstance().run();
     }
@@ -112,7 +115,6 @@ public class Robot extends TimedRobot {
         LiftoffPiston.getInstance().set(LiftoffState.UP);
 
         CargoPivot.getInstance().set(CargoPivotState.UP);
-        CargoBlock.getInstance().set(CargoBlockState.BLOCK);
 
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
         HatchHolder.getInstance().set(HatchHolderState.HOLD);

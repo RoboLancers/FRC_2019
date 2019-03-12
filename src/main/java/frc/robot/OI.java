@@ -5,13 +5,13 @@ import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.subsystems.drivetrain.commands.AutoAlign;
 import frc.robot.subsystems.drivetrain.commands.Turning;
 import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
-import frc.robot.subsystems.manipulators.cargo.commands.UseCargoBlock;
+import frc.robot.subsystems.manipulators.cargo.commands.UseFlywheelPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseAutoClimb;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseInstantLiftoff;
 import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchRelease;
 import frc.robot.subsystems.manipulators.hatch.commands.ToggleHatchHolder;
-import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
+import frc.robot.subsystems.manipulators.cargo.enums.FlyWheelPower;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 
 @SuppressWarnings("unused")
@@ -31,8 +31,8 @@ public class OI {
             .whileHeld(XboxController.Button.B, new AutoAlign());
 
     public static FlightController flightController = new FlightController(1)
-            .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
-            .whenReleased(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.BLOCK))
+            .whenPressed(FlightController.Button.TRIGGER, new UseFlywheelPower(FlyWheelPower.OUTTAKE))
+            .whenReleased(FlightController.Button.TRIGGER, new UseFlywheelPower(FlyWheelPower.STOP))
 
             .whenPressed(FlightController.Button.THUMB, new ToggleCargoPivot())
 
