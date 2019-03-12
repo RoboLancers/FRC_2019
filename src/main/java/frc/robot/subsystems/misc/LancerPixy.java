@@ -1,6 +1,7 @@
 package frc.robot.subsystems.misc;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import frc.robot.Constants;
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2Line;
 import io.github.pseudoresonance.pixy2api.links.SPILink;
@@ -58,6 +59,10 @@ public class LancerPixy {
 
     public int getAverageY(Pixy2Line.Vector vector) {
         return (vector.getY1() + vector.getY0()) / 2;
+    }
+
+    public double getError(Pixy2Line.Vector vector){
+        return (Constants.CAMERA.MAX_X / 2.0) - Camera.getInstance().getLancerPixy().getAverageX(vector);
     }
 
     private void checkPixyError(byte code, String methodName){

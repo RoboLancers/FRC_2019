@@ -49,6 +49,9 @@ public class RobotMap {
 
     public static final class MISC {
         public static final int LED = 9;
+
         public static final int PIGEON_TALON = 11;
+
+        public static final int REV_PRESSURE_SENSOR_PORT = 0;
     }
 }

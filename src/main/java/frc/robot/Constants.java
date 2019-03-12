@@ -83,6 +83,8 @@ public class Constants {
         public static final double TURNING_kI = 0.0;
         public static final double TURNING_kD = 0.0;
 
+        public static final double VISION_CORRECTION_KP = 0.01;
+
         public static final double ALLOWABLE_ERROR = 2.5;
 
         public static final double LEFT_MAX_VELOCITY = 14;
@@ -167,6 +169,7 @@ public class Constants {
     public static final class AREAS {
         public static final Length CARGOSHIP_BOX_X = LengthKt.getFeet(16.0);
         public static final Length CARGOSHIP_BOX_Y = LengthKt.getFeet(9.5);
+
         public static final Length CARGOSHIP_BOX_WIDTH = LengthKt.getFeet(11.0);
         public static final Length CARGOSHIP_BOX_HEIGHT = LengthKt.getFeet(8.0);
 
@@ -179,9 +182,24 @@ public class Constants {
         public static final Length ROCKET_BOX_WIDTH = LengthKt.getFeet(6.0);
         public static final Length ROCKET_BOX_HEIGHT = LengthKt.getFeet(4.0);
 
+        public static final Length LOADING_STATION_TOP_BOX_X = LengthKt.getFeet(0);
+        public static final Length LOADING_STATION_TOP_BOX_Y = LengthKt.getFeet(23);
+
+        public static final Length LOADING_STATION_BOTTOM_BOX_X = LengthKt.getFeet(0);
+        public static final Length LOADING_STATION_BOTTOM_BOX_Y = LengthKt.getFeet(0);
+
+        public static final Length LOADING_STATION_BOX_WIDTH = LengthKt.getFeet(4);
+        public static final Length LOADING_STATION_BOX_HEIGHT = LengthKt.getFeet(4);
+
         public static final Rectangle2d CARGOSHIP_BOX = new Rectangle2d(CARGOSHIP_BOX_X, CARGOSHIP_BOX_Y, CARGOSHIP_BOX_WIDTH, CARGOSHIP_BOX_HEIGHT);
+
         public static final Rectangle2d TOP_ROCKET_BOX = new Rectangle2d(TOP_ROCKET_BOX_X, TOP_ROCKET_BOX_Y, ROCKET_BOX_WIDTH, ROCKET_BOX_HEIGHT);
         public static final Rectangle2d BOTTOM_ROCKET_BOX = new Rectangle2d(BOTTOM_ROCKET_BOX_X, BOTTOM_ROCKET_BOX_Y, ROCKET_BOX_WIDTH, ROCKET_BOX_HEIGHT);
+
+        public static final Rectangle2d TOP_LOADING_STATION_BOX = new Rectangle2d(LOADING_STATION_TOP_BOX_X, LOADING_STATION_TOP_BOX_Y, LOADING_STATION_BOX_WIDTH, LOADING_STATION_BOX_HEIGHT);
+        public static final Rectangle2d BOTTOM_LOADING_STATION_BOX = new Rectangle2d(LOADING_STATION_BOTTOM_BOX_X, LOADING_STATION_BOTTOM_BOX_Y, LOADING_STATION_BOX_WIDTH, LOADING_STATION_BOX_HEIGHT);
+
+        public static final List<Rectangle2d> ALL_AREAS = Arrays.asList(CARGOSHIP_BOX, TOP_ROCKET_BOX, BOTTOM_ROCKET_BOX, TOP_LOADING_STATION_BOX, BOTTOM_LOADING_STATION_BOX);
     }
 
     public static final class CAMERA{

@@ -65,7 +65,7 @@ dependencies {
     simulation "edu.wpi.first.halsim:halsim_ds_socket:${wpi.wpilibVersion}:${wpi.platforms.desktop}@zip"
 
     compile('com.github.5190GreenHopeRobotics:FalconLibrary:b4feb6c543')
-    compile('com.github.RoboLancers:LancerLibrary:96d6aaa803')
+    compile('com.github.RoboLancers:LancerLibrary:caeb9697d3')
     compile('com.github.bchen290:Oblog:b5e40640aa')
 }
 
