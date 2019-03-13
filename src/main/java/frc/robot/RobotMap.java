@@ -28,8 +28,8 @@ public class RobotMap {
 
     public static final class CARGO {
         // Pneumatics
-        public static final int BLOCK_DOWN = 5;
-        public static final int BLOCK_UP = 2;
+        public static final int INTAKE_LEFT = 9;
+        public static final int INTAKE_RIGHT = 10;
 
         public static final int PIVOT_UP = 4;
         public static final int PIVOT_DOWN = 3;

@@ -60,8 +60,8 @@ public class Constants {
     }
 
     public static final class DRIVETRAIN {
-        public static final int PEAK_CURRENT_LIMIT = 25;
-        public static final int CONTINUOUS_CURRENT_LIMIT = 20;
+        public static final int PEAK_CURRENT_LIMIT = 30;
+        public static final int CONTINUOUS_CURRENT_LIMIT = 25;
         public static final int PEAK_CURRENT_DURATION = 10;
 
         public static final int VOLTAGE_COMPENSATION = 10;
@@ -69,11 +69,11 @@ public class Constants {
 
         public static final double RAMP_RATE = 0.15;
 
-        public static final double LEFT_KF = 1.08;
-        public static final double RIGHT_KF = 1.26;
+        //public static final double LEFT_KF = 1.08;
+        //public static final double RIGHT_KF = 1.26;
 
-        //public static final double LEFT_KF = 0;
-        //public static final double RIGHT_KF = 0;
+        public static final double LEFT_KF = 0;
+        public static final double RIGHT_KF = 0;
 
         public static final double TALON_kP = 1.7;
         public static final double TALON_kI = 0.0;
@@ -99,18 +99,18 @@ public class Constants {
         public static final double kStaticFrictionPercentRight = 0.15;
 
         // Half theoretical, half empirical
-        //public static final double kVLeft = 0.2127;
-        //public static final double kVRight = 0.2459;
+        public static final double kVLeft = 0.2127;
+        public static final double kVRight = 0.2459;
 
-        public static final double kVLeft = 0.11;
-        public static final double kVRight = 0.12;
+        //public static final double kVLeft = 0.11;
+        //public static final double kVRight = 0.12;
 
         // Theoretical
-        //public static final double kALeft = 0.108;
-        //public static final double kARight = 0.108;
+        public static final double kALeft = 0.108;
+        public static final double kARight = 0.108;
 
-        public static final double kALeft = 0.08;
-        public static final double kARight = 0.06;
+        //public static final double kALeft = 0.08;
+        //public static final double kARight = 0.06;
 
         public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
         public static final Length WHEEL_RADIUS = LengthKt.getInch(3);

@@ -26,7 +26,7 @@ public class LancerPixy {
     }
 
     public synchronized void update(){
-        pixyStatus = pixy2.getLine().getFeatures(Pixy2Line.LINE_GET_ALL_FEATURES, Pixy2Line.LINE_ALL_FEATURES, false);
+        pixyStatus = pixy2.getLine().getFeatures(Pixy2Line.LINE_GET_MAIN_FEATURES, Pixy2Line.LINE_ALL_FEATURES, false);
         checkPixyError(pixyStatus, "update");
     }
 

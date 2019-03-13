@@ -1,19 +1,19 @@
 package frc.robot.subsystems.manipulators.cargo.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.subsystems.manipulators.cargo.enums.FlyWheelPower;
-import frc.robot.subsystems.manipulators.cargo.FlyWheel;
+import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
+import frc.robot.subsystems.manipulators.cargo.Flywheel;
 
 public class UseFlywheelPower extends InstantCommand {
-    private FlyWheelPower flyWheelPower;
+    private FlywheelPower flyWheelPower;
 
-    public UseFlywheelPower(FlyWheelPower flyWheelPower) {
-        requires(FlyWheel.getInstance());
+    public UseFlywheelPower(FlywheelPower flyWheelPower) {
+        requires(Flywheel.getInstance());
         this.flyWheelPower = flyWheelPower;
     }
 
     @Override
     protected void initialize() {
-        FlyWheel.getInstance().set(flyWheelPower);
+        Flywheel.getInstance().set(flyWheelPower);
     }
 }

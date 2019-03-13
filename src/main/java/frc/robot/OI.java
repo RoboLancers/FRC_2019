@@ -11,7 +11,7 @@ import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseInstantLiftoff;
 import frc.robot.subsystems.manipulators.hatch.commands.AutoHatchRelease;
 import frc.robot.subsystems.manipulators.hatch.commands.ToggleHatchHolder;
-import frc.robot.subsystems.manipulators.cargo.enums.FlyWheelPower;
+import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 
 @SuppressWarnings("unused")
@@ -31,8 +31,8 @@ public class OI {
             .whileHeld(XboxController.Button.B, new AutoAlign());
 
     public static FlightController flightController = new FlightController(1)
-            .whenPressed(FlightController.Button.TRIGGER, new UseFlywheelPower(FlyWheelPower.OUTTAKE))
-            .whenReleased(FlightController.Button.TRIGGER, new UseFlywheelPower(FlyWheelPower.STOP))
+            .whenPressed(FlightController.Button.TRIGGER, new UseFlywheelPower(FlywheelPower.OUTTAKE))
+            .whenReleased(FlightController.Button.TRIGGER, new UseFlywheelPower(FlywheelPower.STOP))
 
             .whenPressed(FlightController.Button.THUMB, new ToggleCargoPivot())
 

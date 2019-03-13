@@ -12,8 +12,8 @@ public class UseClimbDrive extends Command {
 
     @Override
     protected void execute(){
-        Drivetrain.getInstance().getLeftMotor().setPercentOutput(1);
-        Drivetrain.getInstance().getRightMotor().setPercentOutput(1);
+        Drivetrain.getInstance().getLeftMotor().setPercentOutput(-1);
+        Drivetrain.getInstance().getRightMotor().setPercentOutput(-1);
     }
 
     @Override

@@ -8,6 +8,7 @@
 package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
+import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -16,15 +17,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
-import frc.robot.subsystems.manipulators.cargo.enums.FlyWheelPower;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
+import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.manipulators.cargo.FlyWheel;
+import frc.robot.subsystems.manipulators.cargo.Flywheel;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
@@ -42,7 +43,7 @@ import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 public class Robot extends TimedRobot {
     private Drivetrain drivetrain = Drivetrain.getInstance();
 
-    private FlyWheel flyWheel = FlyWheel.getInstance();
+    private Flywheel flyWheel = Flywheel.getInstance();
     private CargoPivot cargoPivot = CargoPivot.getInstance();
 
     private HatchHolder hatchHolder = HatchHolder.getInstance();
@@ -58,15 +59,12 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
-        Shuffleboard.startRecording();
+        //Shuffleboard.startRecording();
         Trajectories.generateTrajectories();
 
         Shuffleboard.setRecordingFileNameFormat(DriverStation.getInstance().getEventName() + " " + DriverStation.getInstance().getMatchType() + ":" + DriverStation.getInstance().getMatchNumber() + "-{date}");
 
-        Logger.configureLoggingAndConfig(this, false);
-        LiveWindow.disableAllTelemetry();
-
-        CameraServer.getInstance().startAutomaticCapture();
+        //Logger.configureLoggingAndConfig(this, false);
     }
 
     @Override
@@ -102,8 +100,6 @@ public class Robot extends TimedRobot {
         if(OI.flightController.getState(FlightController.Button.INNER_MIDDLE)){
             Autonomous.getInstance().getAutonomousCommand().cancel();
         }
-
-        Drivetrain.getInstance().getLocalization().reset(new Pose2d(LengthKt.getFeet(LiveDashboard.INSTANCE.getPathX()), LengthKt.getFeet(LiveDashboard.INSTANCE.getPathY()), Rotation2dKt.getRadian(LiveDashboard.INSTANCE.getPathHeading())));
     }
 
     @Override
