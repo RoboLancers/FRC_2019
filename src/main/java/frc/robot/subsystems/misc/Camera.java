@@ -1,11 +1,5 @@
 package frc.robot.subsystems.misc;
 
-import com.robolancers.lib.wrappers.vision.JeVois;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.VideoMode;
-import edu.wpi.cscore.VideoSource;
-import edu.wpi.first.wpilibj.SerialPort;
-
 @SuppressWarnings("unused")
 public class Camera{
     private static Camera instance;
@@ -13,7 +7,7 @@ public class Camera{
     //private JeVois frontJeVois, backJeVois;
     //private CvSource defaultCamera;
 
-    private LancerPixy lancerPixy;
+    private PixyArduino pixyArduino;
 
     private Camera(){
         //frontJeVois = new JeVois(SerialPort.Port.kUSB1);
@@ -21,7 +15,7 @@ public class Camera{
 
         //defaultCamera = new CvSource("", new VideoMode(VideoMode.PixelFormat.kUnknown, 0, 0, 0));
 
-        lancerPixy = new LancerPixy();
+        pixyArduino = new PixyArduino();
     }
 
     public static synchronized Camera getInstance() {
@@ -75,11 +69,15 @@ public class Camera{
         return frontJeVois.isTargetVisible() || backJeVois.isTargetVisible();
     }*/
 
-    public LancerPixy getLancerPixy() {
-        return lancerPixy;
+    public PixyArduino getPixyArduino() {
+        return pixyArduino;
     }
 
     public boolean hasLine(){
-        return lancerPixy.hasLine();
+        return pixyArduino.hasLine();
+    }
+
+    public double getLineX(){
+        return pixyArduino.getLineX();
     }
 }

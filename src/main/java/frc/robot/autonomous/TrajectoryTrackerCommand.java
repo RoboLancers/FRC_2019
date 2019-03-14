@@ -5,9 +5,7 @@ import com.team254.lib.physics.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
-import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Camera;
-import io.github.pseudoresonance.pixy2api.Pixy2Line;
 import org.ghrobotics.lib.debug.LiveDashboard;
 import org.ghrobotics.lib.localization.Localization;
 import org.ghrobotics.lib.mathematics.twodim.control.TrajectoryTracker;
@@ -76,10 +74,8 @@ public class TrajectoryTrackerCommand extends Command {
         robotTranslation = driveBase.getRobotPosition().getTranslation();
 
         if(Constants.AREAS.ALL_AREAS.stream().anyMatch(rectangle2d -> rectangle2d.contains(robotTranslation))) {
-            Pixy2Line.Vector vector = Camera.getInstance().getLancerPixy().getVector();
-
-            if (vector != null) {
-                Velocity<Rotation2d> correction = VelocityKt.getVelocity(Rotation2dKt.getRadian(Constants.DRIVETRAIN.VISION_CORRECTION_KP * Camera.getInstance().getLancerPixy().getError(vector)));
+            if (Camera.getInstance().hasLine()) {
+                Velocity<Rotation2d> correction = VelocityKt.getVelocity(Rotation2dKt.getRadian(Constants.DRIVETRAIN.VISION_CORRECTION_KP * (39 - Camera.getInstance().getLineX())));
                 nextState = new TrajectoryTrackerOutput(nextState.getLinearVelocity(), nextState.getLinearAcceleration(), nextState.getAngularVelocity().plus(correction), nextState.getAngularAcceleration());
             }
         }

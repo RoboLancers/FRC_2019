@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Camera;
-import io.github.pseudoresonance.pixy2api.Pixy2Line;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class AutoAlign extends Command {
     private double error, leftPower, rightPower;
 
@@ -16,10 +16,8 @@ public class AutoAlign extends Command {
 
     @Override
     protected void execute() {
-        Pixy2Line.Vector vector = Camera.getInstance().getLancerPixy().getVector();
-
-        if (vector != null) {
-            error = (Constants.CAMERA.MAX_X / 2.0) - Camera.getInstance().getLancerPixy().getAverageX(vector);
+        if (Camera.getInstance().hasLine()) {
+            error = (Constants.CAMERA.MAX_X / 2.0) - Camera.getInstance().getLineX();
             leftPower = (error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
             rightPower = (-error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
 
