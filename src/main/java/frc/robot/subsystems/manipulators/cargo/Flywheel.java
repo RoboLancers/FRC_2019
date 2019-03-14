@@ -4,13 +4,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
-import io.github.oblarg.oblog.Loggable;
 
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
-public class Flywheel extends Subsystem implements Loggable {
+public class Flywheel extends Subsystem{
     private static Flywheel instance;
 
     private TalonSRX flyWheelLeft, flyWheelRight;
@@ -40,9 +38,4 @@ public class Flywheel extends Subsystem implements Loggable {
 
     @Override
     protected void initDefaultCommand() { }
-
-    @Override
-    public String configureLogName(){
-        return "Cargo";
-    }
 }

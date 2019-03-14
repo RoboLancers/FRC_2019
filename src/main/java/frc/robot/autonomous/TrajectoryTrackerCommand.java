@@ -28,7 +28,7 @@ import org.ghrobotics.lib.subsystems.drive.TrajectoryTrackerOutput;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings({"unused"})
+@SuppressWarnings({"unused", "FieldCanBeLocal", "WeakerAccess"})
 public class TrajectoryTrackerCommand extends Command {
     private TrajectoryTracker trajectoryTracker;
     private Supplier<TimedTrajectory<Pose2dWithCurvature>> trajectorySource;

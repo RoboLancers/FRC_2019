@@ -5,11 +5,9 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.SerialPort;
-import io.github.oblarg.oblog.Loggable;
-import io.github.oblarg.oblog.annotations.Log;
 
 @SuppressWarnings("unused")
-public class Camera implements Loggable {
+public class Camera{
     private static Camera instance;
 
     //private JeVois frontJeVois, backJeVois;
@@ -81,7 +79,6 @@ public class Camera implements Loggable {
         return lancerPixy;
     }
 
-    @Log.BooleanBox(name = "Line Detected", rowIndex = 0, columnIndex = 8, width = 2, height = 1)
     public boolean hasLine(){
         return lancerPixy.hasLine();
     }

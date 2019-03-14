@@ -8,69 +8,53 @@
 package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
-import edu.wpi.cscore.VideoSource;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
+import frc.robot.subsystems.manipulators.cargo.Flywheel;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
-import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.manipulators.cargo.Flywheel;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.LED;
-import frc.robot.subsystems.misc.Localization;
 import frc.robot.subsystems.misc.Sensors;
-import io.github.oblarg.oblog.Logger;
-import org.ghrobotics.lib.debug.LiveDashboard;
-import org.ghrobotics.lib.mathematics.twodim.geometry.Pose2d;
-import org.ghrobotics.lib.mathematics.units.LengthKt;
-import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 
 @SuppressWarnings("unused")
 public class Robot extends TimedRobot {
-    private Drivetrain drivetrain = Drivetrain.getInstance();
-
-    private Flywheel flyWheel = Flywheel.getInstance();
-    private CargoPivot cargoPivot = CargoPivot.getInstance();
-
-    private HatchHolder hatchHolder = HatchHolder.getInstance();
-    private HatchEjector hatchEjector = HatchEjector.getInstance();
-
-    private ClimberArm climberArm = ClimberArm.getInstance();
-    private LiftoffPiston liftoffPiston = LiftoffPiston.getInstance();
-
-    private Camera camera = Camera.getInstance();
-    private Localization localization = Localization.getInstance();
-    private Sensors sensors = Sensors.getInstance();
-    private LED led = LED.getInstance();
-
     @Override
     public void robotInit() {
-        //Shuffleboard.startRecording();
+        Drivetrain.getInstance();
+
+        Flywheel.getInstance();
+        CargoPivot.getInstance();
+
+        HatchHolder.getInstance();
+        HatchEjector.getInstance();
+
+        ClimberArm.getInstance();
+        LiftoffPiston.getInstance();
+
+        Camera.getInstance();
+        Sensors.getInstance();
+        LED.getInstance();
+
         Trajectories.generateTrajectories();
 
         Shuffleboard.setRecordingFileNameFormat(DriverStation.getInstance().getEventName() + " " + DriverStation.getInstance().getMatchType() + ":" + DriverStation.getInstance().getMatchNumber() + "-{date}");
-
-        //Logger.configureLoggingAndConfig(this, false);
     }
 
     @Override
     public void robotPeriodic() {
-        //Camera.getInstance().getLancerPixy().update();
-        Logger.updateEntries();
         Scheduler.getInstance().run();
     }
 

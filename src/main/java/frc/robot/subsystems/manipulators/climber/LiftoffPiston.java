@@ -4,10 +4,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
-import io.github.oblarg.oblog.Loggable;
-import io.github.oblarg.oblog.annotations.Log;
 
-public class LiftoffPiston extends Subsystem implements Loggable {
+public class LiftoffPiston extends Subsystem{
     private static LiftoffPiston instance;
 
     private DoubleSolenoid liftOff;
@@ -27,16 +25,10 @@ public class LiftoffPiston extends Subsystem implements Loggable {
         liftOff.set(liftoffState.getValue());
     }
 
-    @Log.ToString(name = "Liftoff State", rowIndex = 0, columnIndex = 6, width = 2, height = 1)
     public LiftoffState get(){
         return liftOff.get() == LiftoffState.UP.getValue() ? LiftoffState.UP : LiftoffState.DOWN;
     }
 
     @Override
     protected void initDefaultCommand() { }
-
-    @Override
-    public String configureLogName(){
-        return "Climber";
-    }
 }

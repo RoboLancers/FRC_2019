@@ -66,7 +66,6 @@ dependencies {
 
     compile('com.github.5190GreenHopeRobotics:FalconLibrary:b4feb6c543')
     compile('com.github.RoboLancers:LancerLibrary:caeb9697d3')
-    compile('com.github.bchen290:Oblog:b5e40640aa')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

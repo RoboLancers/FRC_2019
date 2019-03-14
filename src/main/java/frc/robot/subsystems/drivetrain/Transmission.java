@@ -12,6 +12,7 @@ import org.ghrobotics.lib.wrappers.ctre.FalconSRX;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Transmission {
     private FalconSRX<Length> master;
     private List<FalconSRX<Length>> allMotors;

@@ -7,6 +7,7 @@ import io.github.pseudoresonance.pixy2api.Pixy2Line;
 import io.github.pseudoresonance.pixy2api.links.SPILink;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class LancerPixy {
     private Pixy2 pixy2;
     private static final int argument = 0;
