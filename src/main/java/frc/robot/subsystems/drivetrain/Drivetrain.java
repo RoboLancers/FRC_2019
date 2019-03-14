@@ -6,6 +6,7 @@ import com.team254.lib.physics.DifferentialDrive;
 import edu.wpi.first.wpilibj.Notifier;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
+import frc.robot.autonomous.TrajectoryTrackerCommand;
 import frc.robot.subsystems.drivetrain.commands.UseDrivetrain;
 import frc.robot.subsystems.drivetrain.enums.TransmissionSide;
 import frc.robot.subsystems.misc.Sensors;
@@ -14,6 +15,8 @@ import org.ghrobotics.lib.localization.Localization;
 import org.ghrobotics.lib.localization.TankEncoderLocalization;
 import org.ghrobotics.lib.mathematics.twodim.control.RamseteTracker;
 import org.ghrobotics.lib.mathematics.twodim.control.TrajectoryTracker;
+import org.ghrobotics.lib.mathematics.twodim.geometry.Pose2dWithCurvature;
+import org.ghrobotics.lib.mathematics.twodim.trajectory.types.TimedTrajectory;
 import org.ghrobotics.lib.mathematics.units.Length;
 import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.wrappers.FalconMotor;
@@ -107,6 +110,14 @@ public class Drivetrain extends TankDriveSubsystem{
 
     public LancerPID getTurningPID(){
         return turningPID;
+    }
+
+    public TrajectoryTrackerCommand followTrajectory(TimedTrajectory<Pose2dWithCurvature> trajectory){
+        return followTrajectory(trajectory, false);
+    }
+
+    public TrajectoryTrackerCommand followTrajectory(TimedTrajectory<Pose2dWithCurvature> trajectory, boolean reset){
+        return new TrajectoryTrackerCommand(this, this, () -> trajectory, reset);
     }
 
     @Override
