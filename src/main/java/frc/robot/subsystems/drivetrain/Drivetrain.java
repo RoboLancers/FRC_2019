@@ -49,7 +49,7 @@ public class Drivetrain extends TankDriveSubsystem{
             LiveDashboard.INSTANCE.setRobotX(localization.getRobotPosition().getTranslation().getX().getFeet());
             LiveDashboard.INSTANCE.setRobotY(localization.getRobotPosition().getTranslation().getY().getFeet());
             LiveDashboard.INSTANCE.setRobotHeading(localization.getRobotPosition().getRotation().getRadian());
-        }).startPeriodic(0.01);
+        }).startPeriodic(0.02);
 
         trajectoryTracker = new RamseteTracker(Constants.PATH_FOLLOWING.RAMSETE_BETA, Constants.PATH_FOLLOWING.RAMSETE_ZETA);
 

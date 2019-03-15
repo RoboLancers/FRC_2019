@@ -11,6 +11,7 @@ import com.robolancers.lib.wrappers.hid.FlightController;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
         Trajectories.generateTrajectories();
 
         Shuffleboard.setRecordingFileNameFormat(DriverStation.getInstance().getEventName() + " " + DriverStation.getInstance().getMatchType() + ":" + DriverStation.getInstance().getMatchNumber() + "-{date}");
+        LiveWindow.disableAllTelemetry();
     }
 
     @Override
