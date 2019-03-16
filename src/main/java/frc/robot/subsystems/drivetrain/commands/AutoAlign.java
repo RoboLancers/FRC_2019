@@ -1,6 +1,7 @@
 package frc.robot.subsystems.drivetrain.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.Drivetrain;
@@ -21,8 +22,8 @@ public class AutoAlign extends Command {
             leftPower = (error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
             rightPower = (-error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
 
-            Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, leftPower);
-            Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, rightPower);
+            Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, leftPower, DemandType.ArbitraryFeedForward, Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
+            Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, rightPower, DemandType.ArbitraryFeedForward, Constants.DRIVETRAIN.kStaticFrictionPercentRight);
         }
     }
 
