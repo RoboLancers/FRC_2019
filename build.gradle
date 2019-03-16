@@ -65,7 +65,7 @@ dependencies {
     simulation "edu.wpi.first.halsim:halsim_ds_socket:${wpi.wpilibVersion}:${wpi.platforms.desktop}@zip"
 
     compile('com.github.5190GreenHopeRobotics:FalconLibrary:b4feb6c543')
-    compile('com.github.RoboLancers:LancerLibrary:a1f9e67b79')
+    compile('com.github.RoboLancers:LancerLibrary:edcb204a3e')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

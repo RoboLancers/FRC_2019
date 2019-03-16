@@ -11,16 +11,20 @@ public class HatchHolder extends Subsystem{
 
     private DoubleSolenoid hatchHolder;
 
+    private HatchHolderState state;
+
     private HatchHolder(){
         hatchHolder = new DoubleSolenoid(RobotMap.HATCH.MODULE, RobotMap.HATCH.HATCH_HOLDER_UP, RobotMap.HATCH.HATCH_HOLDER_DOWN);
+        state = HatchHolderState.NEUTRAL;
     }
 
     public HatchHolderState get(){
-        return hatchHolder.get() == HatchHolderState.HOLD.getValue() ? HatchHolderState.HOLD : HatchHolderState.RELEASE;
+        return state;
     }
 
     public void set(HatchHolderState hatchHolderState){
         hatchHolder.set(hatchHolderState.getValue());
+        state = hatchHolderState;
     }
 
     @Override

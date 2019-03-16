@@ -16,6 +16,5 @@ public class UseHatchHolder extends InstantCommand {
     @Override
     protected void initialize() {
         HatchHolder.getInstance().set(holderState);
-        DriverStation.reportError("HatchHolder", false);
     }
 }

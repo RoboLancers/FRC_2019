@@ -12,8 +12,11 @@ public class CargoPivot extends Subsystem{
 
     private DoubleSolenoid cargoPivot;
 
+    private CargoPivotState state;
+
     private CargoPivot() {
         cargoPivot = new DoubleSolenoid(RobotMap.CARGO.PIVOT_UP, RobotMap.CARGO.PIVOT_DOWN);
+        state = CargoPivotState.NEUTRAL;
     }
 
     public synchronized static CargoPivot getInstance() {
@@ -25,10 +28,11 @@ public class CargoPivot extends Subsystem{
 
     public void set(CargoPivotState cargoPivotState) {
         cargoPivot.set(cargoPivotState.getValue());
+        state = cargoPivotState;
     }
 
     public CargoPivotState get() {
-        return cargoPivot.get() == CargoPivotState.UP.getValue() ? CargoPivotState.UP : CargoPivotState.DOWN;
+        return state;
     }
 
     @Override

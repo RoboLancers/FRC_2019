@@ -10,8 +10,11 @@ public class LiftoffPiston extends Subsystem{
 
     private DoubleSolenoid liftOff;
 
+    private LiftoffState state;
+
     private LiftoffPiston() {
         liftOff = new DoubleSolenoid(RobotMap.CLIMBER.LIFTOFF_PISTON_UP, RobotMap.CLIMBER.LIFTOFF_PISTON_DOWN);
+        state = LiftoffState.NEUTRAL;
     }
 
     public synchronized static LiftoffPiston getInstance() {
@@ -23,10 +26,11 @@ public class LiftoffPiston extends Subsystem{
 
     public void set(LiftoffState liftoffState) {
         liftOff.set(liftoffState.getValue());
+        state = liftoffState;
     }
 
     public LiftoffState get(){
-        return liftOff.get() == LiftoffState.UP.getValue() ? LiftoffState.UP : LiftoffState.DOWN;
+        return state;
     }
 
     @Override

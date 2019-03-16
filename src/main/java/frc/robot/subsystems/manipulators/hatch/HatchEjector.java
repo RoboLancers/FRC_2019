@@ -12,6 +12,8 @@ public class HatchEjector extends Subsystem{
     private DoubleSolenoid ejector;
     private DigitalInput hatchDetector;
 
+    private HatchEjectorState state;
+
     private HatchEjector() {
         ejector = new DoubleSolenoid(RobotMap.HATCH.MODULE, RobotMap.HATCH.EJECTOR_IN, RobotMap.HATCH.EJECTOR_OUT);
 
@@ -27,10 +29,11 @@ public class HatchEjector extends Subsystem{
 
     public void set(HatchEjectorState hatchEjectorState) {
         ejector.set(hatchEjectorState.getValue());
+        state = hatchEjectorState;
     }
 
     public HatchEjectorState get(){
-        return ejector.get() == HatchEjectorState.EJECT.getValue() ? HatchEjectorState.EJECT : HatchEjectorState.RETRACT;
+        return state;
     }
 
     public boolean hasHatch() {

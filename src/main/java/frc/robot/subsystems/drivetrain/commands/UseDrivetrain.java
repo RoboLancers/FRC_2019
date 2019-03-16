@@ -16,7 +16,7 @@ public class UseDrivetrain extends Command {
     @Override
     protected void execute() {
         double throttle = OI.xboxController.getAxisValue(XboxController.Axis.LEFT_Y);
-        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X);
+        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X) * 0.4;
 
         double leftVelocity = (throttle + turn);
         double rightVelocity = (throttle - turn);

@@ -3,7 +3,7 @@ package frc.robot.subsystems.manipulators.hatch.enums;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public enum HatchHolderState {
-    RELEASE(DoubleSolenoid.Value.kReverse), HOLD(DoubleSolenoid.Value.kForward);
+    RELEASE(DoubleSolenoid.Value.kReverse), HOLD(DoubleSolenoid.Value.kForward), NEUTRAL(DoubleSolenoid.Value.kOff);
 
     private DoubleSolenoid.Value value;
 
