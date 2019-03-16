@@ -83,7 +83,7 @@ public class Constants {
         public static final double TURNING_kI = 0.0;
         public static final double TURNING_kD = 0.0;
 
-        public static final double VISION_CORRECTION_KP = 0.01;
+        public static final double VISION_CORRECTION_KP = 2;
 
         public static final double ALLOWABLE_ERROR = 2.5;
 
@@ -205,6 +205,8 @@ public class Constants {
     public static final class CAMERA{
         public static final int MAX_X = 78;
         public static final int MAX_Y = 51;
+
+        public static final int MIDDLE_X = MAX_X / 2;
 
         public static final double TURNING_kP = 0.001;
         public static final double FORWARD = 0.15;
