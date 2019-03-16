@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
-import frc.robot.subsystems.manipulators.cargo.CargoBlock;
-import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
+import frc.robot.subsystems.manipulators.cargo.Flywheel;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
@@ -38,7 +37,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         Drivetrain.getInstance();
 
-        CargoBlock.getInstance();
+        Flywheel.getInstance();
         CargoPivot.getInstance();
 
         HatchHolder.getInstance();
@@ -101,7 +100,6 @@ public class Robot extends TimedRobot {
         LiftoffPiston.getInstance().set(LiftoffState.UP);
 
         CargoPivot.getInstance().set(CargoPivotState.UP);
-        CargoBlock.getInstance().set(CargoBlockState.BLOCK);
 
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
         HatchHolder.getInstance().set(HatchHolderState.HOLD);

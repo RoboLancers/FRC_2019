@@ -1,3 +1,4 @@
+/*
 package frc.robot.subsystems.manipulators.cargo.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
@@ -17,3 +18,4 @@ public class UseCargoBlock extends InstantCommand {
         CargoBlock.getInstance().set(cargoBlockState);
     }
 }
+*/

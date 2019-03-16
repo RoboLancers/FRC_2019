@@ -1,3 +1,4 @@
+/*
 package frc.robot.subsystems.manipulators.cargo;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -40,4 +41,4 @@ public class CargoBlock extends Subsystem{
     public String configureLogName(){
         return "Cargo";
     }
-}
+}*/

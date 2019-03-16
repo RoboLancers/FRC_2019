@@ -5,8 +5,8 @@ import com.robolancers.lib.wrappers.hid.XboxController;
 import frc.robot.subsystems.drivetrain.commands.AutoAlign;
 import frc.robot.subsystems.drivetrain.commands.Turning;
 import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
-import frc.robot.subsystems.manipulators.cargo.commands.UseCargoBlock;
-import frc.robot.subsystems.manipulators.cargo.enums.CargoBlockState;
+import frc.robot.subsystems.manipulators.cargo.commands.UseFlywheel;
+import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseAutoClimb;
 import frc.robot.subsystems.manipulators.climber.commands.UseClimberArmPower;
 import frc.robot.subsystems.manipulators.climber.commands.UseInstantLiftoff;
@@ -31,8 +31,8 @@ public class OI {
             .whileHeld(XboxController.Button.B, new AutoAlign());
 
     public static FlightController flightController = new FlightController(1)
-            .whenPressed(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.UNBLOCK))
-            .whenReleased(FlightController.Button.TRIGGER, new UseCargoBlock(CargoBlockState.BLOCK))
+            .whenPressed(FlightController.Button.TRIGGER, new UseFlywheel(FlywheelPower.OUTTAKE))
+            .whenReleased(FlightController.Button.TRIGGER, new UseFlywheel(FlywheelPower.STOP))
 
             .whenPressed(FlightController.Button.THUMB, new ToggleCargoPivot())
 

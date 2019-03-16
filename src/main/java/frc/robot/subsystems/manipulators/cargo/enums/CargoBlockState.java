@@ -1,3 +1,4 @@
+/*
 package frc.robot.subsystems.manipulators.cargo.enums;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -15,4 +16,4 @@ public enum CargoBlockState {
     public DoubleSolenoid.Value getValue() {
         return value;
     }
-}
+}*/
