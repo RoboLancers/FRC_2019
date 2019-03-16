@@ -99,18 +99,18 @@ public class Constants {
         public static final double kStaticFrictionPercentRight = 0.15;
 
         // Half theoretical, half empirical
-        public static final double kVLeft = 0.2127;
-        public static final double kVRight = 0.2459;
+        //public static final double kVLeft = 0.2127;
+        //public static final double kVRight = 0.2459;
 
-        //public static final double kVLeft = 0.11;
-        //public static final double kVRight = 0.12;
+        public static final double kVLeft = 0.11;
+        public static final double kVRight = 0.12;
 
         // Theoretical
-        public static final double kALeft = 0.108;
-        public static final double kARight = 0.108;
+        //public static final double kALeft = 0.108;
+        //public static final double kARight = 0.108;
 
-        //public static final double kALeft = 0.08;
-        //public static final double kARight = 0.06;
+        public static final double kALeft = 0.08;
+        public static final double kARight = 0.06;
 
         public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
         public static final Length WHEEL_RADIUS = LengthKt.getInch(3);
@@ -207,6 +207,6 @@ public class Constants {
         public static final int MAX_Y = 51;
 
         public static final double TURNING_kP = 0.001;
-        public static final double FORWARD = 0.25;
+        public static final double FORWARD = 0.15;
     }
 }
