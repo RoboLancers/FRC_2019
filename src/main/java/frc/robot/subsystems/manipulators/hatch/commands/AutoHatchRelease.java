@@ -13,7 +13,7 @@ public class AutoHatchRelease extends CommandGroup {
         addSequential(new UseHatchHolder(HatchHolderState.RELEASE));
         addSequential(new WaitCommand(0.2));
         addSequential(new UseHatchEjector(HatchEjectorState.EJECT));
-        addSequential(new WaitCommand(0.25));
+        addSequential(new WaitCommand(0.75));
         addSequential(new UseHatchEjector(HatchEjectorState.RETRACT));
     }
 

@@ -2,7 +2,7 @@ package frc.robot.subsystems.manipulators.cargo.enums;
 
 @SuppressWarnings("unused")
 public enum FlywheelPower {
-    OUTTAKE(-0.75), INTAKE(0.75), STOP(0);
+    OUTTAKE(-1), INTAKE(0.75), STOP(0), SLOW_OUTTAKE(-0.1);
 
     private double power;
 

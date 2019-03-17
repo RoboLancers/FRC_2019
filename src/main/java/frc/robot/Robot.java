@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
 import frc.robot.subsystems.manipulators.cargo.Flywheel;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
+import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
@@ -59,8 +59,6 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putBoolean("Has Line", Camera.getInstance().hasLine());
-        SmartDashboard.putNumber("Line X", Camera.getInstance().getLineX());
     }
 
     @Override
@@ -99,9 +97,13 @@ public class Robot extends TimedRobot {
 
         LiftoffPiston.getInstance().set(LiftoffState.UP);
 
-        CargoPivot.getInstance().set(CargoPivotState.UP);
+        CargoPivot.getInstance().set(CargoPivotState.DOWN);
 
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
         HatchHolder.getInstance().set(HatchHolderState.HOLD);
+    }
+
+    @Override
+    public void teleopPeriodic() {
     }
 }
