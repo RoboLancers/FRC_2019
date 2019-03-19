@@ -36,6 +36,8 @@ public class ClimberArm extends Subsystem{
 
         climberArm.setOpenLoopRamp(TimeUnitsKt.getSecond(Constants.CLIMBER.RAMP_RATE));
 
+        climberArm.enableCurrentLimit(false);
+
         climberArm.configAllowableClosedloopError(Constants.CLIMBER.PID_SLOT_INDEX, Constants.CLIMBER.ALLOWABLE_ARM_ERROR);
 
         armLimitSwitch = new AnalogInput(RobotMap.CLIMBER.ARM_LIMIT_SWITCH);
