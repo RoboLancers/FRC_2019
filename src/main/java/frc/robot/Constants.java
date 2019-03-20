@@ -209,4 +209,9 @@ public class Constants {
         public static final double TURNING_kP = 0.001;
         public static final double FORWARD = 0.15;
     }
+
+    public static final class PNEUMATICS {
+        public static final int MINIMUM_PRESSURE = 70;
+        public static final int MAXIMUM_PRESSURE = 100;
+    }
 }
