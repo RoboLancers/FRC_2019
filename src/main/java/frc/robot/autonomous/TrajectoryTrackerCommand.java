@@ -4,8 +4,6 @@ import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
 import com.team254.lib.physics.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
-import frc.robot.subsystems.misc.Camera;
 import org.ghrobotics.lib.debug.LiveDashboard;
 import org.ghrobotics.lib.localization.Localization;
 import org.ghrobotics.lib.mathematics.twodim.control.TrajectoryTracker;
@@ -16,10 +14,7 @@ import org.ghrobotics.lib.mathematics.twodim.trajectory.types.TimedEntry;
 import org.ghrobotics.lib.mathematics.twodim.trajectory.types.TimedTrajectory;
 import org.ghrobotics.lib.mathematics.twodim.trajectory.types.TrajectorySamplePoint;
 import org.ghrobotics.lib.mathematics.units.LengthKt;
-import org.ghrobotics.lib.mathematics.units.Rotation2d;
-import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.mathematics.units.TimeUnitsKt;
-import org.ghrobotics.lib.mathematics.units.derivedunits.Velocity;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 import org.ghrobotics.lib.subsystems.drive.TrajectoryTrackerDriveBase;
 import org.ghrobotics.lib.subsystems.drive.TrajectoryTrackerOutput;
@@ -42,11 +37,11 @@ public class TrajectoryTrackerCommand extends Command {
     private TrajectorySamplePoint<TimedEntry<Pose2dWithCurvature>> referencePoint;
     private Pose2d referencePose;
 
-    public TrajectoryTrackerCommand(TankDriveSubsystem tankDriveSubsystem, TrajectoryTrackerDriveBase driveBase, Supplier<TimedTrajectory<Pose2dWithCurvature>> trajectorySource){
+    public TrajectoryTrackerCommand(TankDriveSubsystem tankDriveSubsystem, TrajectoryTrackerDriveBase driveBase, Supplier<TimedTrajectory<Pose2dWithCurvature>> trajectorySource) {
         this(tankDriveSubsystem, driveBase, trajectorySource, false);
     }
 
-    public TrajectoryTrackerCommand(TankDriveSubsystem tankDriveSubsystem, TrajectoryTrackerDriveBase driveBase, Supplier<TimedTrajectory<Pose2dWithCurvature>> trajectorySource, boolean reset){
+    public TrajectoryTrackerCommand(TankDriveSubsystem tankDriveSubsystem, TrajectoryTrackerDriveBase driveBase, Supplier<TimedTrajectory<Pose2dWithCurvature>> trajectorySource, boolean reset) {
         requires(tankDriveSubsystem);
 
         this.trajectoryTracker = driveBase.getTrajectoryTracker();
@@ -58,10 +53,10 @@ public class TrajectoryTrackerCommand extends Command {
     }
 
     @Override
-    protected void initialize(){
+    protected void initialize() {
         trajectoryTracker.reset(trajectorySource.get());
 
-        if(reset) {
+        if (reset) {
             localization.reset(trajectorySource.get().getFirstState().component1().getPose());
         }
 
@@ -69,7 +64,7 @@ public class TrajectoryTrackerCommand extends Command {
     }
 
     @Override
-    protected void execute(){
+    protected void execute() {
         nextState = trajectoryTracker.nextState(driveBase.getRobotPosition(), TimeUnitsKt.getMillisecond(System.currentTimeMillis()));
         robotTranslation = driveBase.getRobotPosition().getTranslation();
 
@@ -88,7 +83,7 @@ public class TrajectoryTrackerCommand extends Command {
 
         referencePoint = trajectoryTracker.getReferencePoint();
 
-        if(referencePoint != null){
+        if (referencePoint != null) {
             referencePose = referencePoint.getState().getState().getPose();
 
             LiveDashboard.INSTANCE.setPathX(referencePose.getTranslation().getX().getFeet());
@@ -101,7 +96,7 @@ public class TrajectoryTrackerCommand extends Command {
     }
 
     @Override
-    protected void end(){
+    protected void end() {
         driveBase.zeroOutputs();
         LiveDashboard.INSTANCE.setFollowingPath(false);
     }

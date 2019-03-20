@@ -7,25 +7,25 @@ import frc.robot.OI;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 
 public class UseClimberArmJoystick extends Command {
-    public UseClimberArmJoystick(){
+    public UseClimberArmJoystick() {
         requires(ClimberArm.getInstance());
     }
 
     @Override
-    protected void execute(){
-        ClimberArm.getInstance().set(OI.flightController.getAxisValue(FlightController.Axis.Y));
-
-//        if(OI.xboxController.getState(XboxController.Trigger.LEFT_TRIGGER)) {
-//            ClimberArm.getInstance().set(OI.xboxController.getAxisValue(XboxController.Axis.LEFT_TRIGGER));
-//        } else if (OI.xboxController.getState(XboxController.Trigger.RIGHT_TRIGGER)) {
-//            ClimberArm.getInstance().set(-OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_TRIGGER));
-//        } else{
-//            ClimberArm.getInstance().set(0);
-//        }
+    protected void execute() {
+        if (Math.abs(OI.flightController.getAxisValue(FlightController.Axis.Y)) > 0.1) {
+            ClimberArm.getInstance().set(OI.flightController.getAxisValue(FlightController.Axis.Y));
+        } else if (OI.xboxController.getAxisValue(XboxController.Axis.LEFT_TRIGGER) > 0.1) {
+            ClimberArm.getInstance().set(OI.xboxController.getAxisValue(XboxController.Axis.LEFT_TRIGGER));
+        } else if (OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_TRIGGER) > 0.1) {
+            ClimberArm.getInstance().set(-OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_TRIGGER));
+        } else {
+            ClimberArm.getInstance().set(0);
+        }
     }
 
     @Override
-    protected boolean isFinished(){
+    protected boolean isFinished() {
         return false;
     }
 }

@@ -24,15 +24,13 @@ public class Constants {
         public static final Velocity<Length> MAX_VELOCITY = VelocityKt.getVelocity(LengthKt.getFeet(8));
         public static final Acceleration<Length> MAX_ACCELERATION = AccelerationKt.getAcceleration(LengthKt.getFeet(4));
         public static final Volt MAX_VOLTAGE = VoltKt.getVolt(10);
-
+        public static final double RAMSETE_BETA = 1.7;
+        public static final double RAMSETE_ZETA = 0.8;
         public static List<TimingConstraint<Pose2dWithCurvature>> CONSTRAINTS = Arrays.asList(
                 new DifferentialDriveDynamicsConstraint(DRIVETRAIN.DIFFERENTIAL_DRIVE, MAX_VOLTAGE),
                 new CentripetalAccelerationConstraint(AccelerationKt.getAcceleration(LengthKt.getFeet(10))),
                 new VelocityLimitRegionConstraint(new Rectangle2d(LengthKt.getFeet(0.0), LengthKt.getFeet(7.0), LengthKt.getFeet(8.0), LengthKt.getFeet(13.0)), VelocityKt.getVelocity(LengthKt.getFeet(2)))
         );
-
-        public static final double RAMSETE_BETA = 1.7;
-        public static final double RAMSETE_ZETA = 0.8;
     }
 
     public static final class ROBOT {
@@ -202,7 +200,7 @@ public class Constants {
         public static final List<Rectangle2d> ALL_AREAS = Arrays.asList(CARGOSHIP_BOX, TOP_ROCKET_BOX, BOTTOM_ROCKET_BOX, TOP_LOADING_STATION_BOX, BOTTOM_LOADING_STATION_BOX);
     }
 
-    public static final class CAMERA{
+    public static final class CAMERA {
         public static final int MAX_X = 78;
         public static final int MAX_Y = 51;
 

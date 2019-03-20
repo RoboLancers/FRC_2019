@@ -2,9 +2,7 @@ package frc.robot.subsystems.drivetrain.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
-import com.robolancers.lib.auto.LancerPID;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Sensors;
@@ -29,7 +27,7 @@ public class Turning extends Command {
         error = target - Sensors.getInstance().getFusedHeading();
         output = error * Constants.DRIVETRAIN.TURNING_kP;
         Drivetrain.getInstance().getLeftTransmission().getMaster().set(ControlMode.PercentOutput, -output, DemandType.ArbitraryFeedForward, Math.signum(-output) * Constants.DRIVETRAIN.kStaticFrictionPercentLeft);
-        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput,output, DemandType.ArbitraryFeedForward, Math.signum(output) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
+        Drivetrain.getInstance().getRightTransmission().getMaster().set(ControlMode.PercentOutput, output, DemandType.ArbitraryFeedForward, Math.signum(output) * Constants.DRIVETRAIN.kStaticFrictionPercentRight);
     }
 
     @Override

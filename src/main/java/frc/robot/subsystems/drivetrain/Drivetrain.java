@@ -23,7 +23,7 @@ import org.ghrobotics.lib.wrappers.FalconMotor;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings({"unused"})
-public class Drivetrain extends TankDriveSubsystem{
+public class Drivetrain extends TankDriveSubsystem {
     private static Drivetrain instance;
 
     private Transmission left, right;
@@ -103,20 +103,20 @@ public class Drivetrain extends TankDriveSubsystem{
         return trajectoryTracker;
     }
 
-    public void resetEncoders(){
+    public void resetEncoders() {
         left.getMaster().setSelectedSensorPosition(0);
         right.getMaster().setSelectedSensorPosition(0);
     }
 
-    public LancerPID getTurningPID(){
+    public LancerPID getTurningPID() {
         return turningPID;
     }
 
-    public TrajectoryTrackerCommand followTrajectory(TimedTrajectory<Pose2dWithCurvature> trajectory){
+    public TrajectoryTrackerCommand followTrajectory(TimedTrajectory<Pose2dWithCurvature> trajectory) {
         return followTrajectory(trajectory, false);
     }
 
-    public TrajectoryTrackerCommand followTrajectory(TimedTrajectory<Pose2dWithCurvature> trajectory, boolean reset){
+    public TrajectoryTrackerCommand followTrajectory(TimedTrajectory<Pose2dWithCurvature> trajectory, boolean reset) {
         return new TrajectoryTrackerCommand(this, this, () -> trajectory, reset);
     }
 

@@ -6,7 +6,7 @@ import com.robolancers.lib.wrappers.sensors.REVAnalogPressureSensor;
 import frc.robot.RobotMap;
 
 @SuppressWarnings("unused")
-public class Sensors{
+public class Sensors {
     private static Sensors instance;
 
     private PigeonIMU pigeonIMU;
@@ -30,11 +30,11 @@ public class Sensors{
         return instance;
     }
 
-    private void updateYawPitchRoll(){
+    private void updateYawPitchRoll() {
         pigeonIMU.getYawPitchRoll(yawPitchRoll);
     }
 
-    public double getFusedHeading(){
+    public double getFusedHeading() {
         return pigeonIMU.getFusedHeading();
     }
 
@@ -57,7 +57,7 @@ public class Sensors{
         pigeonIMU.setFusedHeading(0);
     }
 
-    public double getPressure(){
+    public double getPressure() {
         return analogPressureSensor.getPressure();
     }
 }

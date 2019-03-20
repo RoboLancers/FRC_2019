@@ -4,12 +4,12 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
-public class Camera{
+public class Camera {
     private static Camera instance;
 
     private UsbCamera frontLifecam, backLifecam;
 
-    private Camera(){
+    private Camera() {
         frontLifecam = CameraServer.getInstance().startAutomaticCapture();
         frontLifecam.setResolution(320, 240);
         frontLifecam.setFPS(15);

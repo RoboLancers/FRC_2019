@@ -17,15 +17,15 @@ public class AutoHatchClamp extends Command {
     protected void execute() {
         currentState = HatchEjector.getInstance().hasHatch();
 
-        if(!previousState && currentState) {
+        if (!previousState && currentState) {
             HatchHolder.getInstance().set(HatchHolderState.HOLD);
         }
 
         previousState = currentState;
 
-        if(HatchHolder.getInstance().get() == HatchHolderState.HOLD){
+        if (HatchHolder.getInstance().get() == HatchHolderState.HOLD) {
             OI.xboxController.setRumble(true);
-        }else{
+        } else {
             OI.xboxController.setRumble(false);
         }
     }

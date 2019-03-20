@@ -16,19 +16,18 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
+import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.commands.UseDrivetrain;
+import frc.robot.subsystems.manipulators.cargo.CargoPivot;
 import frc.robot.subsystems.manipulators.cargo.Flywheel;
 import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
-import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
+import frc.robot.subsystems.manipulators.climber.ClimberArm;
+import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
-import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.manipulators.cargo.CargoPivot;
-import frc.robot.subsystems.manipulators.climber.ClimberArm;
-import frc.robot.subsystems.manipulators.climber.LiftoffPiston;
 import frc.robot.subsystems.misc.Camera;
 import frc.robot.subsystems.misc.LED;
 import frc.robot.subsystems.misc.Sensors;
@@ -65,7 +64,7 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void disabledPeriodic(){
+    public void disabledPeriodic() {
         Autonomous.getInstance().update();
     }
 
@@ -79,22 +78,21 @@ public class Robot extends TimedRobot {
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
         HatchHolder.getInstance().set(HatchHolderState.HOLD);
 
-        if(Autonomous.getInstance().getAutonomousCommand() != null){
+        if (Autonomous.getInstance().getAutonomousCommand() != null) {
             Autonomous.getInstance().getAutonomousCommand().start();
         }
-
     }
 
     @Override
-    public void autonomousPeriodic(){
-        if(OI.flightController.getState(FlightController.Button.INNER_MIDDLE)){
+    public void autonomousPeriodic() {
+        if (OI.flightController.getState(FlightController.Button.INNER_MIDDLE)) {
             Autonomous.getInstance().getAutonomousCommand().cancel();
         }
     }
 
     @Override
     public void teleopInit() {
-        if(Autonomous.getInstance().getAutonomousCommand() != null){
+        if (Autonomous.getInstance().getAutonomousCommand() != null) {
             Autonomous.getInstance().getAutonomousCommand().cancel();
         }
 

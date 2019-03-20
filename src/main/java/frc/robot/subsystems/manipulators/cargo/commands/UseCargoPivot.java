@@ -1,9 +1,8 @@
 package frc.robot.subsystems.manipulators.cargo.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
+import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 
 public class UseCargoPivot extends InstantCommand {
     private CargoPivotState cargoPivotState;

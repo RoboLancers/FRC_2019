@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.climber.enums.LiftoffState;
 
-public class LiftoffPiston extends Subsystem{
+public class LiftoffPiston extends Subsystem {
     private static LiftoffPiston instance;
 
     private DoubleSolenoid liftOff;
@@ -29,10 +29,11 @@ public class LiftoffPiston extends Subsystem{
         state = liftoffState;
     }
 
-    public LiftoffState get(){
+    public LiftoffState get() {
         return state;
     }
 
     @Override
-    protected void initDefaultCommand() { }
+    protected void initDefaultCommand() {
+    }
 }

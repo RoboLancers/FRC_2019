@@ -18,8 +18,8 @@ public class AutoHatchRelease extends CommandGroup {
     }
 
     @Override
-    protected void initialize(){
-        if(RobotController.isBrownedOut()){
+    protected void initialize() {
+        if (RobotController.isBrownedOut()) {
             cancel();
             new UseLED(Blinkin.PatternType.STROBE_RED).start();
         }

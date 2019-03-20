@@ -1,6 +1,7 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.shuffleboard.*;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.autonomous.enums.Objective;
 import frc.robot.autonomous.enums.StartingPosition;
@@ -14,30 +15,22 @@ public class NetworkInterface {
     private SendableChooser<StartingPosition> startingPositionChooser;
     private SendableChooser<Objective> objectiveChooser;
 
-    private NetworkInterface(){
+    private NetworkInterface() {
         competitionTab = Shuffleboard.getTab("Robot");
 
         startingPositionChooser = new SendableChooser<>();
         objectiveChooser = new SendableChooser<>();
 
-        for(StartingPosition startingPosition : StartingPosition.values()){
+        for (StartingPosition startingPosition : StartingPosition.values()) {
             startingPositionChooser.addOption(startingPosition.name(), startingPosition);
         }
 
-        for(Objective objective : Objective.values()){
+        for (Objective objective : Objective.values()) {
             objectiveChooser.addOption(objective.name(), objective);
         }
 
         competitionTab.add("Starting Position Chooser", startingPositionChooser).withPosition(0, 0).withSize(2, 1);
         competitionTab.add("Objective Chooser", objectiveChooser).withPosition(2, 0).withSize(2, 1);
-    }
-
-    public SendableChooser<StartingPosition> getStartingPositionChooser(){
-        return startingPositionChooser;
-    }
-
-    public SendableChooser<Objective> getObjectiveChooser(){
-        return objectiveChooser;
     }
 
     public static synchronized NetworkInterface getInstance() {
@@ -46,5 +39,13 @@ public class NetworkInterface {
         }
 
         return instance;
+    }
+
+    public SendableChooser<StartingPosition> getStartingPositionChooser() {
+        return startingPositionChooser;
+    }
+
+    public SendableChooser<Objective> getObjectiveChooser() {
+        return objectiveChooser;
     }
 }

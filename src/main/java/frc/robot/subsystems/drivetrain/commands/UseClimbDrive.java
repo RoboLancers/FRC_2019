@@ -6,12 +6,12 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.misc.Sensors;
 
 public class UseClimbDrive extends Command {
-    public UseClimbDrive(){
+    public UseClimbDrive() {
         requires(Drivetrain.getInstance());
     }
 
     @Override
-    protected void execute(){
+    protected void execute() {
         Drivetrain.getInstance().getLeftMotor().setPercentOutput(-1);
         Drivetrain.getInstance().getRightMotor().setPercentOutput(-1);
     }

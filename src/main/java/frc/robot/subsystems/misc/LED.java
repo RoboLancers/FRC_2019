@@ -6,27 +6,26 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.misc.commands.LEDAdjustment;
 
 public class LED extends Subsystem {
+    private static LED instance;
     private Blinkin blinkin;
 
-    private static LED instance;
+    private LED() {
+        blinkin = new Blinkin(RobotMap.MISC.LED);
+    }
 
-   private LED() {
-       blinkin = new Blinkin(RobotMap.MISC.LED);
-   }
+    public static LED getInstance() {
+        if (instance == null) {
+            instance = new LED();
+        }
+        return instance;
+    }
 
-   public void setPattern(Blinkin.PatternType pattern) {
-       blinkin.setPattern(pattern);
-   }
-
-   public static LED getInstance() {
-       if (instance == null) {
-           instance = new LED();
-       }
-       return instance;
-   }
+    public void setPattern(Blinkin.PatternType pattern) {
+        blinkin.setPattern(pattern);
+    }
 
     @Override
     protected void initDefaultCommand() {
-       setDefaultCommand(new LEDAdjustment());
+        setDefaultCommand(new LEDAdjustment());
     }
 }

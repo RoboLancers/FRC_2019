@@ -2,11 +2,10 @@ package frc.robot.subsystems.manipulators.cargo.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
-import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.manipulators.cargo.CargoPivot;
+import frc.robot.subsystems.manipulators.cargo.enums.CargoPivotState;
 import org.ghrobotics.lib.mathematics.twodim.geometry.Translation2d;
 
 public class CargoAdjustment extends Command {
@@ -17,8 +16,8 @@ public class CargoAdjustment extends Command {
     @Override
     protected void execute() {
         Translation2d robotTranslation = Drivetrain.getInstance().getLocalization().getRobotPosition().getTranslation();
-        
-        if(DriverStation.getInstance().isOperatorControl()) {
+
+        if (DriverStation.getInstance().isOperatorControl()) {
             if (Constants.AREAS.CARGOSHIP_BOX.contains(robotTranslation)) {
                 CargoPivot.getInstance().set(CargoPivotState.UP);
             } else if (Constants.AREAS.TOP_ROCKET_BOX.contains(robotTranslation) || Constants.AREAS.BOTTOM_ROCKET_BOX.contains(robotTranslation)) {

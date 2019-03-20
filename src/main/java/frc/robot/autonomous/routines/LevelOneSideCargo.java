@@ -5,7 +5,7 @@ import frc.robot.autonomous.enums.Objective;
 import frc.robot.autonomous.enums.StartingPosition;
 
 public class LevelOneSideCargo extends CommandGroup {
-    public LevelOneSideCargo(StartingPosition startingPosition, Objective objective){
+    public LevelOneSideCargo(StartingPosition startingPosition, Objective objective) {
 
     }
 }

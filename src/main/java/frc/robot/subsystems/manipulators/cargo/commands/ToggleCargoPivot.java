@@ -10,7 +10,7 @@ public class ToggleCargoPivot extends InstantCommand {
     }
 
     @Override
-    protected void initialize(){
+    protected void initialize() {
         CargoPivot.getInstance().set(CargoPivot.getInstance().get() == CargoPivotState.UP ? CargoPivotState.DOWN : CargoPivotState.UP);
     }
 }

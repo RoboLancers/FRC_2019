@@ -6,15 +6,15 @@ import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.misc.LED;
 
 public class LEDAdjustment extends Command {
-    public LEDAdjustment(){
+    public LEDAdjustment() {
         requires(LED.getInstance());
     }
 
     @Override
-    protected void execute(){
-        if(HatchEjector.getInstance().hasHatch()){
+    protected void execute() {
+        if (HatchEjector.getInstance().hasHatch()) {
             LED.getInstance().setPattern(Blinkin.PatternType.COLORWAVES_RAINBOW_PALETTE);
-        } else{
+        } else {
             LED.getInstance().setPattern(Blinkin.PatternType.HEARTBEAT_FASTER2);
         }
     }

@@ -30,11 +30,11 @@ public class Transmission {
         allMotors = Arrays.asList(master, slave1, slave2);
 
         for (FalconSRX<Length> motor : allMotors) {
-            if(side == TransmissionSide.RIGHT) {
+            if (side == TransmissionSide.RIGHT) {
                 motor.setInverted(true);
 
                 motor.setKF(Constants.DRIVETRAIN.RIGHT_KF);
-            }else{
+            } else {
                 motor.setSensorPhase(true);
 
                 motor.setKF(Constants.DRIVETRAIN.LEFT_KF);

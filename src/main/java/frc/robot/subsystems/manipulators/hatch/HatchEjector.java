@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 
-public class HatchEjector extends Subsystem{
+public class HatchEjector extends Subsystem {
     private static HatchEjector instance;
 
     private DoubleSolenoid ejector;
@@ -32,7 +32,7 @@ public class HatchEjector extends Subsystem{
         state = hatchEjectorState;
     }
 
-    public HatchEjectorState get(){
+    public HatchEjectorState get() {
         return state;
     }
 
@@ -41,5 +41,6 @@ public class HatchEjector extends Subsystem{
     }
 
     @Override
-    protected void initDefaultCommand() { }
+    protected void initDefaultCommand() {
+    }
 }

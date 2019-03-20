@@ -8,7 +8,7 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
 
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
-public class Flywheel extends Subsystem{
+public class Flywheel extends Subsystem {
     private static Flywheel instance;
 
     private TalonSRX flyWheelLeft, flyWheelRight;
@@ -32,10 +32,11 @@ public class Flywheel extends Subsystem{
         return instance;
     }
 
-    public void set(FlywheelPower power){
+    public void set(FlywheelPower power) {
         flyWheelLeft.set(ControlMode.PercentOutput, power.getPower());
     }
 
     @Override
-    protected void initDefaultCommand() { }
+    protected void initDefaultCommand() {
+    }
 }

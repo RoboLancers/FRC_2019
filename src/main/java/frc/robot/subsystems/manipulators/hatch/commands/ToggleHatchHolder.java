@@ -5,12 +5,12 @@ import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 public class ToggleHatchHolder extends InstantCommand {
-    public ToggleHatchHolder(){
+    public ToggleHatchHolder() {
         requires(HatchHolder.getInstance());
     }
 
     @Override
-    protected void initialize(){
+    protected void initialize() {
         HatchHolder.getInstance().set(HatchHolder.getInstance().get() == HatchHolderState.RELEASE ? HatchHolderState.HOLD : HatchHolderState.RELEASE);
     }
 }

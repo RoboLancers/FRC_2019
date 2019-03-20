@@ -2,11 +2,8 @@ package frc.robot.subsystems.drivetrain.commands;
 
 import com.robolancers.lib.wrappers.hid.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import org.ghrobotics.lib.mathematics.units.LengthKt;
-import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 
 public class UseDrivetrain extends Command {
     public static double turnModifier = 0.4;
@@ -17,10 +14,10 @@ public class UseDrivetrain extends Command {
 
     @Override
     protected void execute() {
-        if(OI.xboxController.getState(XboxController.Button.B)){
-            if(turnModifier == 0.4){
+        if (OI.xboxController.getState(XboxController.Button.B)) {
+            if (turnModifier == 0.4) {
                 turnModifier = 1;
-            }else{
+            } else {
                 turnModifier = 0.4;
             }
         }
