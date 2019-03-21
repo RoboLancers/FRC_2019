@@ -3,6 +3,7 @@ package frc.robot.subsystems.manipulators.climber.commands;
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 
@@ -13,15 +14,22 @@ public class UseClimberArmJoystick extends Command {
 
     @Override
     protected void execute() {
+        double power;
+
         if (Math.abs(OI.flightController.getAxisValue(FlightController.Axis.Y)) > 0.1) {
-            ClimberArm.getInstance().set(OI.flightController.getAxisValue(FlightController.Axis.Y));
+            power = OI.flightController.getAxisValue(FlightController.Axis.Y);
         } else if (OI.xboxController.getAxisValue(XboxController.Axis.LEFT_TRIGGER) > 0.1) {
-            ClimberArm.getInstance().set(OI.xboxController.getAxisValue(XboxController.Axis.LEFT_TRIGGER));
+            power = OI.xboxController.getAxisValue(XboxController.Axis.LEFT_TRIGGER);
         } else if (OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_TRIGGER) > 0.1) {
-            ClimberArm.getInstance().set(-OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_TRIGGER));
+            power = -OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_TRIGGER);
         } else {
-            ClimberArm.getInstance().set(0);
+            power = 0;
         }
+
+        double rpm = Constants.rpm2rads(Constants.ticksPer100msToRPM(ClimberArm.getInstance().getMaster().getSelectedSensorVelocity()));
+        double voltage = Constants.CLIMBER.currentLimit(power * Constants.CLIMBER.NOMINAL_VOLTAGE, rpm);
+
+        ClimberArm.getInstance().set(voltage / Constants.DRIVETRAIN.NOMINAL_VOLTAGE);
     }
 
     @Override

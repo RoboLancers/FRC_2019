@@ -16,7 +16,7 @@ import org.ghrobotics.lib.mathematics.units.nativeunits.*;
 import java.util.Arrays;
 import java.util.List;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class Constants {
     public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
 
@@ -64,6 +64,8 @@ public class Constants {
 
         public static final int VOLTAGE_COMPENSATION = 10;
         public static final int VOLTAGE_MEASUREMENT_FILTER = 32;
+
+        public static final int NOMINAL_VOLTAGE = 10;
 
         public static final double RAMP_RATE = 0.15;
 
@@ -141,12 +143,29 @@ public class Constants {
                 leftDCMotorTransmission,
                 rightDCMotorTransmission
         );
+
+        public static final Gearbox GEARBOX = new Gearbox(
+                NOMINAL_VOLTAGE,
+                rpm2rads(5330),
+                2.7,
+                131,
+                2.41,
+                9.76,
+                3
+        );
+
+        public static double currentLimit(double commandedVoltage, double angularVelocity){
+            double minimumVoltage = -PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
+            double maximumVoltage = PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
+
+            commandedVoltage = Math.max(commandedVoltage, minimumVoltage);
+            commandedVoltage = Math.min(commandedVoltage, maximumVoltage);
+
+            return commandedVoltage;
+        }
     }
 
     public static final class CLIMBER {
-        public static final int CLIMBING_ANGLE = 45;
-        public static final int CLIMBING_MARGIN = 5;
-
         public static final int PID_SLOT_INDEX = 0;
         public static final int ALLOWABLE_ARM_ERROR = 10;
 
@@ -162,6 +181,29 @@ public class Constants {
         public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(
                 SENSOR_UNIT_PER_ROTATION
         );
+
+        public static final int NOMINAL_VOLTAGE = 10;
+        public static final int PEAK_CURRENT_LIMIT = 40;
+
+        public static final Gearbox GEARBOX = new Gearbox(
+                NOMINAL_VOLTAGE,
+                rpm2rads(5330),
+                2.7,
+                131,
+                2.41,
+                256,
+                1
+        );
+
+        public static double currentLimit(double commandedVoltage, double angularVelocity){
+            double minimumVoltage = -PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
+            double maximumVoltage = PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
+
+            commandedVoltage = Math.max(commandedVoltage, minimumVoltage);
+            commandedVoltage = Math.min(commandedVoltage, maximumVoltage);
+
+            return commandedVoltage;
+        }
     }
 
     public static final class AREAS {
@@ -213,5 +255,13 @@ public class Constants {
     public static final class PNEUMATICS {
         public static final int MINIMUM_PRESSURE = 70;
         public static final int MAXIMUM_PRESSURE = 100;
+    }
+
+    public static double ticksPer100msToRPM(double ticksPer100ms){
+        return ticksPer100ms * 0.589375;
+    }
+
+    public static double rpm2rads(double rpm){
+        return rpm * 2 * Math.PI / 60;
     }
 }

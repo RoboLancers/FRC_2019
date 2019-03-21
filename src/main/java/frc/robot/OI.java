@@ -2,6 +2,7 @@ package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
+import frc.robot.subsystems.drivetrain.commands.AutoAlign;
 import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
 import frc.robot.subsystems.manipulators.cargo.commands.UseFlywheel;
 import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
@@ -24,7 +25,8 @@ public class OI {
             .whenPressed(XboxController.Button.START, new UseInstantLiftoff(LiftoffState.DOWN))
             .whenPressed(XboxController.Button.SELECT, new UseInstantLiftoff(LiftoffState.UP))
 
-            .whenPressed(XboxController.Button.Y, new ToggleCargoPivot());
+            .whenPressed(XboxController.Button.Y, new ToggleCargoPivot())
+            .whenPressed(XboxController.Button.X, new AutoAlign());
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseFlywheel(FlywheelPower.OUTTAKE))

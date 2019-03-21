@@ -70,6 +70,10 @@ public class ClimberArm extends Subsystem {
         climberArm.setSensorPosition(Rotation2dKt.getDegree(0));
     }
 
+    public FalconSRX getMaster(){
+        return climberArm;
+    }
+
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new UseClimberArmJoystick());

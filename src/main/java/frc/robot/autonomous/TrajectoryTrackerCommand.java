@@ -4,6 +4,8 @@ import com.robolancers.lib.subsystems.drivetrain.TankDriveSubsystem;
 import com.team254.lib.physics.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
+import frc.robot.subsystems.misc.Camera;
 import org.ghrobotics.lib.debug.LiveDashboard;
 import org.ghrobotics.lib.localization.Localization;
 import org.ghrobotics.lib.mathematics.twodim.control.TrajectoryTracker;
@@ -14,7 +16,10 @@ import org.ghrobotics.lib.mathematics.twodim.trajectory.types.TimedEntry;
 import org.ghrobotics.lib.mathematics.twodim.trajectory.types.TimedTrajectory;
 import org.ghrobotics.lib.mathematics.twodim.trajectory.types.TrajectorySamplePoint;
 import org.ghrobotics.lib.mathematics.units.LengthKt;
+import org.ghrobotics.lib.mathematics.units.Rotation2d;
+import org.ghrobotics.lib.mathematics.units.Rotation2dKt;
 import org.ghrobotics.lib.mathematics.units.TimeUnitsKt;
+import org.ghrobotics.lib.mathematics.units.derivedunits.Velocity;
 import org.ghrobotics.lib.mathematics.units.derivedunits.VelocityKt;
 import org.ghrobotics.lib.subsystems.drive.TrajectoryTrackerDriveBase;
 import org.ghrobotics.lib.subsystems.drive.TrajectoryTrackerOutput;
@@ -68,12 +73,12 @@ public class TrajectoryTrackerCommand extends Command {
         nextState = trajectoryTracker.nextState(driveBase.getRobotPosition(), TimeUnitsKt.getMillisecond(System.currentTimeMillis()));
         robotTranslation = driveBase.getRobotPosition().getTranslation();
 
-        /*if(Constants.AREAS.ALL_AREAS.stream().anyMatch(rectangle2d -> rectangle2d.contains(robotTranslation))) {
+        if(Constants.AREAS.ALL_AREAS.stream().anyMatch(rectangle2d -> rectangle2d.contains(robotTranslation))) {
             if (Camera.getInstance().hasLine()) {
                 Velocity<Rotation2d> correction = VelocityKt.getVelocity(Rotation2dKt.getRadian(Constants.DRIVETRAIN.VISION_CORRECTION_KP * (39 - Camera.getInstance().getLineX())));
                 nextState = new TrajectoryTrackerOutput(nextState.getLinearVelocity(), nextState.getLinearAcceleration(), nextState.getAngularVelocity().plus(correction), nextState.getAngularAcceleration());
             }
-        }*/
+        }
 
         driveDynamics = tankDriveSubsystem.getDifferentialDrive().solveInverseDynamics(nextState.getDifferentialDriveVelocity(), nextState.getDifferentialDriveAcceleration());
         leftVelocity = VelocityKt.getFeetPerSecond(VelocityKt.getVelocity(LengthKt.getMeter(driveDynamics.getWheelVelocity().getLeft() * tankDriveSubsystem.getDifferentialDrive().getWheelRadius())));
