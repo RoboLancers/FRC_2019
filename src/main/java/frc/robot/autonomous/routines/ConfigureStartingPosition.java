@@ -9,6 +9,8 @@ public class ConfigureStartingPosition extends InstantCommand {
     private StartingPosition startingPosition;
 
     public ConfigureStartingPosition(StartingPosition startingPosition) {
+        setName("ConfigureStartingPosition");
+
         this.startingPosition = startingPosition;
     }
 

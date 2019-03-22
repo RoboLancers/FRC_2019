@@ -133,8 +133,8 @@ public class Trajectories {
             private static final Pose2d ROCKET_NEAR_HATCH = new Pose2d(LengthKt.getFeet(17), LengthKt.getFeet(25.1), Rotation2dKt.getDegree(30));
             private static final Pose2d ROCKET_FAR_HATCH = new Pose2d(LengthKt.getFeet(21), LengthKt.getFeet(25.1), Rotation2dKt.getDegree(150));
 
-            private static final Pose2d ROCKET_NEAR_TURN = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(21), Rotation2dKt.getDegree(-90));
-            private static final Pose2d ROCKET_FROM_FAR_TURN = new Pose2d(LengthKt.getFeet(13), LengthKt.getFeet(25), Rotation2dKt.getDegree(90));
+            private static final Pose2d ROCKET_NEAR_TURN = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(22), Rotation2dKt.getDegree(75));
+            private static final Pose2d ROCKET_FROM_FAR_TURN = new Pose2d(LengthKt.getFeet(13), LengthKt.getFeet(25), Rotation2dKt.getDegree(-105));
 
             public static TimedTrajectory<Pose2dWithCurvature> leftStartToLeftFarRocket = generateTrajectory(Arrays.asList(
                     Constants.ROBOT.LEVEL_1_LEFT_START,
@@ -144,7 +144,7 @@ public class Trajectories {
 
             public static TimedTrajectory<Pose2dWithCurvature> leftFarRocketToLeftFromFarTurn = generateTrajectory(Arrays.asList(
                     ROCKET_FAR_HATCH,
-                    new Pose2d(LengthKt.getFeet(17.5), LengthKt.getFeet(6), Rotation2dKt.getDegree(0)),
+                    new Pose2d(LengthKt.getFeet(17.5), LengthKt.getFeet(21), Rotation2dKt.getDegree(0)),
                     ROCKET_FROM_FAR_TURN
             ), true);
 
@@ -154,7 +154,7 @@ public class Trajectories {
             ));
 
             public static TimedTrajectory<Pose2dWithCurvature> leftLoadingStationToLeftRocketNearTurn = generateTrajectory(Arrays.asList(
-                    LOADING_STATION_RIGHT_PICKUP,
+                    LOADING_STATION_LEFT_PICKUP,
                     ROCKET_NEAR_TURN
             ), true);
 
@@ -168,8 +168,8 @@ public class Trajectories {
             private static final Pose2d RIGHT_ROCKET_NEAR_HATCH = new Pose2d(LengthKt.getFeet(17), LengthKt.getFeet(2.0), Rotation2dKt.getDegree(-30));
             private static final Pose2d RIGHT_ROCKET_FAR_HATCH = new Pose2d(LengthKt.getFeet(21), LengthKt.getFeet(2.0), Rotation2dKt.getDegree(-150));
 
-            private static final Pose2d RIGHT_ROCKET_NEAR_TURN = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(6), Rotation2dKt.getDegree(-90));
-            private static final Pose2d RIGHT_ROCKET_FROM_FAR_TURN = new Pose2d(LengthKt.getFeet(13), LengthKt.getFeet(2), Rotation2dKt.getDegree(90));
+            private static final Pose2d RIGHT_ROCKET_NEAR_TURN = new Pose2d(LengthKt.getFeet(12), LengthKt.getFeet(6), Rotation2dKt.getDegree(-75));
+            private static final Pose2d RIGHT_ROCKET_FROM_FAR_TURN = new Pose2d(LengthKt.getFeet(13), LengthKt.getFeet(2), Rotation2dKt.getDegree(105));
 
             public static TimedTrajectory<Pose2dWithCurvature> rightStartToRightFarRocket = generateTrajectory(Arrays.asList(
                     Constants.ROBOT.LEVEL_1_RIGHT_START,

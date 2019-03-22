@@ -11,6 +11,8 @@ import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 public class LevelOneBothFrontCargo extends CommandGroup {
     public LevelOneBothFrontCargo(StartingPosition startingPosition, Objective objective) {
+        setName("LevelOneBothFrontCargo");
+
         if (objective == Objective.BOTH_FRONT_CARGO_LEFT) {
             if (startingPosition == StartingPosition.LEVEL_1_LEFT) {
                 addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.FRONT_CARGOSHIP.LEFT.leftStartToFrontLeftCargo, true));
