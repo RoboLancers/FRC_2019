@@ -18,11 +18,11 @@ public class Pneumatics extends Subsystem {
     }
 
     public synchronized static Pneumatics getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Pneumatics();
         }
 
-       return instance;
+        return instance;
     }
 
     public double getPressure() {

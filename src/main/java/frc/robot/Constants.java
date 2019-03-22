@@ -21,6 +21,14 @@ import java.util.List;
 public class Constants {
     public static Time TIMEOUT = TimeUnitsKt.getMillisecond(0);
 
+    public static double ticksPer100msToRPM(double ticksPer100ms) {
+        return ticksPer100ms * 0.589375;
+    }
+
+    public static double rpm2rads(double rpm) {
+        return rpm * 2 * Math.PI / 60;
+    }
+
     public static final class PATH_FOLLOWING {
         public static final Velocity<Length> MAX_VELOCITY = VelocityKt.getVelocity(LengthKt.getFeet(8));
         public static final Acceleration<Length> MAX_ACCELERATION = AccelerationKt.getAcceleration(LengthKt.getFeet(6));
@@ -155,7 +163,7 @@ public class Constants {
                 3
         );
 
-        public static double currentLimit(double commandedVoltage, double angularVelocity){
+        public static double currentLimit(double commandedVoltage, double angularVelocity) {
             double minimumVoltage = -PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
             double maximumVoltage = PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
 
@@ -178,14 +186,8 @@ public class Constants {
         public static final double RAMP_RATE = 0.25;
 
         public static final NativeUnit SENSOR_UNIT_PER_ROTATION = NativeUnitKt.getNativeUnits(1024);
-
-        public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(
-                SENSOR_UNIT_PER_ROTATION
-        );
-
         public static final int NOMINAL_VOLTAGE = 10;
         public static final int PEAK_CURRENT_LIMIT = 40;
-
         public static final Gearbox GEARBOX = new Gearbox(
                 NOMINAL_VOLTAGE,
                 rpm2rads(5330),
@@ -195,8 +197,11 @@ public class Constants {
                 256,
                 1
         );
+        public static NativeUnitModel<Rotation2d> NATIVE_UNIT_MODEL = new NativeUnitRotationModel(
+                SENSOR_UNIT_PER_ROTATION
+        );
 
-        public static double currentLimit(double commandedVoltage, double angularVelocity){
+        public static double currentLimit(double commandedVoltage, double angularVelocity) {
             double minimumVoltage = -PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
             double maximumVoltage = PEAK_CURRENT_LIMIT * GEARBOX.R() + GEARBOX.kw() * angularVelocity;
 
@@ -256,13 +261,5 @@ public class Constants {
     public static final class PNEUMATICS {
         public static final int MINIMUM_PRESSURE = 70;
         public static final int MAXIMUM_PRESSURE = 100;
-    }
-
-    public static double ticksPer100msToRPM(double ticksPer100ms){
-        return ticksPer100ms * 0.589375;
-    }
-
-    public static double rpm2rads(double rpm){
-        return rpm * 2 * Math.PI / 60;
     }
 }

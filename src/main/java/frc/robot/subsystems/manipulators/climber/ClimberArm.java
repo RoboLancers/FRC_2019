@@ -70,7 +70,7 @@ public class ClimberArm extends Subsystem {
         climberArm.setSensorPosition(Rotation2dKt.getDegree(0));
     }
 
-    public FalconSRX getMaster(){
+    public FalconSRX getMaster() {
         return climberArm;
     }
 

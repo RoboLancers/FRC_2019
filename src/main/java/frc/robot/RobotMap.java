@@ -46,9 +46,6 @@ public class RobotMap {
         //Pneumatics
         public static final int LIFTOFF_PISTON_UP = 7;
         public static final int LIFTOFF_PISTON_DOWN = 0;
-
-        //Sensors
-        public static final int ARM_LIMIT_SWITCH = 3;
     }
 
     public static final class MISC {

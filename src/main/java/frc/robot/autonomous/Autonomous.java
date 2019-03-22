@@ -1,11 +1,13 @@
 package frc.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.NetworkInterface;
 import frc.robot.autonomous.enums.Objective;
 import frc.robot.autonomous.enums.StartingPosition;
-import frc.robot.autonomous.routines.*;
+import frc.robot.autonomous.routines.ConfigureStartingPosition;
+import frc.robot.autonomous.routines.LevelOneBothFrontCargo;
+import frc.robot.autonomous.routines.LevelOneBothRocket;
+import frc.robot.autonomous.routines.LevelOneCargoRocket;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class Autonomous {
@@ -28,7 +30,7 @@ public class Autonomous {
         selectedStartingPosition = NetworkInterface.getInstance().getStartingPositionChooser().getSelected();
         selectedObjective = NetworkInterface.getInstance().getObjectiveChooser().getSelected();
 
-        if(selectedObjective != previouslySelectedObjective || selectedStartingPosition != previouslySelectedStartingPosition) {
+        if (selectedObjective != previouslySelectedObjective || selectedStartingPosition != previouslySelectedStartingPosition) {
             if (selectedObjective == Objective.BOTH_FRONT_CARGO_LEFT || selectedObjective == Objective.BOTH_FRONT_CARGO_RIGHT) {
                 autonomousCommand = new LevelOneBothFrontCargo(selectedStartingPosition, selectedObjective);
             } else if (selectedObjective == Objective.BOTH_LEFT_ROCKET || selectedObjective == Objective.BOTH_RIGHT_ROCKET) {

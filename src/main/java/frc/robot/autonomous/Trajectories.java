@@ -20,7 +20,8 @@ public class Trajectories {
     private static final Pose2d LOADING_STATION_LEFT_PICKUP = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(24.9), Rotation2dKt.getDegree(180));
     private static final Pose2d LOADING_STATION_RIGHT_PICKUP = new Pose2d(LengthKt.getFeet(0).plus(Constants.ROBOT.MIDDLE_OF_ROBOT_X), LengthKt.getFeet(2.2), Rotation2dKt.getDegree(180));
 
-    public static void generateTrajectories() { }
+    public static void generateTrajectories() {
+    }
 
     private static TimedTrajectory<Pose2dWithCurvature> generateTrajectory(List<Pose2d> waypoints) {
         return generateTrajectory(waypoints, false);

@@ -34,11 +34,11 @@ public class Camera {
         return pixyArduino;
     }
 
-    public boolean hasLine(){
+    public boolean hasLine() {
         return pixyArduino.hasLine();
     }
 
-    public double getLineX(){
+    public double getLineX() {
         return pixyArduino.getLineX();
     }
 }

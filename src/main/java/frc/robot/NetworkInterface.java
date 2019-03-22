@@ -54,7 +54,7 @@ public class NetworkInterface {
         return objectiveChooser;
     }
 
-    public NetworkTableEntry getCurrentlySelectedAutonomousEntry(){
+    public NetworkTableEntry getCurrentlySelectedAutonomousEntry() {
         return currentlySelectedAutonomousEntry;
     }
 }

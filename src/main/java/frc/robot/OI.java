@@ -25,6 +25,12 @@ public class OI {
             .whenPressed(XboxController.Button.START, new UseInstantLiftoff(LiftoffState.DOWN))
             .whenPressed(XboxController.Button.SELECT, new UseInstantLiftoff(LiftoffState.UP))
 
+            .whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(-0.5))
+            .whenReleased(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(0))
+
+            .whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseClimberArmPower(0.5))
+            .whenReleased(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(0))
+
             .whenPressed(XboxController.Button.Y, new ToggleCargoPivot())
             .whenPressed(XboxController.Button.X, new AutoAlign());
 

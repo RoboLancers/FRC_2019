@@ -12,9 +12,9 @@ public class PressureLimit extends Command {
     }
 
     protected void execute() {
-        if(Pneumatics.getInstance().getPressure() < Constants.PNEUMATICS.MINIMUM_PRESSURE) {
+        if (Pneumatics.getInstance().getPressure() < Constants.PNEUMATICS.MINIMUM_PRESSURE) {
             Pneumatics.getInstance().start();
-        } else if(Pneumatics.getInstance().getPressure() > Constants.PNEUMATICS.MAXIMUM_PRESSURE) {
+        } else if (Pneumatics.getInstance().getPressure() > Constants.PNEUMATICS.MAXIMUM_PRESSURE) {
             Pneumatics.getInstance().stop();
         }
     }

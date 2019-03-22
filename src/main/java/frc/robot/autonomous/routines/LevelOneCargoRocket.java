@@ -11,7 +11,7 @@ import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
 
 public class LevelOneCargoRocket extends CommandGroup {
     public LevelOneCargoRocket(StartingPosition startingPosition, Objective objective) {
-        if(startingPosition == StartingPosition.LEVEL_1_LEFT && objective == Objective.CARGO_ROCKET_LEFT){
+        if (startingPosition == StartingPosition.LEVEL_1_LEFT && objective == Objective.CARGO_ROCKET_LEFT) {
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.FRONT_CARGOSHIP.LEFT.leftStartToFrontLeftCargo));
             addSequential(new AutoHatchRelease());
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.FRONT_CARGOSHIP.LEFT.frontLeftCargoToLeftTurn));
@@ -19,7 +19,7 @@ public class LevelOneCargoRocket extends CommandGroup {
             addSequential(new UseHatchHolder(HatchHolderState.HOLD));
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.ROCKET.LEFT.leftLoadingStationToLeftRocketNearTurn));
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.ROCKET.LEFT.leftRocketNearTurnToLeftNearRocket));
-        }else if(startingPosition == StartingPosition.LEVEL_1_RIGHT && objective == Objective.CARGO_ROCKET_RIGHT){
+        } else if (startingPosition == StartingPosition.LEVEL_1_RIGHT && objective == Objective.CARGO_ROCKET_RIGHT) {
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.FRONT_CARGOSHIP.RIGHT.rightStartToFrontRightCargo));
             addSequential(new AutoHatchRelease());
             addSequential(Drivetrain.getInstance().followTrajectory(Trajectories.FRONT_CARGOSHIP.RIGHT.frontRightCargoToRightTurn));
