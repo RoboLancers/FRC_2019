@@ -18,7 +18,7 @@ public class AutoAlign extends Command {
     @Override
     protected void execute() {
         if (Camera.getInstance().hasLine()) {
-            error = (Constants.CAMERA.MAX_X / 2.0) - Camera.getInstance().getLineX();
+            error = Constants.CAMERA.MIDDLE_X - Camera.getInstance().getLineX();
             leftPower = (error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
             rightPower = (-error * Constants.CAMERA.TURNING_kP) + Constants.CAMERA.FORWARD;
 
