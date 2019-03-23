@@ -256,6 +256,9 @@ public class Constants {
 
         public static final double TURNING_kP = 0.001;
         public static final double FORWARD = 0.15;
+
+        // Distance
+        public static final double TRACKING_DISTANCE = 0.3;
     }
 
     public static final class PNEUMATICS {
