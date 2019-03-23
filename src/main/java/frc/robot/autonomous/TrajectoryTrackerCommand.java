@@ -73,13 +73,6 @@ public class TrajectoryTrackerCommand extends Command {
         nextState = trajectoryTracker.nextState(driveBase.getRobotPosition(), TimeUnitsKt.getMillisecond(System.currentTimeMillis()));
         robotTranslation = driveBase.getRobotPosition().getTranslation();
 
-        if (robotTranslation.distance(trajectorySource.get().getLastState().getState().getPose().getTranslation()) < Constants.CAMERA.TRACKING_DISTANCE) {
-            if (Camera.getInstance().hasLine()) {
-                Velocity<Rotation2d> correction = VelocityKt.getVelocity(Rotation2dKt.getRadian(Constants.DRIVETRAIN.VISION_CORRECTION_KP * (39 - Camera.getInstance().getLineX())));
-                nextState = new TrajectoryTrackerOutput(nextState.getLinearVelocity(), nextState.getLinearAcceleration(), nextState.getAngularVelocity().plus(correction), nextState.getAngularAcceleration());
-            }
-        }
-
         driveDynamics = tankDriveSubsystem.getDifferentialDrive().solveInverseDynamics(nextState.getDifferentialDriveVelocity(), nextState.getDifferentialDriveAcceleration());
         leftVelocity = VelocityKt.getFeetPerSecond(VelocityKt.getVelocity(LengthKt.getMeter(driveDynamics.getWheelVelocity().getLeft() * tankDriveSubsystem.getDifferentialDrive().getWheelRadius())));
         rightVelocity = VelocityKt.getFeetPerSecond(VelocityKt.getVelocity(LengthKt.getMeter(driveDynamics.getWheelVelocity().getRight() * tankDriveSubsystem.getDifferentialDrive().getWheelRadius())));

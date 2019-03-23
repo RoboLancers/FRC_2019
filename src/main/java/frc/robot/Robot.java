@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.autonomous.Autonomous;
 import frc.robot.autonomous.Trajectories;
 import frc.robot.subsystems.drivetrain.Drivetrain;
@@ -26,10 +27,7 @@ import frc.robot.subsystems.manipulators.hatch.HatchEjector;
 import frc.robot.subsystems.manipulators.hatch.HatchHolder;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchEjectorState;
 import frc.robot.subsystems.manipulators.hatch.enums.HatchHolderState;
-import frc.robot.subsystems.misc.Camera;
-import frc.robot.subsystems.misc.LED;
-import frc.robot.subsystems.misc.Pneumatics;
-import frc.robot.subsystems.misc.Sensors;
+import frc.robot.subsystems.misc.*;
 
 @SuppressWarnings("unused")
 public class Robot extends TimedRobot {
@@ -102,5 +100,11 @@ public class Robot extends TimedRobot {
 
         HatchEjector.getInstance().set(HatchEjectorState.RETRACT);
         HatchHolder.getInstance().set(HatchHolderState.HOLD);
+    }
+
+    @Override
+    public void teleopPeriodic() {
+        SmartDashboard.putNumber("Pressure", Pneumatics.getInstance().getPressure());
+        SmartDashboard.putBoolean("Limit Switch", HatchEjector.getInstance().hasHatch());
     }
 }

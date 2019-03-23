@@ -35,7 +35,7 @@ public class NetworkInterface {
         competitionTab.add("Starting Position Chooser", startingPositionChooser).withPosition(0, 0).withSize(2, 1);
         competitionTab.add("Objective Chooser", objectiveChooser).withPosition(2, 0).withSize(2, 1);
 
-        currentlySelectedAutonomousEntry = competitionTab.add("Currently Selected Autonomous", "").withPosition(0, 1).withSize(4, 1).getEntry();
+        currentlySelectedAutonomousEntry = competitionTab.add("Currently Selected Autonomous", "").withPosition(0, 2).withSize(4, 1).getEntry();
     }
 
     public static synchronized NetworkInterface getInstance() {

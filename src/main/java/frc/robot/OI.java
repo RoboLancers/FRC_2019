@@ -2,7 +2,6 @@ package frc.robot;
 
 import com.robolancers.lib.wrappers.hid.FlightController;
 import com.robolancers.lib.wrappers.hid.XboxController;
-import frc.robot.subsystems.drivetrain.commands.AutoAlign;
 import frc.robot.subsystems.manipulators.cargo.commands.ToggleCargoPivot;
 import frc.robot.subsystems.manipulators.cargo.commands.UseFlywheel;
 import frc.robot.subsystems.manipulators.cargo.enums.FlywheelPower;
@@ -16,23 +15,16 @@ import frc.robot.subsystems.manipulators.hatch.commands.ToggleHatchHolder;
 public class OI {
     public static XboxController xboxController = new XboxController(0)
             .whenPressed(XboxController.Button.LEFT_BUMPER, new ToggleHatchHolder())
-            .whenPressed(XboxController.Button.RIGHT_BUMPER, new AutoHatchRelease())
+            .whenPressed(XboxController.Button.RIGHT_BUMPER, new AutoHatchRelease());
 
             //Backup Buttons
-            .whenPressed(XboxController.Button.A, new UseFlywheel(FlywheelPower.OUTTAKE))
-            .whenReleased(XboxController.Button.A, new UseFlywheel(FlywheelPower.STOP))
-
-            .whenPressed(XboxController.Button.START, new UseInstantLiftoff(LiftoffState.DOWN))
-            .whenPressed(XboxController.Button.SELECT, new UseInstantLiftoff(LiftoffState.UP))
-
-            .whenPressed(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(-0.5))
-            .whenReleased(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(0))
-
-            .whenPressed(XboxController.Trigger.LEFT_TRIGGER, new UseClimberArmPower(0.5))
-            .whenReleased(XboxController.Trigger.RIGHT_TRIGGER, new UseClimberArmPower(0))
-
-            .whenPressed(XboxController.Button.Y, new ToggleCargoPivot())
-            .whenPressed(XboxController.Button.X, new AutoAlign());
+//            .whenPressed(XboxController.Button.A, new UseFlywheel(FlywheelPower.OUTTAKE))
+//            .whenReleased(XboxController.Button.A, new UseFlywheel(FlywheelPower.STOP))
+//
+//            .whenPressed(XboxController.Button.START, new UseInstantLiftoff(LiftoffState.DOWN))
+//            .whenPressed(XboxController.Button.SELECT, new UseInstantLiftoff(LiftoffState.UP))
+//
+//            .whenPressed(XboxController.Button.Y, new ToggleCargoPivot());
 
     public static FlightController flightController = new FlightController(1)
             .whenPressed(FlightController.Button.TRIGGER, new UseFlywheel(FlywheelPower.OUTTAKE))

@@ -254,7 +254,7 @@ public class Constants {
 
         public static final int MIDDLE_X = MAX_X / 2;
 
-        public static final double TURNING_kP = 0.001;
+        public static final double TURNING_kP = 0.008;
         public static final double FORWARD = 0.15;
 
         // Distance

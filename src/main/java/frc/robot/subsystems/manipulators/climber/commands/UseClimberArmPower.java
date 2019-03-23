@@ -1,9 +1,10 @@
 package frc.robot.subsystems.manipulators.climber.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.subsystems.manipulators.climber.ClimberArm;
 
-public class UseClimberArmPower extends Command {
+public class UseClimberArmPower extends InstantCommand {
     private double power;
 
     public UseClimberArmPower(double power) {
@@ -13,10 +14,5 @@ public class UseClimberArmPower extends Command {
 
     protected void execute() {
         ClimberArm.getInstance().set(power);
-    }
-
-    @Override
-    protected boolean isFinished() {
-        return false;
     }
 }

@@ -29,14 +29,8 @@ public class UseDrivetrain extends Command {
         double leftPower = (throttle + turn);
         double rightPower = (throttle - turn) * 0.95;
 
-        double leftRPM = Constants.rpm2rads(Constants.ticksPer100msToRPM(Drivetrain.getInstance().getLeftTransmission().getMaster().getSelectedSensorVelocity()));
-        double rightRPM = Constants.rpm2rads(Constants.ticksPer100msToRPM(Drivetrain.getInstance().getRightTransmission().getMaster().getSelectedSensorVelocity()));
-
-        double leftVoltage = Constants.DRIVETRAIN.currentLimit(leftPower * Constants.DRIVETRAIN.NOMINAL_VOLTAGE, leftRPM);
-        double rightVoltage = Constants.DRIVETRAIN.currentLimit(rightPower * Constants.DRIVETRAIN.NOMINAL_VOLTAGE, rightRPM);
-
-        Drivetrain.getInstance().getLeftMotor().setPercentOutput(leftVoltage / Constants.DRIVETRAIN.NOMINAL_VOLTAGE);
-        Drivetrain.getInstance().getRightMotor().setPercentOutput(rightVoltage / Constants.DRIVETRAIN.NOMINAL_VOLTAGE);
+        Drivetrain.getInstance().getLeftMotor().setPercentOutput(leftPower);
+        Drivetrain.getInstance().getRightMotor().setPercentOutput(rightPower);
     }
 
     @Override
