@@ -10,10 +10,12 @@ public class Pneumatics extends Subsystem {
     private static Pneumatics instance;
 
     private REVAnalogPressureSensor revAnalogPressureSensor;
+
     private Compressor compressor;
 
     private Pneumatics() {
         revAnalogPressureSensor = new REVAnalogPressureSensor(RobotMap.MISC.REV_PRESSURE_SENSOR_PORT);
+
         compressor = new Compressor();
     }
 
