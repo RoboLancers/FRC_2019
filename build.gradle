@@ -2,7 +2,7 @@ import edu.wpi.first.gradlerio.GradleRIOPlugin
 
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2019.1.1"
+    id "edu.wpi.first.GradleRIO" version "2019.4.1"
 }
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
@@ -45,6 +45,7 @@ def includeDesktopSupport = false
 // Maven central needed for JUnit
 repositories {
     mavenCentral()
+    maven { url 'https://nexus.otake.pw/repository/maven-public/' }
     maven { setUrl("https://jitpack.io") }
 }
 
@@ -61,8 +62,10 @@ dependencies {
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
     testCompile 'junit:junit:4.12'
 
-    compile('org.ghrobotics:FalconLibrary:2019.1.5')
-    compile('com.github.RoboLancers:LancerLibrary:ab8301355e')
+    simulation "edu.wpi.first.halsim:halsim_ds_socket:${wpi.wpilibVersion}:${wpi.platforms.desktop}@zip"
+
+    compile('com.github.5190GreenHopeRobotics:FalconLibrary:b4feb6c543')
+    compile('com.github.RoboLancers:LancerLibrary:6364e3de4e')
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
@@ -71,4 +74,8 @@ dependencies {
 jar {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
+}
+
+compileJava {
+    options.compilerArgs << '-parameters'
 }
