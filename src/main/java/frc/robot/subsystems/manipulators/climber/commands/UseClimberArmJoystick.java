@@ -13,7 +13,7 @@ public class UseClimberArmJoystick extends Command {
 
     @Override
     protected void execute() {
-        double power = OI.flightController.getAxisValue(FlightController.Axis.Y);
+        double power = OI.flightController.getAxisValue(FlightController.Axis.Y) * 0.9;
 
         ClimberArm.getInstance().set(power);
     }

@@ -24,10 +24,10 @@ public class UseDrivetrain extends Command {
         }
 
         double throttle = OI.xboxController.getAxisValue(XboxController.Axis.LEFT_Y);
-        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X) * 0.4;
+        double turn = OI.xboxController.getAxisValue(XboxController.Axis.RIGHT_X) * 0.45;
 
         double leftPower = (throttle + turn);
-        double rightPower = (throttle - turn) * 0.95;
+        double rightPower = (throttle - turn);
 
         Drivetrain.getInstance().getLeftMotor().setPercentOutput(leftPower);
         Drivetrain.getInstance().getRightMotor().setPercentOutput(rightPower);
